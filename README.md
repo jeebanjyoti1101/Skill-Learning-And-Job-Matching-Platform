@@ -612,8 +612,8 @@ in the Software without restriction...
 
 ## 👥 Authors & Contributors
 
-- **Your Name** - Initial development
-- **Contributors** - Welcome! See [CONTRIBUTING.md](CONTRIBUTING.md)
+- **Jeeban Jyoti Pradhan** - Initial development
+- **Nikhil Kumar** - Welcome! See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 
