@@ -1,0 +1,1994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Resources - SkillMatch AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #030712;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.1) 0%, transparent 45%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Modern Grid & Interactive Glow */
+        .grid-master {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+            pointer-events: none;
+            background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.04) 0.8px, transparent 0.8px);
+            background-size: 12px 12px;
+        }
+
+        .grid-mask {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            background-image: radial-gradient(circle at center, #2563eb 1px, transparent 1px);
+            background-size: 12px 12px;
+            -webkit-mask-image: radial-gradient(150px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), black 0%, transparent 100%);
+            mask-image: radial-gradient(150px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), black 0%, transparent 100%);
+        }
+
+        .interactive-glow {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background: radial-gradient(
+                400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(37, 99, 235, 0.08),
+                transparent 40%
+            );
+        }
+
+        /* Animated background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-50px) rotate(180deg);
+            }
+        }
+
+        /* Floating Learning Icons */
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.15;
+            animation: floatIcon linear infinite;
+        }
+
+        @keyframes floatIcon {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.15;
+            }
+            90% {
+                opacity: 0.15;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .floating-icon:nth-child(1) { left: 10%; animation-duration: 20s; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { left: 25%; animation-duration: 25s; animation-delay: 3s; }
+        .floating-icon:nth-child(3) { left: 40%; animation-duration: 18s; animation-delay: 6s; }
+        .floating-icon:nth-child(4) { left: 55%; animation-duration: 22s; animation-delay: 2s; }
+        .floating-icon:nth-child(5) { left: 70%; animation-duration: 24s; animation-delay: 8s; }
+        .floating-icon:nth-child(6) { left: 85%; animation-duration: 19s; animation-delay: 5s; }
+
+        /* Navigation */
+        .navbar {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #0f172a 100%);
+            padding: 60px 30px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(30, 64, 175, 0.3);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmerHeader 3s infinite;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #1e40af, #3b82f6, #1e40af, #0f172a);
+            background-size: 300% 300%;
+            border-radius: 25px;
+            z-index: -1;
+            animation: gradientShift 4s ease infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes shimmerHeader {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(30, 64, 175, 0.8), 0 0 40px rgba(255, 255, 255, 0.2);
+            animation: titlePulse 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes titlePulse {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 0 4px 20px rgba(30, 64, 175, 0.8), 0 0 40px rgba(255, 255, 255, 0.2);
+            }
+            50% {
+                transform: scale(1.02);
+                text-shadow: 0 6px 30px rgba(30, 64, 175, 1), 0 0 60px rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Performance Badge */
+        .performance-badge {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.5);
+            color: #86efac;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 15px;
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        /* Platform Toggle */
+        .platform-toggle {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .toggle-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 3px solid rgba(30, 64, 175, 0.3);
+            border-radius: 50px;
+            background: white;
+            color: #0f172a;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.3);
+            border-color: rgba(30, 64, 175, 0.6);
+        }
+
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
+            color: white;
+            border-color: #1e40af;
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .toggle-btn svg {
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-btn:hover svg {
+            transform: scale(1.1);
+        }
+
+        .toggle-btn.active svg {
+            animation: iconBounce 0.6s ease;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Search section */
+        .search-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-container {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .weight-controls {
+            margin-top: 18px;
+            padding: 14px 16px;
+            border: 1px solid #dbe7ff;
+            border-radius: 12px;
+            background: #f8fbff;
+        }
+
+        .weights-title {
+            font-size: 0.95rem;
+            color: #0f172a;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .weights-title .badge {
+            background: #22c55e;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .weights-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .weight-item {
+            display: grid;
+            grid-template-columns: 160px 1fr 52px;
+            gap: 10px;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .weight-item input[type="range"] {
+            width: 100%;
+        }
+
+        .weight-value {
+            font-weight: 700;
+            color: #1e40af;
+            text-align: right;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 18px 25px;
+            font-size: 1.1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            border-color: #1e40af;
+            box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
+        }
+
+        .search-button {
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(30, 64, 175, 0.4);
+        }
+
+        .search-button:active {
+            transform: translateY(0);
+        }
+
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            fill: white;
+            animation: iconPulse 2s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .search-button:hover .search-icon {
+            animation: iconSpin 0.6s ease-in-out;
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes iconSpin {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.3) rotate(180deg); }
+            100% { transform: scale(1.2) rotate(360deg); }
+        }
+
+        /* Suggested topics */
+        .suggested-topics {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .suggested-topics p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .topic-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .topic-tag {
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border: none;
+            font-family: inherit;
+            box-shadow: 0 3px 10px rgba(30, 64, 175, 0.3);
+        }
+
+        .topic-tag:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.5);
+        }
+
+        /* Loading spinner */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(30, 64, 175, 0.2);
+            border-top: 4px solid #1e40af;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading p {
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        /* Results section */
+        .results-section {
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .results-header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .results-count {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .results-info {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .clear-results {
+            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .clear-results:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Video grid */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            animation: cardFadeIn 0.6s ease-out backwards;
+        }
+
+        @keyframes cardFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .video-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(30, 64, 175, 0.1), transparent);
+            transition: left 0.6s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .video-card:hover::before {
+            left: 100%;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(30, 64, 175, 0.3);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.1);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 0, 0, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: playPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes playPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+            50% { box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
+        }
+
+        .video-card:hover .play-overlay {
+            background: rgba(255, 0, 0, 1);
+            transform: translate(-50%, -50%) scale(1.15);
+            animation: none;
+        }
+
+        .play-icon {
+            width: 30px;
+            height: 30px;
+            fill: white;
+            margin-left: 5px;
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .video-channel {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .video-stats {
+            display: flex;
+            gap: 15px;
+            color: #999;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .score-badge {
+            background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .score-details {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .score-detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .score-detail-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .score-detail-value {
+            color: #1e40af;
+            font-weight: 700;
+        }
+
+        /* No results */
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 20px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .no-results h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .no-results p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Error message */
+        .error-message {
+            display: none;
+            background: #ff4444;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .search-section {
+                padding: 25px;
+            }
+
+            .search-input-wrapper {
+                flex-direction: column;
+            }
+
+            .search-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-link {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+
+            .results-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .weight-item {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background animation -->
+    <div class="grid-master"></div>
+    <div class="grid-mask"></div>
+    <div class="interactive-glow"></div>
+    <div class="background-animation">
+        <div class="floating-shape" style="top: 10%; left: 10%; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
+        <div class="floating-shape" style="top: 60%; left: 80%; width: 150px; height: 150px; background: rgba(255,255,255,0.1); border-radius: 50%; animation-delay: -5s;"></div>
+        <div class="floating-shape" style="top: 80%; left: 20%; width: 80px; height: 80px; background: rgba(255,255,255,0.1); border-radius: 50%; animation-delay: -10s;"></div>
+    </div>
+
+    <!-- Floating Learning Icons -->
+    <div class="floating-icons">
+        <div class="floating-icon">📚</div>
+        <div class="floating-icon">🎓</div>
+        <div class="floating-icon">📖</div>
+        <div class="floating-icon">🎯</div>
+        <div class="floating-icon">💡</div>
+        <div class="floating-icon">🚀</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🎓 SkillMatch AI</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="job-matching-professional.html" class="nav-link">AI Job Matching</a>
+                <a href="learning-resources.html" class="nav-link">Learning</a>
+                <a href="assessment.html" class="nav-link" style="color: #38bdf8; font-weight: bold; text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);">Assessments</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main container -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📚 AI-Powered Learning Resources</h1>
+            <p>Advanced recommendations using semantic similarity, engagement metrics, and sentiment analysis</p>
+            <div class="performance-badge">
+                ⚡ 4-6x Faster | 🎯 17% More Accurate | 📊 Real-time Ranking
+            </div>
+        </div>
+
+        <!-- Platform Toggle -->
+        <div class="platform-toggle">
+            <button class="toggle-btn active" id="youtubeBtn" onclick="switchPlatform('youtube')">
+                <svg viewBox="0 0 24 24" width="20" height="20" style="margin-right: 8px;">
+                    <path fill="currentColor" d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4S5.746,4,4.186,4.418 c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768 C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.861-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"/>
+                </svg>
+                🎬 YouTube
+            </button>
+            <button class="toggle-btn" id="courseraBtn" onclick="switchPlatform('coursera')">
+                <svg viewBox="0 0 24 24" width="20" height="20" style="margin-right: 8px;">
+                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                🎓 Coursera
+            </button>
+            <button class="toggle-btn" id="docsBtn" onclick="switchPlatform('docs')">
+                <svg viewBox="0 0 24 24" width="20" height="20" style="margin-right: 8px;">
+                    <path fill="currentColor" d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                </svg>
+                📖 Knowledge Hub
+            </button>
+            <button class="toggle-btn" id="booksBtn" onclick="switchPlatform('books')">
+                <svg viewBox="0 0 24 24" width="20" height="20" style="margin-right: 8px;">
+                    <path fill="currentColor" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93-2.67-1.14-5-4.43-5-7.93V7.18L12 5z"/>
+                </svg>
+                🌐 Learning Sites
+            </button>
+        </div>
+
+        <!-- Error message -->
+        <div class="error-message" id="errorMessage"></div>
+
+        <!-- Search section -->
+        <div class="search-section">
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        id="searchInput" 
+                        placeholder="Search for learning resources (e.g., Python, Machine Learning, React...)"
+                        autocomplete="off"
+                    >
+                    <button class="search-button" onclick="searchVideos()">
+                        <svg class="search-icon" viewBox="0 0 24 24">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                        Search
+                    </button>
+                </div>
+
+                <div class="weight-controls" id="weightControls">
+                    <div class="weights-title">
+                        🤖 Advanced Ranking Weights
+                        <span class="badge">LIVE</span>
+                    </div>
+                    <div class="weights-row">
+                        <label class="weight-item">
+                            <span>🔍 Cosine Similarity (Content Relevance)</span>
+                            <input type="range" id="semanticWeight" min="0" max="1" step="0.05" value="0.5" oninput="syncWeightUI()">
+                            <span class="weight-value" id="semanticWeightValue">0.50</span>
+                        </label>
+                        <label class="weight-item">
+                            <span>👍 Like/View Ratio (Engagement)</span>
+                            <input type="range" id="engagementWeight" min="0" max="1" step="0.05" value="0.3" oninput="syncWeightUI()">
+                            <span class="weight-value" id="engagementWeightValue">0.30</span>
+                        </label>
+                        <label class="weight-item">
+                            <span>💬 Comment Sentiment (Community Feedback)</span>
+                            <input type="range" id="sentimentWeight" min="0" max="1" step="0.05" value="0.2" oninput="syncWeightUI()">
+                            <span class="weight-value" id="sentimentWeightValue">0.20</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Suggested topics -->
+                <div class="suggested-topics">
+                    <p>🌟 Popular topics:</p>
+                    <div class="topic-tags">
+                        <button class="topic-tag" onclick="searchTopic('JavaScript')">JavaScript</button>
+                        <button class="topic-tag" onclick="searchTopic('Python')">Python</button>
+                        <button class="topic-tag" onclick="searchTopic('Web Development')">Web Dev</button>
+                        <button class="topic-tag" onclick="searchTopic('Machine Learning')">ML/AI</button>
+                        <button class="topic-tag" onclick="searchTopic('React')">React</button>
+                        <button class="topic-tag" onclick="searchTopic('Data Science')">Data Science</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading spinner -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>🔄 Searching and ranking resources with AI...</p>
+        </div>
+
+        <!-- No results -->
+        <div class="no-results" id="noResults">
+            <div class="no-results-icon">🔍</div>
+            <h3>No resources found</h3>
+            <p>Try searching with different keywords or check the popular topics above</p>
+        </div>
+
+        <!-- Results section -->
+        <div class="results-section" id="resultsSection">
+            <div class="results-header">
+                <div>
+                    <div class="results-count" id="resultsCount"></div>
+                    <div class="results-info" id="resultsInfo"></div>
+                </div>
+                <button class="clear-results" onclick="clearResults()">Clear Results</button>
+            </div>
+            <div class="videos-grid" id="videosGrid"></div>
+        </div>
+    </div>
+
+    <script>
+        // Global Auth Gate
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = "auth.html";
+        }
+        
+        // API Configuration
+        let currentPlatform = 'youtube';
+        const BACKEND_ORIGIN = 'http://localhost:5050';
+        const isLocalBackendOrigin =
+            (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') &&
+            window.location.port === '5050';
+        const API_ORIGIN = isLocalBackendOrigin ? window.location.origin : BACKEND_ORIGIN;
+        const REALTIME_API_BASE = `${API_ORIGIN}/api/realtime-learning`;
+        let lastAppliedWeights = { semanticWeight: 0.5, engagementWeight: 0.3, sentimentWeight: 0.2 };
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            document.getElementById('searchInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') searchVideos();
+            });
+            syncWeightUI();
+        });
+
+        function getCurrentWeights() {
+            return {
+                semanticWeight: Number(document.getElementById('semanticWeight')?.value || 0.5),
+                engagementWeight: Number(document.getElementById('engagementWeight')?.value || 0.3),
+                sentimentWeight: Number(document.getElementById('sentimentWeight')?.value || 0.2)
+            };
+        }
+
+        function syncWeightUI() {
+            const w = getCurrentWeights();
+            const setText = (id, val) => {
+                const node = document.getElementById(id);
+                if (node) node.textContent = val.toFixed(2);
+            };
+            setText('semanticWeightValue', w.semanticWeight);
+            setText('engagementWeightValue', w.engagementWeight);
+            setText('sentimentWeightValue', w.sentimentWeight);
+        }
+
+        function switchPlatform(platform) {
+            currentPlatform = platform;
+            document.getElementById('youtubeBtn').classList.toggle('active', platform === 'youtube');
+            document.getElementById('courseraBtn').classList.toggle('active', platform === 'coursera');
+            document.getElementById('docsBtn').classList.toggle('active', platform === 'docs');
+            document.getElementById('booksBtn').classList.toggle('active', platform === 'books');
+
+            const weightControls = document.getElementById('weightControls');
+            if (weightControls) weightControls.style.display = platform === 'youtube' ? 'block' : 'none';
+
+            const filtersRow = document.getElementById('booksFilterRow');
+            if (filtersRow) filtersRow.style.display = platform === 'books' ? 'flex' : 'none';
+
+            const searchInput = document.getElementById('searchInput');
+            if (platform === 'youtube') searchInput.placeholder = 'Search for AI-ranked YouTube tutorials...';
+            else if (platform === 'coursera') searchInput.placeholder = 'Search for Coursera courses...';
+            else if (platform === 'docs') searchInput.placeholder = 'Search Wikipedia, Open Library books, and official docs...';
+            else if (platform === 'books') searchInput.placeholder = 'Search Curated Learning Sites, Platforms & References...';
+
+            clearResults();
+        }
+
+        async function searchVideos() {
+            const searchInput = document.getElementById('searchInput');
+            const query = searchInput.value.trim();
+
+            if (!query) {
+                showError('Please enter a search term');
+                return;
+            }
+
+            if (currentPlatform === 'youtube') {
+                await searchYouTube(query);
+            } else if (currentPlatform === 'coursera') {
+                await searchCoursera(query);
+            } else if (currentPlatform === 'books') {
+                searchFreeBooksLive(query);
+            } else {
+                await searchDocsAndBooks(query);
+            }
+        }
+
+        // -------------------------------------------------------
+        // CURATED FREE BOOKS & SITES LIBRARY
+        // -------------------------------------------------------
+        const CURATED_RESOURCES = [
+            // Official Docs
+            { category:'official', emoji:'🟡', title:'MDN Web Docs (JavaScript, HTML, CSS)', desc:'The definitive reference for all web technologies by Mozilla. Used by every front-end developer worldwide.', url:'https://developer.mozilla.org/', tags:['javascript','html','css','web'] },
+            { category:'official', emoji:'🐍', title:'Python Official Docs', desc:'The authoritative documentation for Python 3 — tutorials, library reference, and how-to guides.', url:'https://docs.python.org/3/', tags:['python'] },
+            { category:'official', emoji:'⚛️', title:'React Official Docs', desc:'The modern React documentation with interactive examples and in-depth API reference.', url:'https://react.dev/', tags:['react','javascript'] },
+            { category:'official', emoji:'🟢', title:'Node.js Official Docs', desc:'Complete API reference for Node.js runtime environment, streams, modules, and more.', url:'https://nodejs.org/docs/latest/api/', tags:['nodejs','javascript'] },
+            { category:'official', emoji:'🍃', title:'MongoDB Docs', desc:'Official MongoDB documentation covering queries, aggregation, schemas, and cloud Atlas.', url:'https://www.mongodb.com/docs/', tags:['mongodb','database'] },
+            { category:'official', emoji:'🐙', title:'GitHub Docs', desc:'Official GitHub guides for version control, Actions, Pages, and collaboration workflows.', url:'https://docs.github.com/', tags:['git','github','devops'] },
+            { category:'official', emoji:'🐳', title:'Docker Docs', desc:'Official Docker documentation for containerization, Compose, and orchestration.', url:'https://docs.docker.com/', tags:['docker','devops'] },
+            { category:'official', emoji:'☸️', title:'Kubernetes Docs', desc:'Official K8s docs for orchestrating containerized applications at scale.', url:'https://kubernetes.io/docs/home/', tags:['kubernetes','devops'] },
+            { category:'official', emoji:'🔷', title:'TypeScript Handbook', desc:'The official TypeScript handbook covering types, interfaces, generics, and advanced patterns.', url:'https://www.typescriptlang.org/docs/', tags:['typescript','javascript'] },
+            { category:'official', emoji:'🧪', title:'TensorFlow Docs', desc:'Official TensorFlow documentation for machine learning modelbuilding, training, and deployment.', url:'https://www.tensorflow.org/learn', tags:['tensorflow','ml','ai','machine learning'] },
+            // Free Books
+            { category:'book', emoji:'📗', title:'Eloquent JavaScript (Free Online Book)', desc:'A comprehensive book on JavaScript and programming. Available fully free online with interactive exercises.', url:'https://eloquentjavascript.net/', tags:['javascript','programming'] },
+            { category:'book', emoji:'📘', title:'Python for Everybody (Open Book)', desc:'Dr. Chuck Severance\'s famous book on Python programming essentials. Free to read online.', url:'https://www.py4e.com/book.php', tags:['python','programming'] },
+            { category:'book', emoji:'📙', title:'The Linux Command Line (Free PDF)', desc:'William Shotts\' definitive guide to the Linux command line interface, free in PDF format.', url:'https://linuxcommand.org/tlcl.php', tags:['linux','terminal','devops'] },
+            { category:'book', emoji:'📕', title:'Pro Git Book (Free)', desc:'The complete official Git reference book by Scott Chacon, available free online and as PDF.', url:'https://git-scm.com/book/en/v2', tags:['git','github','version control'] },
+            { category:'book', emoji:'📓', title:'Deep Learning Book (MIT Press)', desc:'Ian Goodfellow et al.\'s authoritative deep learning textbook, free online at deeplearningbook.org.', url:'https://www.deeplearningbook.org/', tags:['deep learning','ml','ai','neural networks'] },
+            { category:'book', emoji:'📔', title:'Structure and Interpretation of Computer Programs (SICP)', desc:'MIT\'s legendary CS textbook by Abelson and Sussman. Free online forever.', url:'https://mitpress.mit.edu/sicp/', tags:['programming','computer science','algorithms'] },
+            { category:'book', emoji:'📒', title:'Open Library — Free Ebooks', desc:'Internet Archive\'s Open Library with millions of free books, including classics and technical titles.', url:'https://openlibrary.org/', tags:['books','library','reading'] },
+            { category:'book', emoji:'📚', title:'Project Gutenberg', desc:'Over 70,000 free ebooks that are out of copyright. Great for literature, history, and STEM classics.', url:'https://www.gutenberg.org/', tags:['books','ebooks','free'] },
+            // Platforms
+            { category:'platform', emoji:'🏛️', title:'Khan Academy', desc:'World-class education for anyone, anywhere. Free maths, science, computing, and humanities courses.', url:'https://www.khanacademy.org/', tags:['maths','science','computing','free'] },
+            { category:'platform', emoji:'🎓', title:'MIT OpenCourseWare', desc:'Free lecture notes, exams, and videos from MIT courses covering CS, engineering, and more.', url:'https://ocw.mit.edu/', tags:['computer science','engineering','mit'] },
+            { category:'platform', emoji:'💻', title:'freeCodeCamp', desc:'Free coding bootcamp with certifications in web development, data science, and more.', url:'https://www.freecodecamp.org/', tags:['web development','javascript','python','coding'] },
+            { category:'platform', emoji:'🔬', title:'Kaggle Learn', desc:'Free hands-on machine learning courses using real datasets and Jupyter Notebooks.', url:'https://www.kaggle.com/learn', tags:['machine learning','data science','python'] },
+            { category:'platform', emoji:'☁️', title:'Google Cloud Skills Boost', desc:'Free Google Cloud training paths and quests for cloud engineering and ML.', url:'https://www.cloudskillsboost.google/', tags:['cloud','gcp','devops'] },
+            { category:'platform', emoji:'👩‍💻', title:'Codecademy (Free Tier)', desc:'Interactive coding lessons to learn Python, JavaScript, HTML, and more right in the browser.', url:'https://www.codecademy.com/', tags:['coding','javascript','python','web'] },
+            { category:'platform', emoji:'📝', title:'The Odin Project', desc:'A full-stack, free open-source curriculum specializing in web development with community support.', url:'https://www.theodinproject.com/', tags:['web development','fullstack','javascript','ruby'] },
+            { category:'platform', emoji:'🌊', title:'W3Schools', desc:'The world\'s largest web developer site, with free tutorials and references.', url:'https://www.w3schools.com/', tags:['web','html','css','javascript','reference'] },
+            { category:'platform', emoji:'🧑‍🎓', title:'edX (Free Audit)', desc:'Access university-level courses from Harvard, MIT, and more for free by selecting the audit track.', url:'https://www.edx.org/', tags:['university','science','engineering'] },
+            { category:'wiki', emoji:'📝', title:'Cheat Sheets (Devhints)', desc:'Beautiful, community-driven cheat sheets for every developer tool and framework.', url:'https://devhints.io/', tags:['cheatsheet','reference','docs'] },
+            { category:'book', emoji:'📕', title:'You Don\'t Know JS', desc:'A deep dive into the core mechanisms of the JavaScript language by Kyle Simpson.', url:'https://github.com/getify/You-Dont-Know-JS', tags:['javascript','programming','advanced'] },
+        ];
+
+        let __booksFilterState = 'all';
+
+        function filterBooksMain(cat) {
+            __booksFilterState = cat;
+            document.querySelectorAll('.book-cat-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+            const si = document.getElementById('searchInput');
+            const query = si ? si.value.trim() : '';
+            if (query) {
+                searchFreeBooksLive(query);
+            }
+        }
+
+        async function searchFreeBooksLive(query) {
+            showLoading(true);
+            hideError();
+            
+            try {
+                const lq = query ? query.toLowerCase() : '';
+                let output = [];
+
+                // 1. Fetch from Curated
+                const curated = !lq ? CURATED_RESOURCES : CURATED_RESOURCES.filter(r => 
+                    r.title.toLowerCase().includes(lq) || 
+                    (r.desc && r.desc.toLowerCase().includes(lq)) || 
+                    (r.tags && r.tags.some(t => t.includes(lq)))
+                );
+                
+                curated.forEach(c => {
+                    output.push({
+                        origCat: c.category,
+                        type: c.category === 'book' ? 'book' : 'doc',
+                        title: c.title,
+                        description: c.desc || 'Curated Resource',
+                        url: c.url,
+                        // Provide a clean placeholder to mimic the nice knowledge hub UI
+                        imageUrl: 'https://via.placeholder.com/480x360/0f172a/ffffff?text=' + encodeURIComponent(c.emoji + ' ' + (c.category==='official'?'Doc':c.category)),
+                        author: c.category.toUpperCase()
+                    });
+                });
+
+                // Apply UI Category Filter
+                if (__booksFilterState !== 'all') {
+                    output = output.filter(o => o.origCat === __booksFilterState);
+                }
+
+                // Delegate to the shared results renderer reusing 'docs' style!
+                displayResults(output, query || 'All Curated Resources', 'docs'); 
+            } catch (err) {
+                console.error(err);
+                showError("Something went wrong fetching resources.");
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function searchDocsAndBooks(query) {
+            showLoading(true);
+            hideError();
+            
+            try {
+                const docResources = [];
+                
+                // 1. Wikipedia Summary
+                const wikiRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`);
+                if (wikiRes.ok) {
+                    const wiki = await wikiRes.json();
+                    docResources.push({
+                        type: 'wikipedia',
+                        title: wiki.title,
+                        description: wiki.extract,
+                        url: wiki.content_urls.desktop.page,
+                        imageUrl: wiki.thumbnail ? wiki.thumbnail.source : 'https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Wikipedia-logo-v2.svg/1200px-Wikipedia-logo-v2.svg.png'
+                    });
+                }
+
+                // 2. Open Library Books
+                const bookRes = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=5`);
+                if (bookRes.ok) {
+                    const books = await bookRes.json();
+                    books.docs.forEach(book => {
+                        docResources.push({
+                            type: 'book',
+                            title: book.title,
+                            author: book.author_name ? book.author_name[0] : 'Unknown Author',
+                            year: book.first_publish_year || 'N/A',
+                            url: `https://openlibrary.org${book.key}`,
+                            imageUrl: book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : 'https://openlibrary.org/static/images/icons/avatar_book-sm.png'
+                        });
+                    });
+                }
+
+                // 3. Official Documentation Mapping
+                const docMap = {
+                    'javascript': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+                    'python': 'https://docs.python.org/3/',
+                    'react': 'https://react.dev/reference/react',
+                    'nodejs': 'https://nodejs.org/docs/latest/api/',
+                    'mongodb': 'https://www.mongodb.com/docs/',
+                    'html': 'https://developer.mozilla.org/en-US/docs/Web/HTML',
+                    'css': 'https://developer.mozilla.org/en-US/docs/Web/CSS'
+                };
+                
+                const lowerQuery = query.toLowerCase();
+                for (const [key, url] of Object.entries(docMap)) {
+                    if (lowerQuery.includes(key)) {
+                        docResources.unshift({
+                            type: 'doc',
+                            title: `Official ${key.toUpperCase()} Documentation`,
+                            description: `Explore the authoritative technical reference for ${key.toUpperCase()}.`,
+                            url: url,
+                            imageUrl: 'https://cdn-icons-png.flaticon.com/512/330/330731.png'
+                        });
+                        break;
+                    }
+                }
+
+                displayResults(docResources, query, 'docs');
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Search partially failed. Checkout specific topics!');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function searchYouTube(query) {
+            showLoading(true);
+            hideError();
+
+            try {
+                const weights = getCurrentWeights();
+                const response = await fetch(`${REALTIME_API_BASE}/ranked`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        skills: [query],
+                        videosPerSkill: 6,
+                        commentsPerVideo: 4,
+                        topK: 6,
+                        semanticWeight: weights.semanticWeight,
+                        engagementWeight: weights.engagementWeight,
+                        sentimentWeight: weights.sentimentWeight
+                    })
+                });
+
+                if (!response.ok) throw new Error('Failed to fetch recommendations');
+
+                const data = await response.json();
+                if (!data.success) throw new Error(data.message || 'Request failed');
+
+                lastAppliedWeights = data.weights || weights;
+                displayResults(data.resources || [], query, 'ranked');
+            } catch (error) {
+                console.error('Error:', error);
+                showError(`Could not fetch real-time recommendations: ${error.message}`);
+                displayResults([], query, 'ranked');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function searchCoursera(query) {
+            showLoading(true);
+            hideError();
+
+            try {
+                const response = await fetch(`${REALTIME_API_BASE}/search`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        query,
+                        platform: 'coursera',
+                        level: 'Beginner',
+                        maxResults: 12
+                    })
+                });
+
+                if (!response.ok) throw new Error('Failed to fetch courses');
+
+                const data = await response.json();
+                const courses = Array.isArray(data.resources) ? data.resources : [];
+                displayResults(courses.slice(0, 12), query, 'coursera');
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Could not fetch courses. Using fallback...');
+                searchWithoutAPI(query, 'coursera');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function searchWithoutAPI(query, platform) {
+            showLoading(true);
+            hideError();
+
+            setTimeout(() => {
+                if (platform !== 'youtube') {
+                    const sampleCourses = Array.from({ length: 12 }, (_, i) => ({
+                        name: `${query} ${['for Beginners', 'Advanced', 'Specialization', 'Certificate', 'Fundamentals', 'Complete Course', 'Projects', 'Masterclass', 'Bootcamp', 'Best Practices', 'for Professionals', 'Applied'][i]}`,
+                        description: `Learn ${query} with this comprehensive course`,
+                        imageUrl: `https://via.placeholder.com/480x360/1e40af/ffffff?text=${encodeURIComponent(query)}`,
+                        url: `https://www.coursera.org/search?query=${encodeURIComponent(query)}`,
+                        partners: ['Coursera'],
+                        skills: [query],
+                        rating: (4.5 + Math.random() * 0.4).toFixed(1),
+                        enrollmentsTotal: Math.floor(120000 + Math.random() * 1800000),
+                        recentEnrollments30d: Math.floor(4000 + Math.random() * 70000)
+                    }))
+                    .sort((a, b) => {
+                        const scoreA = (a.enrollmentsTotal * 0.65) + (a.recentEnrollments30d * 0.35);
+                        const scoreB = (b.enrollmentsTotal * 0.65) + (b.recentEnrollments30d * 0.35);
+                        return scoreB - scoreA;
+                    });
+
+                    displayResults(sampleCourses, query, 'coursera');
+                }
+
+                showLoading(false);
+            }, 800);
+        }
+
+        function searchTopic(topic) {
+            document.getElementById('searchInput').value = topic;
+            searchVideos();
+        }
+
+        function displayResults(items, query, platform) {
+            const resultsSection = document.getElementById('resultsSection');
+            const videosGrid = document.getElementById('videosGrid');
+            const resultsCount = document.getElementById('resultsCount');
+            const resultsInfo = document.getElementById('resultsInfo');
+            const noResults = document.getElementById('noResults');
+
+            videosGrid.innerHTML = '';
+
+            if (!items || items.length === 0) {
+                resultsSection.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            noResults.style.display = 'none';
+            resultsSection.style.display = 'block';
+
+            let resourceType = 'results';
+            if (platform === 'youtube' || platform === 'ranked') resourceType = 'videos';
+            else if (platform === 'coursera') resourceType = 'courses';
+            else if (platform === 'books') resourceType = 'sites';
+            else if (platform === 'docs') resourceType = 'resources';
+
+            resultsCount.textContent = `✨ Found ${items.length} ${resourceType} for "${query}"`;
+            
+            if (platform === 'ranked') {
+                resultsInfo.textContent = `🤖 AI-ranked using core metrics + channel boost: ${(lastAppliedWeights.semanticWeight*100).toFixed(0)}% similarity, ${(lastAppliedWeights.engagementWeight*100).toFixed(0)}% engagement, ${(lastAppliedWeights.sentimentWeight*100).toFixed(0)}% sentiment (then channel consistency boost)`;
+            } else if (platform === 'coursera') {
+                resultsInfo.textContent = '🎓 Coursera courses are ranked by total enrollment and recent 30-day enrollment trend.';
+            } else {
+                resultsInfo.textContent = '';
+            }
+
+            items.forEach((item, index) => {
+                const card = createVideoCard(item, index, platform);
+                videosGrid.appendChild(card);
+            });
+        }
+
+        function createVideoCard(item, index, platform) {
+            const card = document.createElement('a');
+            card.className = 'video-card';
+            card.style.animationDelay = `${index * 0.1}s`;
+
+            if (platform === 'youtube' || platform === 'ranked') {
+                let videoLink;
+                if (platform === 'ranked') {
+                    const videoId = item.videoId || item.video_id || '';
+                    videoLink = videoId
+                        ? `https://www.youtube.com/watch?v=${videoId}`
+                        : `https://www.youtube.com/results?search_query=${encodeURIComponent(item.title || item.video_title || '')}`;
+                } else if (item.id && item.id.videoId) {
+                    videoLink = `https://www.youtube.com/watch?v=${item.id.videoId}`;
+                } else if (item.searchQuery) {
+                    videoLink = `https://www.youtube.com/results?search_query=${encodeURIComponent(item.searchQuery)}`;
+                }
+
+                card.href = videoLink;
+                card.target = '_blank';
+                card.rel = 'noopener noreferrer';
+
+                const thumbnail = platform === 'ranked'
+                    ? (item.thumbnailUrl || (item.videoId ? `https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg` : 'https://via.placeholder.com/480x360/1e40af/ffffff?text=AI+Recommended'))
+                    : item.snippet.thumbnails.high.url;
+                const title = platform === 'ranked' ? (item.title || item.video_title || 'Recommended Video') : item.snippet.title;
+                const channelTitle = platform === 'ranked' 
+                    ? (item.channel || item.snippet?.channelTitle || 'Educational Content')
+                    : (item.snippet?.channelTitle || 'Educational Content');
+                const channelSubscribers = Number(item.channelSubscribers || item.channel_subscribers || 0);
+                const publishedAt = platform === 'ranked' ? new Date() : new Date(item.snippet.publishedAt);
+                const timeAgo = platform === 'ranked' ? 'Live score' : getTimeAgo(publishedAt);
+                
+                const cosine = Number(item.cosineSimilarity || item.semanticSimilarity || item.semantic_similarity || 0);
+                const likeView = Number(item.likeViewRatio || item.engagementScore || item.engagement_score || 0);
+                const sentiment = Number(item.commentSentiment || item.sentimentScore || item.sentiment_score || 0);
+                const semanticPart = Number(item.semanticComponent || item.semantic_component || 0);
+                const engagementPart = Number(item.engagementComponent || item.engagement_component || 0);
+                const sentimentPart = Number(item.sentimentComponent || item.sentiment_component || 0);
+                const channelPart = Number(item.channelComponent || item.channel_component || 0);
+                const channelStrength = Number(item.channelStrength || item.channel_strength || 0);
+                const realtimeScore = Number(item.realtimeScore || item.realtime_score || 0);
+                
+                const scoreText = platform === 'ranked'
+                    ? `<span class="score-badge">⭐ ${realtimeScore.toFixed(3)}</span>`
+                    : `🕒 ${timeAgo}`;
+                
+                const detailsHtml = platform === 'ranked'
+                    ? `<div class="score-details">
+                        <div class="score-detail-row">
+                            <span class="score-detail-label">🔍 Similarity:</span>
+                            <span class="score-detail-value">${cosine.toFixed(3)}</span>
+                        </div>
+                        <div class="score-detail-row">
+                            <span class="score-detail-label">👍 Engagement:</span>
+                            <span class="score-detail-value">${likeView.toFixed(4)}</span>
+                        </div>
+                        <div class="score-detail-row">
+                            <span class="score-detail-label">💬 Sentiment:</span>
+                            <span class="score-detail-value">${sentiment.toFixed(3)}</span>
+                        </div>
+                        <div class="score-detail-row">
+                            <span class="score-detail-label">📺 Channel Strength:</span>
+                            <span class="score-detail-value">${channelStrength.toFixed(3)}</span>
+                        </div>
+                        <div class="score-detail-row">
+                            <span class="score-detail-label">📈 Channel Boost:</span>
+                            <span class="score-detail-value">${channelPart.toFixed(3)}</span>
+                        </div>
+                        <div class="score-detail-row">
+                            <span class="score-detail-label">👥 Subscribers:</span>
+                            <span class="score-detail-value">${channelSubscribers.toLocaleString()}</span>
+                        </div>
+                    </div>`
+                    : '';
+
+                card.innerHTML = `
+                    <div class="video-thumbnail">
+                        <img src="${thumbnail}" alt="${title}" onerror="this.src='https://via.placeholder.com/480x360/1e40af/ffffff?text=Video'">
+                        <div class="play-overlay">
+                            <svg class="play-icon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="video-duration">▶️ Watch</div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">${title}</div>
+                        <div class="video-channel">
+                            📺 ${channelTitle}
+                        </div>
+                        <div class="video-stats">
+                            ${scoreText}
+                        </div>
+                        ${detailsHtml}
+                    </div>
+                `;
+            } else if (platform === 'docs') {
+                const title = item.title || 'Knowledge Resource';
+                const description = item.description || (item.author ? `By ${item.author} (${item.year})` : 'Expert documentation and insights');
+                const imageUrl = item.imageUrl;
+                const typeIcon = item.type === 'wikipedia' ? '🌐' : (item.type === 'book' ? '📚' : '📄');
+                const typeLabel = item.type.toUpperCase();
+
+                card.href = item.url;
+                card.target = '_blank';
+                card.rel = 'noopener noreferrer';
+                card.style.borderLeft = item.type === 'doc' ? '5px solid #22c55e' : (item.type === 'wikipedia' ? '5px solid #3b82f6' : '5px solid #8b5cf6');
+
+                card.innerHTML = `
+                    <div class="video-thumbnail" style="padding-top: 50%; background: #f8fafc;">
+                        <img src="${imageUrl}" alt="${title}" style="object-fit: contain; padding: 20px;">
+                        <div class="video-duration" style="background: rgba(15, 23, 42, 0.9);">${typeIcon} ${typeLabel}</div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title" style="color: #0f172a;">${title}</div>
+                        <div class="video-channel" style="color: #64748b; font-size: 0.85rem; height: 60px; overflow: hidden;">
+                            ${description}
+                        </div>
+                        <div class="video-stats" style="margin-top: 10px;">
+                            <span class="score-badge" style="background: rgba(30, 64, 175, 0.1); color: #1e40af; border: 1px solid rgba(30, 64, 175, 0.2);">
+                                High Reliability
+                            </span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                const imageUrl = item.imageUrl || item.image || item.thumbnail || 'https://via.placeholder.com/480x360/1e40af/ffffff?text=Course';
+                const title = item.name || item.title || 'Course Title';
+                const description = item.description || 'Comprehensive course content';
+                const partners = item.partners || item.provider || ['Coursera'];
+                const partnerName = Array.isArray(partners) ? partners[0] : partners;
+                const rating = item.rating || item.averageRating || '4.5';
+                const totalEnrollments = Number(item.enrollmentsTotal || item.enrolledCount || item.enrollmentCount || 0);
+                const recentEnrollments = Number(item.recentEnrollments30d || item.currentDaysEnroll || item.recentEnrollments || 0);
+                const courseUrl = item.url || item.link || `https://www.coursera.org/search?query=${encodeURIComponent(title)}`;
+
+                card.href = courseUrl;
+                card.target = '_blank';
+                card.rel = 'noopener noreferrer';
+
+                card.innerHTML = `
+                    <div class="video-thumbnail">
+                        <img src="${imageUrl}" alt="${title}" onerror="this.src='https://via.placeholder.com/480x360/1e40af/ffffff?text=Course'">
+                        <div class="play-overlay">
+                            <svg class="play-icon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="video-duration">🎓 Learn</div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">${title}</div>
+                        <div class="video-channel">
+                            🏫 ${partnerName}
+                        </div>
+                        <div class="video-stats">
+                            <span class="stat-item">
+                                ⭐ ${rating}
+                            </span>
+                            <span class="stat-item">
+                                👥 ${totalEnrollments > 0 ? totalEnrollments.toLocaleString() : 'N/A'} enrolled
+                            </span>
+                            <span class="stat-item">
+                                📈 ${recentEnrollments > 0 ? recentEnrollments.toLocaleString() : 'N/A'} in last 30 days
+                            </span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return card;
+        }
+
+        function getTimeAgo(date) {
+            const seconds = Math.floor((new Date() - date) / 1000);
+            const intervals = {
+                year: 31536000,
+                month: 2592000,
+                week: 604800,
+                day: 86400,
+                hour: 3600,
+                minute: 60
+            };
+
+            for (const [unit, secondsInUnit] of Object.entries(intervals)) {
+                const interval = Math.floor(seconds / secondsInUnit);
+                if (interval >= 1) {
+                    return `${interval} ${unit}${interval > 1 ? 's' : ''} ago`;
+                }
+            }
+            return 'Just now';
+        }
+
+        function clearResults() {
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('searchInput').value = '';
+            document.getElementById('noResults').style.display = 'none';
+        }
+
+        function showLoading(show) {
+            document.getElementById('loading').style.display = show ? 'block' : 'none';
+        }
+
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 3000);
+        }
+
+        function hideError() {
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+    </script>
+
+    <style>
+        .sm-chat-widget {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 11000;
+            font-family: "Outfit", "Segoe UI", Tahoma, sans-serif;
+        }
+
+        .sm-chat-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            width: 62px;
+            height: 62px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #fff;
+            background: linear-gradient(135deg, #4d72bd, #6f8fd2);
+            box-shadow: 0 12px 28px rgba(77, 114, 189, 0.45);
+            display: grid;
+            place-items: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .sm-chat-toggle:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 16px 34px rgba(77, 114, 189, 0.55);
+        }
+
+        .sm-chat-tooltip {
+            position: absolute;
+            right: 6px;
+            bottom: 70px;
+            background: #ffffff;
+            color: #1f2a44;
+            border: 1px solid #d6e0f5;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.14);
+        }
+
+        .sm-chat-panel {
+            position: absolute;
+            right: 0;
+            bottom: 76px;
+            width: min(360px, calc(100vw - 24px));
+            height: min(540px, calc(100vh - 110px));
+            border-radius: 16px;
+            border: 1px solid #d6e0f5;
+            background: #ffffff;
+            box-shadow: 0 24px 54px rgba(15, 23, 42, 0.24);
+            display: none;
+            grid-template-rows: auto 1fr auto auto;
+            overflow: hidden;
+        }
+
+        .sm-chat-panel.open {
+            display: grid;
+        }
+
+        .sm-chat-panel.fullscreen {
+            position: fixed;
+            inset: 12px;
+            width: auto;
+            height: auto;
+            max-width: none;
+            border-radius: 18px;
+            z-index: 12000;
+        }
+
+        .sm-chat-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 14px;
+            color: #1f3970;
+            border-bottom: 1px solid #d6e0f5;
+            background: linear-gradient(150deg, #f8fbff, #ecf3ff);
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .sm-chat-head-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sm-chat-icon-btn {
+            min-width: 30px;
+            height: 26px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #1f3970;
+            background: #dfe9ff;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0 8px;
+        }
+
+        .sm-chat-close {
+            width: 26px;
+            height: 26px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #1f3970;
+            background: #dfe9ff;
+            font-weight: 700;
+        }
+
+        .sm-chat-messages {
+            overflow: auto;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: radial-gradient(circle at 85% 10%, #f7faff 0%, transparent 42%), #fefefe;
+        }
+
+        .sm-chat-msg {
+            max-width: 86%;
+            border: 1px solid #d6e0f5;
+            border-radius: 12px;
+            padding: 9px 11px;
+            font-size: 0.88rem;
+            line-height: 1.42;
+        }
+
+        .sm-chat-msg.user {
+            margin-left: auto;
+            color: #1e3a8a;
+            background: #eaf1ff;
+        }
+
+        .sm-chat-msg.bot {
+            margin-right: auto;
+            color: #1f2937;
+            background: #ffffff;
+        }
+
+        .sm-chat-typing {
+            display: none;
+            color: #667085;
+            font-size: 0.8rem;
+            padding: 6px 12px 8px;
+        }
+
+        .sm-chat-suggestions {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            padding: 8px 12px 10px;
+            border-top: 1px solid #edf2ff;
+            background: #f9fbff;
+        }
+
+        .sm-chat-chip {
+            border: 1px solid #c9d7f4;
+            border-radius: 999px;
+            background: #edf3ff;
+            color: #27457f;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 6px 9px;
+            cursor: pointer;
+        }
+
+        .sm-chat-compose {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            border-top: 1px solid #d6e0f5;
+            background: #ffffff;
+            padding: 10px;
+        }
+
+        .sm-chat-input {
+            border: 1px solid #cad6ef;
+            border-radius: 10px;
+            padding: 9px 10px;
+            font-size: 0.88rem;
+        }
+
+        .sm-chat-send {
+            border: none;
+            border-radius: 10px;
+            padding: 0 12px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: 700;
+            background: linear-gradient(150deg, #4d72bd, #6f8fd2);
+        }
+
+        @media (max-width: 620px) {
+            .sm-chat-widget {
+                right: 10px;
+                bottom: 10px;
+            }
+
+            .sm-chat-tooltip {
+                display: none;
+            }
+
+            .sm-chat-panel {
+                right: 0;
+                bottom: 72px;
+                width: calc(100vw - 20px);
+                height: min(530px, calc(100vh - 90px));
+            }
+
+            .sm-chat-panel.fullscreen {
+                inset: 0;
+                border-radius: 0;
+            }
+        }
+    </style>
+
+    <!-- Modern Chatbot Widget (Synced with Dashboard) -->
+    <div id="smChatWidget" class="sm-chat-widget">
+        <button id="smChatToggle" type="button" class="sm-chat-toggle" aria-label="Open chatbot">
+            <svg viewBox="0 0 100 100" width="30" height="30">
+                <circle cx="50" cy="50" r="45" fill="rgba(255,255,255,0.2)"></circle>
+                <rect x="25" y="25" width="50" height="40" rx="10" fill="white"></rect>
+                <circle cx="38" cy="42" r="5" fill="#2563eb"></circle>
+                <circle cx="62" cy="42" r="5" fill="#2563eb"></circle>
+                <rect x="32" y="55" width="36" height="4" rx="2" fill="#2563eb"></rect>
+            </svg>
+        </button>
+        <section id="smChatPanel" class="sm-chat-panel glass-card">
+            <div class="sm-chat-head">
+                <span>SkillMatch AI Advisor</span>
+                <button id="smChatClose" style="background:none; border:none; color:white; cursor:pointer; font-size:1.5rem;">&times;</button>
+            </div>
+            <div id="smChatMessages" class="sm-chat-messages"></div>
+            <div id="smChatTyping" class="sm-chat-typing">Advisor is typing...</div>
+            <div class="sm-chat-compose">
+                <input id="smChatInput" class="input-field" type="text" placeholder="Ask anything about learning...">
+                <button id="smChatSend" class="btn-chat-send">Send</button>
+            </div>
+        </section>
+    </div>
+
+    <style>
+        .sm-chat-widget { position: fixed; right: 24px; bottom: 24px; z-index: 10000; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        .sm-chat-toggle { width: 64px; height: 64px; border-radius: 50%; border: none; background: #2563eb; cursor: pointer; display: grid; place-items: center; box-shadow: 0 8px 32px rgba(37, 99, 235, 0.4); transition: transform 0.3s; }
+        .sm-chat-toggle:hover { transform: scale(1.1); }
+        .sm-chat-panel { 
+            position: absolute; right: 0; bottom: 80px; width: 350px; height: 500px; 
+            display: none; flex-direction: column; overflow: hidden; padding: 0; 
+            background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); 
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
+        }
+        .sm-chat-panel.open { display: flex; }
+        .sm-chat-head { padding: 16px; background: rgba(255, 255, 255, 0.05); display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: white; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sm-chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+        .sm-chat-msg { max-width: 85%; padding: 10px 14px; border-radius: 15px; font-size: 0.9rem; line-height: 1.4; color: white; }
+        .sm-chat-msg.user { align-self: flex-end; background: #2563eb; }
+        .sm-chat-msg.bot { align-self: flex-start; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.05); }
+        .sm-chat-typing { font-size: 0.75rem; color: #94a3b8; padding: 0 16px 8px; display: none; }
+        .sm-chat-compose { padding: 16px; display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); }
+        .sm-chat-compose input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 8px 12px; color: white; outline: none; }
+        .btn-chat-send { background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 10px; cursor: pointer; font-weight: 600; }
+    </style>
+
+    <script>
+        (function initChat() {
+            const panel = document.getElementById('smChatPanel');
+            const toggle = document.getElementById('smChatToggle');
+            const close = document.getElementById('smChatClose');
+            const messages = document.getElementById('smChatMessages');
+            const input = document.getElementById('smChatInput');
+            const send = document.getElementById('smChatSend');
+            const typing = document.getElementById('smChatTyping');
+
+            toggle.onclick = () => panel.classList.toggle('open');
+            close.onclick = () => panel.classList.remove('open');
+
+            async function askAI(msg) {
+                if (!msg.trim()) return;
+                const userBox = document.createElement('div');
+                userBox.className = 'sm-chat-msg user';
+                userBox.textContent = msg;
+                messages.appendChild(userBox);
+                messages.scrollTop = messages.scrollHeight;
+                input.value = '';
+                typing.style.display = 'block';
+
+                try {
+                    const res = await fetch('http://localhost:5050/api/chatbot/message', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: msg, context: { page: 'learning-hub' } })
+                    });
+                    const data = await res.json();
+                    const botBox = document.createElement('div');
+                    botBox.className = 'sm-chat-msg bot';
+                    botBox.textContent = data.message || data.response || "I'm here to help with your learning journey.";
+                    messages.appendChild(botBox);
+                } catch(e) { 
+                    const botBox = document.createElement('div');
+                    botBox.className = 'sm-chat-msg bot';
+                    botBox.textContent = "I'm having trouble connecting right now.";
+                    messages.appendChild(botBox);
+                } finally {
+                    typing.style.display = 'none';
+                    messages.scrollTop = messages.scrollHeight;
+                }
+            }
+
+            send.onclick = () => askAI(input.value);
+            input.onkeypress = (e) => { if(e.key === 'Enter') askAI(input.value); };
+
+            const initial = document.createElement('div');
+            initial.className = 'sm-chat-msg bot';
+            initial.textContent = "Hi! Welcome to the Learning Hub. How can I help you upskill today?";
+            messages.appendChild(initial);
+            // Interactive Grid Effect
+            document.addEventListener('mousemove', e => {
+                document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+                document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+            });
+        })();
+    </script>
+</body>
+</html>

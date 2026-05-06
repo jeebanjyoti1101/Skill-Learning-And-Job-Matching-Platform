@@ -1,0 +1,29 @@
+{
+  "admins": [
+    {
+      "username": "admin",
+      "password": "Admin@1101",
+      "name": "Platform Administrator",
+      "role": "super_admin"
+    }
+  ],
+  "settings": {
+    "maintenanceMode": false,
+    "registrationOpen": true,
+    "maxUsersAllowed": 10000,
+    "platformName": "SkillMatch AI",
+    "announcementBanner": ""
+  },
+  "activityLog": [
+    {
+      "action": "LOGIN",
+      "details": "Admin \"admin\" logged in",
+      "timestamp": "2026-04-29T03:58:37.202Z"
+    },
+    {
+      "action": "LOGIN",
+      "details": "Admin \"admin\" logged in",
+      "timestamp": "2026-04-28T20:35:19.014Z"
+    }
+  ]
+}

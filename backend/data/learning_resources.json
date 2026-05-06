@@ -1,0 +1,272 @@
+[
+  {
+    "skill": "Python",
+    "level": "Beginner",
+    "title": "Python Full Course for Beginners",
+    "platform": "YouTube",
+    "provider": "freeCodeCamp",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=_uQrJ0TkZlc"
+  },
+  {
+    "skill": "Python",
+    "level": "Intermediate",
+    "title": "Python for Data Analysis",
+    "platform": "Coursera",
+    "provider": "IBM",
+    "sourceType": "static",
+    "link": "https://www.coursera.org/learn/data-analysis-with-python"
+  },
+  {
+    "skill": "SQL",
+    "level": "Beginner",
+    "title": "SQL Tutorial - Full Database Course",
+    "platform": "YouTube",
+    "provider": "freeCodeCamp",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=HXV3zeQKqGY"
+  },
+  {
+    "skill": "SQL",
+    "level": "Intermediate",
+    "title": "SQL for Data Science",
+    "platform": "Coursera",
+    "provider": "IBM",
+    "sourceType": "static",
+    "link": "https://www.coursera.org/learn/sql-for-data-science"
+  },
+  {
+    "skill": "Web Development",
+    "level": "Beginner",
+    "title": "Responsive Web Design",
+    "platform": "freeCodeCamp",
+    "provider": "freeCodeCamp",
+    "sourceType": "static",
+    "link": "https://www.freecodecamp.org/learn/2022/responsive-web-design/"
+  },
+  {
+    "skill": "JavaScript",
+    "level": "Beginner",
+    "title": "JavaScript Full Course",
+    "platform": "YouTube",
+    "provider": "Traversy Media",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=hdI2bqOjy3c"
+  },
+  {
+    "skill": "Machine Learning",
+    "level": "Beginner",
+    "title": "Machine Learning Crash Course",
+    "platform": "Google",
+    "provider": "Google",
+    "sourceType": "static",
+    "link": "https://developers.google.com/machine-learning/crash-course"
+  },
+  {
+    "skill": "React",
+    "level": "Beginner",
+    "title": "React JS Full Course",
+    "platform": "YouTube",
+    "provider": "freeCodeCamp",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=bMknfKXIFA8"
+  },
+  {
+    "skill": "Power BI",
+    "level": "Beginner",
+    "title": "Power BI Full Course",
+    "platform": "YouTube",
+    "provider": "Simplilearn",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=AGrl-H87pRU"
+  },
+  {
+    "skill": "Cybersecurity",
+    "level": "Beginner",
+    "title": "Cybersecurity Full Course",
+    "platform": "YouTube",
+    "provider": "Simplilearn",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=inWWhr5tnEA"
+  },
+  {
+    "skill": "Java",
+    "level": "Beginner",
+    "title": "Java Programming for Beginners",
+    "platform": "YouTube",
+    "provider": "Programming with Mosh",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=eIrMbAQSU34"
+  },
+  {
+    "skill": "Java",
+    "level": "Intermediate",
+    "title": "Java Programming Masterclass",
+    "platform": "Udemy",
+    "provider": "Tim Buchalka",
+    "sourceType": "static",
+    "link": "https://www.udemy.com/course/java-the-complete-java-developer-course/"
+  },
+  {
+    "skill": "Docker",
+    "level": "Beginner",
+    "title": "Docker Tutorial for Beginners",
+    "platform": "YouTube",
+    "provider": "TechWorld with Nana",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=3c-iBn73dDE"
+  },
+  {
+    "skill": "Kubernetes",
+    "level": "Beginner",
+    "title": "Kubernetes Tutorial for Beginners",
+    "platform": "YouTube",
+    "provider": "TechWorld with Nana",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=X48VuDVv0do"
+  },
+  {
+    "skill": "AWS",
+    "level": "Beginner",
+    "title": "AWS Certified Cloud Practitioner",
+    "platform": "YouTube",
+    "provider": "freeCodeCamp",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=SOTamWNgDKc"
+  },
+  {
+    "skill": "AWS",
+    "level": "Intermediate",
+    "title": "AWS Solutions Architect Associate",
+    "platform": "Udemy",
+    "provider": "Stephane Maarek",
+    "sourceType": "static",
+    "link": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/"
+  },
+  {
+    "skill": "Azure",
+    "level": "Beginner",
+    "title": "Azure Fundamentals",
+    "platform": "Microsoft Learn",
+    "provider": "Microsoft",
+    "sourceType": "static",
+    "link": "https://learn.microsoft.com/en-us/training/paths/azure-fundamentals/"
+  },
+  {
+    "skill": "Cloud Computing",
+    "level": "Beginner",
+    "title": "Cloud Computing Full Course",
+    "platform": "YouTube",
+    "provider": "Simplilearn",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=2LaAJq1lB1Q"
+  },
+  {
+    "skill": "Git",
+    "level": "Beginner",
+    "title": "Git and GitHub for Beginners",
+    "platform": "YouTube",
+    "provider": "freeCodeCamp",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=RGOj5yH7evk"
+  },
+  {
+    "skill": "Linux",
+    "level": "Beginner",
+    "title": "Linux for Beginners",
+    "platform": "YouTube",
+    "provider": "freeCodeCamp",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=sWbUDq4S6Y8"
+  },
+  {
+    "skill": "Data Analysis",
+    "level": "Beginner",
+    "title": "Data Analysis with Python",
+    "platform": "YouTube",
+    "provider": "freeCodeCamp",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=r-uOLxNrNk8"
+  },
+  {
+    "skill": "Data Analysis",
+    "level": "Intermediate",
+    "title": "Google Data Analytics Professional Certificate",
+    "platform": "Coursera",
+    "provider": "Google",
+    "sourceType": "static",
+    "link": "https://www.coursera.org/professional-certificates/google-data-analytics"
+  },
+  {
+    "skill": "CI/CD",
+    "level": "Beginner",
+    "title": "CI/CD Pipeline Tutorial",
+    "platform": "YouTube",
+    "provider": "TechWorld with Nana",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=scEDHsr3APg"
+  },
+  {
+    "skill": "Automation",
+    "level": "Beginner",
+    "title": "Python Automation Tutorial",
+    "platform": "YouTube",
+    "provider": "Tech With Tim",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=s8XjEuplx_U"
+  },
+  {
+    "skill": "Project Management",
+    "level": "Beginner",
+    "title": "Project Management Basics",
+    "platform": "Coursera",
+    "provider": "University of California",
+    "sourceType": "static",
+    "link": "https://www.coursera.org/learn/project-management-basics"
+  },
+  {
+    "skill": "Node.js",
+    "level": "Beginner",
+    "title": "Node.js Full Course",
+    "platform": "YouTube",
+    "provider": "freeCodeCamp",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=Oe421EPjeBE"
+  },
+  {
+    "skill": "MongoDB",
+    "level": "Beginner",
+    "title": "MongoDB Crash Course",
+    "platform": "YouTube",
+    "provider": "Traversy Media",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=-56x56UppqQ"
+  },
+  {
+    "skill": "Angular",
+    "level": "Beginner",
+    "title": "Angular Tutorial for Beginners",
+    "platform": "YouTube",
+    "provider": "Programming with Mosh",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=k5E2AVpwsko"
+  },
+  {
+    "skill": "DevOps",
+    "level": "Beginner",
+    "title": "DevOps Tutorial for Beginners",
+    "platform": "YouTube",
+    "provider": "Simplilearn",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=hQcFE0RD0cQ"
+  },
+  {
+    "skill": "Networking",
+    "level": "Beginner",
+    "title": "Computer Networking Complete Course",
+    "platform": "YouTube",
+    "provider": "freeCodeCamp",
+    "sourceType": "static",
+    "link": "https://www.youtube.com/watch?v=qiQR5rTSshw"
+  }
+]

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillMatch Enterprise Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root[data-theme="light"] {
+            --bg: #f3f5fb; --surface: #ffffff; --primary: #4868b2; --primary-dark: #2f4a86;
+            --text-main: #101828; --text-muted: #667085; --border: #eaecf0;
+            --danger: #d92d20; --success: #12b76a; --warning: #f79009;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        :root[data-theme="dark"] {
+            --bg: #0f172a; --surface: #1e293b; --primary: #6f8fd2; --primary-dark: #90abff;
+            --text-main: #f8fafc; --text-muted: #cbd5e1; --border: #334155;
+            --danger: #ef4444; --success: #10b981; --warning: #f59e0b;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body, .sidebar, .card, .topbar, .nav-item, input, select, table th, table td { transition: background-color 0.2s, border-color 0.2s, color 0.2s; }
+        body { font-family: 'Outfit', sans-serif; background-color: var(--bg); color: var(--text-main); }
+        .hidden { display: none !important; }
+        .btn { padding: 8px 16px; border-radius: 8px; border: none; font-weight: 500; cursor: pointer; transition: 0.2s; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-outline { border: 1px solid var(--border); background: transparent; color: var(--text-main); }
+        .form-control { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text-main); font-family: inherit; }
+
+        /* App Layout */
+        #admin-app { display: flex; height: 100vh; overflow: hidden; }
+        .sidebar { width: 260px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+        .sidebar-brand { padding: 20px; font-weight: 700; font-size: 1.25rem; color: var(--primary); border-bottom: 1px solid var(--border); }
+        .nav-menu { padding: 20px 10px; flex-grow: 1; overflow-y: auto; }
+        .nav-item { padding: 10px 16px; margin-bottom: 4px; border-radius: 8px; cursor: pointer; font-weight: 500; color: var(--text-muted); }
+        .nav-item:hover, .nav-item.active { background: var(--bg); color: var(--primary); }
+        
+        .main-content { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .topbar { height: 64px; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+        .content-area { padding: 24px; overflow-y: auto; flex-grow: 1; }
+
+        /* Cards & Grids */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 24px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 24px; }
+        @media(max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+        
+        .card { background: var(--surface); padding: 24px; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .card-title { font-weight: 600; font-size: 1.1rem; }
+        .stat-value { font-size: 2.2rem; font-weight: 700; color: var(--text-main); margin-top: 8px; }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { font-weight: 500; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; }
+        .badge { padding: 4px 8px; border-radius: 999px; font-size: 0.8rem; font-weight: 500; }
+        .bg-success { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+        .bg-warning { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+        .bg-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+
+        /* Login */
+        #login-screen { height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .login-card { width: 400px; }
+
+        /* Theme Toggle */
+        .theme-toggle { cursor: pointer; font-size: 1.2rem; background: none; border: none; color: var(--text-main); }
+    </style>
+</head>
+<body>
+
+    <!-- Login -->
+    <div id="login-screen">
+        <div class="card login-card" style="text-align: center;">
+            <h2 style="color: var(--primary); margin-bottom: 24px;">Admin Portal</h2>
+            <div style="text-align: left; margin-bottom: 16px;">
+                <label style="font-weight: 500; font-size: 0.9rem;">Username</label>
+                <input type="text" id="login-user" class="form-control" style="margin-top: 6px;">
+            </div>
+            <div style="text-align: left; margin-bottom: 24px;">
+                <label style="font-weight: 500; font-size: 0.9rem;">Password</label>
+                <input type="password" id="login-pass" class="form-control" style="margin-top: 6px;">
+            </div>
+            <button class="btn btn-primary" style="width: 100%; padding: 12px;" onclick="login()">Sign In</button>
+            <div id="login-error" style="color: var(--danger); margin-top: 12px; font-size: 0.9rem;"></div>
+        </div>
+    </div>
+
+    <!-- App -->
+    <div id="admin-app" class="hidden">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-brand">Command Center</div>
+            <div class="nav-menu">
+                <div class="nav-item active" onclick="switchTab('dashboard')">Analytics Dashboard</div>
+                <div class="nav-item" onclick="switchTab('users')">User Management</div>
+                <div class="nav-item" onclick="switchTab('content')">Content & Recommendations</div>
+                <div class="nav-item" onclick="switchTab('credentials')">Approval Workflows</div>
+                <div class="nav-item" onclick="switchTab('tools')">AI & System Triggers</div>
+                <div class="nav-item" onclick="switchTab('security')">Security & Logs</div>
+                <div class="nav-item" onclick="switchTab('settings')">Platform Configuration</div>
+            </div>
+            <div style="padding: 20px; border-top: 1px solid var(--border);">
+                <button class="btn btn-outline" style="width: 100%" onclick="logout()">Logout</button>
+            </div>
+        </div>
+        
+        <!-- Main -->
+        <div class="main-content">
+            <div class="topbar">
+                <h3 id="page-title">Analytics Dashboard</h3>
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+                    <div style="font-weight: 500;">Admin</div>
+                </div>
+            </div>
+            
+            <div class="content-area">
+                
+                <!-- Dashboard -->
+                <div id="tab-dashboard">
+                    <div class="grid-3">
+                        <div class="card">
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Total Active Users</div>
+                            <div class="stat-value" id="stat-users">-</div>
+                        </div>
+                        <div class="card">
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Verified Certifications</div>
+                            <div class="stat-value" id="stat-completions">-</div>
+                        </div>
+                        <div class="card">
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Pending Approvals</div>
+                            <div class="stat-value" id="stat-pending">-</div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="card">
+                            <div class="card-header" style="margin-bottom: 10px"><div class="card-title">User Signups (Last 7 Days)</div></div>
+                            <div style="position: relative; height: 180px; width: 100%;">
+                                <canvas id="growthChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" style="margin-bottom: 10px"><div class="card-title">Top Skills in Demand</div></div>
+                            <div style="position: relative; height: 180px; width: 100%;">
+                                <canvas id="skillsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Real-Time Activity Feed</div></div>
+                        <table style="margin-top: -10px;">
+                            <thead><tr><th>User</th><th>Action</th><th>Time</th></tr></thead>
+                            <tbody id="recent-users-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Users -->
+                <div id="tab-users" class="hidden">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">User Directory</div>
+                            <input type="text" id="user-search" class="form-control" style="width: 250px" placeholder="Search by name/email..." onkeyup="if(event.key==='Enter') loadUsers()">
+                        </div>
+                        <table>
+                            <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead>
+                            <tbody id="all-users-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Content Management -->
+                <div id="tab-content" class="hidden">
+                    <div class="grid-2">
+                        <div class="card">
+                            <div class="card-header"><div class="card-title">Add Suggested Content</div></div>
+                            <div style="display: grid; gap: 16px;">
+                                <div><label>Content Title</label><input type="text" id="cnt-title" class="form-control" placeholder="e.g. Advanced React Patterns"></div>
+                                <div><label>Type</label>
+                                    <select id="cnt-type" class="form-control">
+                                        <option value="video">Video Tutorial</option>
+                                        <option value="note">Study Notes / PDF</option>
+                                        <option value="job">Featured Job</option>
+                                    </select>
+                                </div>
+                                <div><label>URL Link</label><input type="url" id="cnt-link" class="form-control" placeholder="https://..."></div>
+                                <div><label>Tags (Comma separated)</label><input type="text" id="cnt-tags" class="form-control" placeholder="React, Frontend, Web"></div>
+                                <button class="btn btn-primary" onclick="addContent()">Publish Content</button>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header"><div class="card-title">Live Recommendations</div></div>
+                            <table>
+                                <thead><tr><th>Title</th><th>Type</th><th>Tags</th><th>Action</th></tr></thead>
+                                <tbody id="content-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Credentials -->
+                <div id="tab-credentials" class="hidden">
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Manual Approval Queue</div></div>
+                        <table>
+                            <thead><tr><th>User</th><th>Platform</th><th>Proof Link</th><th>Submitted</th><th>Action</th></tr></thead>
+                            <tbody id="pending-creds-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tools & AI -->
+                <div id="tab-tools" class="hidden">
+                    <div class="grid-2">
+                        <div class="card">
+                            <h3 style="margin-bottom: 12px; color: var(--primary);">AI Job Matching Engine</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Synchronize remote job datasets and force re-training of the content-based and collaborative filtering models.</p>
+                            <button class="btn btn-primary" onclick="triggerAction('/jobs/sync')">Run Pipeline Sync</button>
+                        </div>
+                        <div class="card">
+                            <h3 style="margin-bottom: 12px; color: var(--primary);">Grand Assessment Trigger</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Force generation of the 100-question master assessment using Gemini AI for all users.</p>
+                            <button class="btn btn-outline" onclick="triggerAction('/assessment/trigger')">Deploy Assessment</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security -->
+                <div id="tab-security" class="hidden">
+                    <div class="grid-3">
+                        <div class="card bg-success">
+                            <h3 style="color: var(--success)">WAF Firewall</h3>
+                            <div style="font-size: 1.5rem; font-weight: 700; margin-top: 8px">ACTIVE</div>
+                        </div>
+                        <div class="card bg-warning">
+                            <h3 style="color: var(--warning)">2FA Admin Login</h3>
+                            <div style="font-size: 1.5rem; font-weight: 700; margin-top: 8px">DISABLED</div>
+                        </div>
+                        <div class="card bg-danger">
+                            <h3 style="color: var(--danger)">Failed Logins</h3>
+                            <div id="stat-failed-logins" style="font-size: 1.5rem; font-weight: 700; margin-top: 8px">-</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><div class="card-title">Threat Detection Logs</div></div>
+                        <table>
+                            <thead><tr><th>Threat Type</th><th>Severity</th><th>Payload/Details</th><th>Source IP</th><th>Status</th></tr></thead>
+                            <tbody id="security-alerts-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div id="tab-settings" class="hidden">
+                    <div class="grid-2">
+                        <div class="card">
+                            <h3 style="margin-bottom: 24px;">System Configuration</h3>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                                <div>
+                                    <div style="font-weight: 500;">Maintenance Mode</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-muted);">Lock out all non-admin users</div>
+                                </div>
+                                <input type="checkbox" id="setting-maintenance" onchange="toggleSetting('maintenanceMode')" style="width: 24px; height: 24px;">
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                                <div>
+                                    <div style="font-weight: 500;">Open Signups</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-muted);">Allow new public registrations</div>
+                                </div>
+                                <input type="checkbox" id="setting-registration" onchange="toggleSetting('registrationOpen')" style="width: 24px; height: 24px;">
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3 style="margin-bottom: 24px;">Assessment Parameters</h3>
+                            <div style="margin-bottom: 16px;">
+                                <label style="display: block; margin-bottom: 6px;">Duration (Minutes)</label>
+                                <input type="number" id="setting-duration" class="form-control">
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                <label style="display: block; margin-bottom: 6px;">Questions per assessment</label>
+                                <input type="number" id="setting-questions" class="form-control">
+                            </div>
+                            <button class="btn btn-primary" onclick="saveNumericSettings()">Update Config</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = '/api/admin';
+        let adminToken = localStorage.getItem('skillmatch_admin_token');
+        let currentSettings = {};
+        let growthChart, skillsChart;
+
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const target = current === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', target);
+            localStorage.setItem('admin_theme', target);
+            if(growthChart) { growthChart.options.scales.x.grid.color = target==='dark'?'#334155':'#eaecf0'; growthChart.update(); }
+        }
+        if (localStorage.getItem('admin_theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+        if (adminToken) checkAuth();
+
+        async function checkAuth() {
+            try {
+                const res = await fetch(`${API_BASE}/verify`, { headers: { 'x-admin-token': adminToken }});
+                if (res.ok) { showApp(); loadDashboard(); initCharts(); }
+                else logout();
+            } catch (e) { console.error(e); }
+        }
+
+        async function login() {
+            const u = document.getElementById('login-user').value;
+            const p = document.getElementById('login-pass').value;
+            document.getElementById('login-error').innerText = 'Authenticating...';
+            try {
+                const res = await fetch(`${API_BASE}/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p }) });
+                const data = await res.json();
+                if (data.success) {
+                    adminToken = data.token; localStorage.setItem('skillmatch_admin_token', adminToken);
+                    document.getElementById('login-error').innerText = ''; showApp(); loadDashboard(); setTimeout(initCharts, 100);
+                } else document.getElementById('login-error').innerText = data.message;
+            } catch (e) { document.getElementById('login-error').innerText = 'Network Error'; }
+        }
+
+        function logout() { adminToken = null; localStorage.removeItem('skillmatch_admin_token'); document.getElementById('admin-app').classList.add('hidden'); document.getElementById('login-screen').classList.remove('hidden'); }
+        function showApp() { document.getElementById('login-screen').classList.add('hidden'); document.getElementById('admin-app').classList.remove('hidden'); }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            ['dashboard','users','content','credentials','tools','security','settings'].forEach(t => document.getElementById(`tab-${t}`).classList.add('hidden'));
+            document.getElementById(`tab-${tab}`).classList.remove('hidden');
+            
+            const titles = { dashboard: 'Analytics Dashboard', users: 'User Management', content: 'Content & Resources', credentials: 'Approval Workflows', tools: 'AI & System Triggers', security: 'Security & Logs', settings: 'Platform Configuration' };
+            document.getElementById('page-title').innerText = titles[tab];
+
+            if(tab === 'dashboard') loadDashboard();
+            if(tab === 'users') loadUsers();
+            if(tab === 'content') loadContent();
+            if(tab === 'security') loadSecurity();
+            if(tab === 'settings') loadSettings();
+        }
+
+        async function fetchAPI(endpoint, options = {}) {
+            if(!options.headers) options.headers = {};
+            options.headers['x-admin-token'] = adminToken;
+            options.headers['Content-Type'] = 'application/json';
+            const res = await fetch(`${API_BASE}${endpoint}`, options);
+            if (res.status === 401) logout();
+            return res.json();
+        }
+
+        function initCharts(signupData = [], skillsData = []) {
+            // Process Signup Data (pad to 7 days if needed)
+            const dates = []; const counts = [];
+            if (signupData.length > 0) {
+                signupData.forEach(d => { dates.push(d._id); counts.push(d.count); });
+            } else {
+                dates.push('No data'); counts.push(0);
+            }
+
+            // Process Skills Data
+            const skillLabels = []; const skillCounts = [];
+            if (skillsData.length > 0) {
+                skillsData.forEach(s => { skillLabels.push(s._id || 'Unknown'); skillCounts.push(s.count); });
+            } else {
+                skillLabels.push('No data'); skillCounts.push(1);
+            }
+
+            const colors = ['#4868b2','#12b76a','#f79009','#ef4444','#8b5cf6','#0ea5e9'];
+
+            if(growthChart) {
+                growthChart.data.labels = dates;
+                growthChart.data.datasets[0].data = counts;
+                growthChart.update();
+            } else {
+                const ctx1 = document.getElementById('growthChart').getContext('2d');
+                growthChart = new Chart(ctx1, {
+                    type: 'line',
+                    data: { labels: dates, datasets: [{ label: 'New Signups', data: counts, borderColor: '#4868b2', tension: 0.4 }] },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+
+            if(skillsChart) {
+                skillsChart.data.labels = skillLabels;
+                skillsChart.data.datasets[0].data = skillCounts;
+                skillsChart.update();
+            } else {
+                const ctx2 = document.getElementById('skillsChart').getContext('2d');
+                skillsChart = new Chart(ctx2, {
+                    type: 'doughnut',
+                    data: { labels: skillLabels, datasets: [{ data: skillCounts, backgroundColor: colors }] },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' } } }
+                });
+            }
+        }
+
+        async function loadDashboard() {
+            const data = await fetchAPI('/dashboard');
+            if(!data.success) return;
+            document.getElementById('stat-users').innerText = data.stats.totalUsers;
+            document.getElementById('stat-pending').innerText = data.stats.pendingVerifications;
+            document.getElementById('stat-completions').innerText = data.stats.usersWithCerts || 0;
+
+            initCharts(data.signupTrends || [], data.topSkills || []);
+
+            document.getElementById('recent-users-body').innerHTML = data.recentUsers.map(u => `
+                <tr>
+                    <td><b>${u.name}</b><br><span style="font-size:0.8rem;color:var(--text-muted)">${u.email}</span></td>
+                    <td><span class="badge bg-success">Registered</span></td>
+                    <td>${new Date(u.createdAt).toLocaleDateString()}</td>
+                </tr>
+            `).join('');
+
+            let credsHtml = '';
+            data.pendingCredentials.forEach(user => {
+                user.assessmentProfile.externalCredentials.forEach((cred, idx) => {
+                    if (cred.status === 'Pending') {
+                        credsHtml += `<tr>
+                            <td>${user.name}<br><small style="color:var(--text-muted)">${user.email}</small></td>
+                            <td><span class="badge bg-warning">${cred.platform}</span></td>
+                            <td><a href="${cred.credentialUrl}" target="_blank" style="color:var(--primary)">Verify Proof</a></td>
+                            <td>${new Date(cred.submittedAt).toLocaleDateString()}</td>
+                            <td>
+                                <button class="btn btn-primary" style="padding:4px 8px;font-size:0.8rem" onclick="verifyCred('${user._id}', ${idx}, 'Verified')">Approve</button>
+                                <button class="btn btn-danger" style="padding:4px 8px;font-size:0.8rem" onclick="verifyCred('${user._id}', ${idx}, 'Rejected')">Reject</button>
+                            </td>
+                        </tr>`;
+                    }
+                });
+            });
+            document.getElementById('pending-creds-body').innerHTML = credsHtml || '<tr><td colspan="5" align="center">No pending items</td></tr>';
+        }
+
+        async function loadUsers() {
+            const search = document.getElementById('user-search').value;
+            const data = await fetchAPI(`/users?search=${encodeURIComponent(search)}`);
+            if(!data.success) return;
+            document.getElementById('all-users-body').innerHTML = data.users.map(u => `
+                <tr>
+                    <td><b>${u.name}</b> ${u.assessmentProfile?.isStarred ? '<span style="color:#f59e0b">★</span>' : ''}</td>
+                    <td>${u.email}</td>
+                    <td>Student</td>
+                    <td><span class="badge bg-success">Active</span></td>
+                    <td>
+                        <button class="btn btn-outline" style="padding:4px 8px;font-size:0.8rem" onclick="toggleStar('${u._id}')">${u.assessmentProfile?.isStarred ? 'Unstar' : 'Star'}</button>
+                        <button class="btn btn-danger" style="padding:4px 8px;font-size:0.8rem" onclick="deleteUser('${u._id}')">Ban</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function loadContent() {
+            const data = await fetchAPI('/content');
+            if(!data.success) return;
+            document.getElementById('content-body').innerHTML = data.content.map(c => `
+                <tr>
+                    <td><b>${c.title}</b><br><a href="${c.link}" target="_blank" style="font-size:0.8rem;color:var(--primary)">Link</a></td>
+                    <td><span class="badge bg-warning">${c.type.toUpperCase()}</span></td>
+                    <td>${c.tags.map(t => `<span class="badge" style="background:var(--bg);margin-right:4px;">${t}</span>`).join('')}</td>
+                    <td><button class="btn btn-danger" style="padding:4px 8px;font-size:0.8rem" onclick="deleteContent('${c.id}')">Remove</button></td>
+                </tr>
+            `).join('');
+        }
+
+        async function addContent() {
+            const body = {
+                title: document.getElementById('cnt-title').value,
+                type: document.getElementById('cnt-type').value,
+                link: document.getElementById('cnt-link').value,
+                tags: document.getElementById('cnt-tags').value
+            };
+            await fetchAPI('/content', { method: 'POST', body: JSON.stringify(body) });
+            loadContent();
+            document.getElementById('cnt-title').value = '';
+            document.getElementById('cnt-link').value = '';
+            document.getElementById('cnt-tags').value = '';
+        }
+
+        async function deleteContent(id) {
+            await fetchAPI(`/content/${id}`, { method: 'DELETE' });
+            loadContent();
+        }
+
+        async function loadSecurity() {
+            const data = await fetchAPI('/security');
+            if(!data.success) return;
+            
+            document.getElementById('stat-failed-logins').innerText = data.failedLogins || 0;
+
+            document.getElementById('security-alerts-body').innerHTML = data.alerts.map(a => `
+                <tr style="${a.resolved?'opacity:0.5':''}">
+                    <td><b>${a.type}</b></td>
+                    <td><span class="badge ${a.severity==='critical'?'bg-danger':'bg-warning'}">${a.severity.toUpperCase()}</span></td>
+                    <td>${a.details}</td>
+                    <td><code>${a.ip}</code></td>
+                    <td>${a.resolved?'<span class="badge bg-success">Resolved</span>':'<span class="badge bg-danger">Active</span>'}</td>
+                    <td>${!a.resolved ? `<button class="btn btn-outline" style="padding:4px 8px;font-size:0.8rem" onclick="resolveAlert('${a.id}')">Resolve</button>` : '-'}</td>
+                </tr>
+            `).join('');
+            if(data.alerts.length === 0) document.getElementById('security-alerts-body').innerHTML = '<tr><td colspan="5" align="center">No active threats.</td></tr>';
+        }
+
+        async function resolveAlert(id) { await fetchAPI(`/security/${id}/resolve`, { method: 'POST' }); loadSecurity(); }
+
+        async function loadSettings() {
+            const data = await fetchAPI('/settings');
+            if(data.success) {
+                currentSettings = data.settings;
+                document.getElementById('setting-maintenance').checked = currentSettings.maintenanceMode;
+                document.getElementById('setting-registration').checked = currentSettings.registrationOpen;
+                document.getElementById('setting-duration').value = currentSettings.assessmentDurationMinutes || 30;
+                document.getElementById('setting-questions').value = currentSettings.assessmentQuestionCount || 20;
+            }
+        }
+
+        async function toggleSetting(key) {
+            currentSettings[key] = !currentSettings[key];
+            await fetchAPI('/settings', { method: 'PUT', body: JSON.stringify({ [key]: currentSettings[key] }) });
+        }
+
+        async function saveNumericSettings() {
+            const dur = parseInt(document.getElementById('setting-duration').value);
+            const num = parseInt(document.getElementById('setting-questions').value);
+            await fetchAPI('/settings', { method: 'PUT', body: JSON.stringify({ assessmentDurationMinutes: dur, assessmentQuestionCount: num }) });
+            alert('Settings Saved');
+        }
+
+        async function triggerAction(endpoint) {
+            const btn = event.currentTarget; const txt = btn.innerText; btn.innerText = "Processing..."; btn.disabled = true;
+            try { const d = await fetchAPI(endpoint, { method: 'POST' }); alert(d.message); } catch(e) { alert('Failed'); }
+            btn.innerText = txt; btn.disabled = false;
+        }
+
+        async function verifyCred(u, i, s) { if(confirm(`Mark as ${s}?`)) { await fetchAPI('/credentials/verify', { method: 'POST', body: JSON.stringify({ userId: u, credentialIndex: i, status: s }) }); loadDashboard(); } }
+        async function toggleStar(id) { await fetchAPI(`/users/${id}/star`, { method: 'POST' }); loadUsers(); }
+        async function deleteUser(id) { if(confirm('Ban user permanently?')) { await fetchAPI(`/users/${id}`, { method: 'DELETE' }); loadUsers(); } }
+    </script>
+</body>
+</html>

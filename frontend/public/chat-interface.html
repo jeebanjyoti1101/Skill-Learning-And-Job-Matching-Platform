@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillMatch AI Chat Interface</title>
+    <style>
+        :root {
+            --bg: #f3f6fd;
+            --panel: rgba(255, 255, 255, 0.95);
+            --line: #d4def6;
+            --ink: #0f172a;
+            --ink-soft: #475467;
+            --brand: #4d72bd;
+            --brand-2: #6f8fd2;
+            --user-bubble: #eaf1ff;
+            --bot-bubble: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Outfit", "Segoe UI", Tahoma, sans-serif;
+            min-height: 100vh;
+            color: var(--ink);
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 8% 20%, rgba(59, 130, 246, 0.22) 0%, transparent 40%),
+                radial-gradient(circle at 86% 74%, rgba(30, 64, 175, 0.22) 0%, transparent 35%);
+            z-index: 0;
+            animation: bgFloat 14s ease-in-out infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(14px, -10px) scale(1.03); }
+        }
+
+        .wrap {
+            position: relative;
+            z-index: 1;
+            width: min(980px, 95vw);
+            margin: 22px auto;
+            height: calc(100vh - 44px);
+            border: 1px solid rgba(212, 222, 246, 0.35);
+            border-radius: 22px;
+            background: var(--panel);
+            box-shadow: 0 20px 48px rgba(15, 23, 42, 0.28);
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            overflow: hidden;
+        }
+
+        .top {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--line);
+            background: linear-gradient(150deg, #f9fbff, #edf3ff);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            color: #27457f;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #16a34a;
+            box-shadow: 0 0 0 6px rgba(22, 163, 74, 0.18);
+        }
+
+        .links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            color: #27457f;
+            background: #f7faff;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .messages {
+            padding: 16px;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background:
+                radial-gradient(circle at 85% 8%, #f8faff 0%, transparent 40%),
+                radial-gradient(circle at 10% 88%, #eef4ff 0%, transparent 40%);
+        }
+
+        .msg {
+            max-width: min(74%, 660px);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 10px 12px;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+            line-height: 1.45;
+            font-size: 0.94rem;
+            animation: rise 0.2s ease both;
+        }
+
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .msg.user {
+            margin-left: auto;
+            background: var(--user-bubble);
+            color: #1f3970;
+        }
+
+        .msg.bot {
+            margin-right: auto;
+            background: var(--bot-bubble);
+            color: #1f2937;
+        }
+
+        .suggestions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 0 16px 12px;
+            border-top: 1px solid var(--line);
+            background: #f9fbff;
+        }
+
+        .chip {
+            border: 1px solid #c9d7f4;
+            background: #edf3ff;
+            color: #27457f;
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .composer {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            padding: 14px 16px;
+            border-top: 1px solid var(--line);
+            background: #ffffff;
+        }
+
+        .composer input {
+            border: 1px solid #cad6ef;
+            border-radius: 12px;
+            padding: 11px 12px;
+            font-size: 0.94rem;
+            color: #14243f;
+            background: #fbfdff;
+        }
+
+        .composer input:focus {
+            outline: none;
+            border-color: #6f8fd2;
+            box-shadow: 0 0 0 4px rgba(77, 114, 189, 0.18);
+        }
+
+        .composer button {
+            border: none;
+            border-radius: 12px;
+            padding: 0 14px;
+            background: linear-gradient(150deg, var(--brand), var(--brand-2));
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .typing {
+            display: none;
+            color: #667085;
+            font-size: 0.85rem;
+            padding: 0 16px 10px;
+            background: #ffffff;
+        }
+
+        @media (max-width: 720px) {
+            .wrap {
+                width: 100vw;
+                height: 100vh;
+                margin: 0;
+                border-radius: 0;
+            }
+
+            .msg {
+                max-width: 92%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="top">
+            <div class="title"><span class="dot"></span>SkillMatch AI Chat Interface</div>
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="job-matching-professional.html" class="nav-link">AI Job Matching</a>
+                <a href="learning-resources.html">Learning</a>
+            </div>
+        </div>
+
+        <div id="messages" class="messages"></div>
+
+        <div id="suggestions" class="suggestions"></div>
+        <div id="typing" class="typing">SkillMatch AI is typing...</div>
+
+        <div class="composer">
+            <input id="chatInput" type="text" placeholder="Ask about jobs, skills, gap analysis, or career path...">
+            <button id="sendBtn" type="button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Global Auth Gate
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = "auth.html";
+        }
+
+        const BACKEND_ORIGIN = 'http://localhost:5050';
+        const isLocalBackendOrigin =
+            (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') &&
+            window.location.port === '5050';
+        const BASE_URL = isLocalBackendOrigin ? window.location.origin : BACKEND_ORIGIN;
+
+        const messagesEl = document.getElementById('messages');
+        const suggestionsEl = document.getElementById('suggestions');
+        const typingEl = document.getElementById('typing');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        function addMessage(role, text) {
+            const el = document.createElement('div');
+            el.className = `msg ${role}`;
+            el.textContent = text;
+            messagesEl.appendChild(el);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+
+        function getBotText(payload) {
+            if (!payload || typeof payload !== 'object') return 'Sorry, I could not understand that.';
+            return payload.response || payload.reply || payload.message || payload.text || payload.answer || 'I received your message. Could you rephrase it?';
+        }
+
+        async function loadSuggestions() {
+            try {
+                const res = await fetch(`${BASE_URL}/api/chatbot/suggestions`);
+                const data = await res.json();
+                const list = Array.isArray(data.suggestions) ? data.suggestions : [];
+                suggestionsEl.innerHTML = '';
+                list.forEach((item) => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'chip';
+                    btn.textContent = `${item.icon || '💬'} ${item.text || ''}`.trim();
+                    btn.addEventListener('click', () => sendMessage(item.text || 'Help me with career guidance'));
+                    suggestionsEl.appendChild(btn);
+                });
+            } catch (e) {
+                suggestionsEl.innerHTML = '<span class="chip">💬 Start by typing your question</span>';
+            }
+        }
+
+        async function sendMessage(prefill) {
+            const message = (typeof prefill === 'string' ? prefill : chatInput.value).trim();
+            if (!message) return;
+
+            if (!prefill) chatInput.value = '';
+            addMessage('user', message);
+            typingEl.style.display = 'block';
+
+            try {
+                const res = await fetch(`${BASE_URL}/api/chatbot/message`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message,
+                        context: {
+                            sourcePage: 'chat-interface'
+                        }
+                    })
+                });
+
+                const data = await res.json();
+                const botText = getBotText(data);
+                addMessage('bot', botText);
+            } catch (error) {
+                addMessage('bot', 'Unable to connect to chatbot right now. Please try again.');
+            } finally {
+                typingEl.style.display = 'none';
+            }
+        }
+
+        sendBtn.addEventListener('click', () => sendMessage());
+        chatInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+
+        addMessage('bot', 'Hi! Welcome to SkillMatching AI. Share your current skills or your target role, and I will guide you with job matches, skill gaps, and a smart learning plan.');
+        loadSuggestions();
+    </script>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillMatch AI - Gateway</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #90abff;
+            --primary-dim: #316bf3;
+            --secondary: #9492ff;
+            --surface: #060e20;
+            --surface-card: rgba(15, 25, 48, 0.7);
+            --on-surface: #dee5ff;
+            --on-surface-variant: #a3aac4;
+            --outline: rgba(109, 117, 140, 0.2);
+            --radius-xl: 32px;
+            --radius-lg: 20px;
+            --glass-blur: 30px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #060e20;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(144, 171, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(148, 146, 255, 0.15) 0%, transparent 40%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: var(--on-surface);
+        }
+
+        /* Ambient Floating Particles */
+        .particle {
+            position: absolute;
+            background: rgba(144, 171, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            filter: blur(2px);
+        }
+
+        /* Main Container */
+        .auth-container {
+            width: min(1000px, 92vw);
+            height: min(650px, 85vh);
+            display: flex;
+            background: var(--surface-card);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--outline);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: containerPop 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Improved Panel Swapping */
+        .character-section {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(144, 171, 255, 0.05) 0%, rgba(148, 146, 255, 0.08) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .form-section {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .character-viz {
+            width: 280px;
+            height: 340px;
+            position: relative;
+            animation: floating 4s ease-in-out infinite;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .human-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .branding {
+            margin-bottom: 40px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            display: flex;
+            gap: 2px;
+        }
+
+        .letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: letterEntry 0.5s ease-out forwards;
+        }
+
+        .auth-container.is-register .character-section { 
+            transform: translateX(100%); 
+            background: linear-gradient(225deg, rgba(144, 171, 255, 0.1) 0%, rgba(148, 146, 255, 0.12) 100%);
+        }
+        .auth-container.is-register .form-section { transform: translateX(-100%); }
+        .auth-container.is-register .character-viz { transform: scale(1.1) rotateY(10deg); }
+
+        .form-wrapper {
+            position: relative;
+            height: 320px;
+            perspective: 1000px;
+        }
+
+        .auth-form {
+            position: absolute;
+            width: 100%;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+        }
+
+        .form-login { opacity: 1; transform: translateZ(0); }
+        .form-register { opacity: 0; transform: translateZ(-100px) rotateY(20deg); pointer-events: none; }
+
+        .auth-container.is-register .form-login { opacity: 0; transform: translateZ(-100px) rotateY(-20deg); pointer-events: none; }
+        .auth-container.is-register .form-register { opacity: 1; transform: translateZ(0) rotateY(0); pointer-events: auto; }
+
+        /* Inputs */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--on-surface-variant);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .input-field {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--outline);
+            border-radius: var(--radius-lg);
+            padding: 14px 20px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(144, 171, 255, 0.15);
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: var(--radius-lg);
+            border: none;
+            font-weight: 800;
+            font-family: 'Manrope', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-top: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dim) 100%);
+            color: #002873;
+            box-shadow: 0 8px 32px rgba(49, 107, 243, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(49, 107, 243, 0.5);
+        }
+
+        .switch-text {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: var(--on-surface-variant);
+        }
+
+        .switch-link {
+            color: var(--primary);
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* Character Reactive parts */
+        .eye { transition: transform 0.2s ease; }
+
+        /* Animations */
+        @keyframes containerPop {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes letterEntry {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes breath {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .auth-container { flex-direction: column; height: auto; padding-bottom: 40px; }
+            .character-section { display: none; }
+            .form-section { padding: 40px 24px; }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="particles-container"></div>
+    
+    <a href="index.html" style="position: fixed; top: 24px; left: 24px; color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; z-index: 100; display: flex; align-items: center; gap: 8px; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        Back to Home
+    </a>
+
+    <div class="auth-container" id="auth-container">
+        <!-- Character Sidebar -->
+        <div class="character-section">
+            <div class="character-viz">
+                <svg class="human-svg" viewBox="0 0 200 240" fill="none">
+                    <!-- Head Shadow -->
+                    <ellipse cx="100" cy="220" rx="60" ry="10" fill="rgba(0,0,0,0.2)"/>
+                    <!-- Neck -->
+                    <rect x="94" y="90" width="12" height="20" fill="#ffdbac"/>
+                    <!-- Body -->
+                    <path d="M60 110 C60 90, 140 90, 140 110 L155 210 H45 L60 110 Z" fill="#90abff" stroke="#316bf3" stroke-width="2"/>
+                    <!-- Arms -->
+                    <path d="M60 115 Q40 130 50 170" stroke="#ffdbac" stroke-width="12" stroke-linecap="round"/>
+                    <path d="M140 115 Q160 130 150 170" stroke="#ffdbac" stroke-width="12" stroke-linecap="round"/>
+                    <!-- Head -->
+                    <g id="head-group" transform="translate(0, -8)">
+                        <circle cx="100" cy="65" r="38" fill="#ffdbac" stroke="#efbc9b" stroke-width="1.5"/>
+                        <!-- Professional Hair/Cut -->
+                        <path d="M62 65 C62 35, 138 35, 138 65 C138 50, 125 40, 100 40 C75 40, 62 50, 62 65 Z" fill="#2d3436"/>
+                        <!-- Glasses for a more 'intelligent' look -->
+                        <path d="M78 68 H94 M106 68 H122" stroke="#2d3436" stroke-width="1.5" opacity="0.4"/>
+                        <circle cx="86" cy="68" r="8" stroke="#2d3436" stroke-width="1" fill="rgba(255,255,255,0.1)"/>
+                        <circle cx="114" cy="68" r="8" stroke="#2d3436" stroke-width="1" fill="rgba(255,255,255,0.1)"/>
+                        <!-- Eyes -->
+                        <g id="eyes-group">
+                            <circle class="eye" cx="86" cy="68" r="3" fill="#2d3436"/>
+                            <circle class="eye" cx="114" cy="68" r="3" fill="#2d3436"/>
+                        </g>
+                        <!-- Smile -->
+                        <path id="mouth" d="M92 85 Q100 90 108 85" stroke="#2d3436" stroke-width="2" stroke-linecap="round" fill="none"/>
+                    </g>
+                    <!-- Floating Tech Shapes around character -->
+                    <circle cx="160" cy="80" r="8" fill="var(--primary)" opacity="0.3">
+                        <animate attributeName="cy" values="80;70;80" dur="3s" repeatCount="indefinite" />
+                    </circle>
+                    <rect x="35" y="150" width="10" height="10" rx="2" fill="var(--secondary)" opacity="0.2">
+                        <animateTransform attributeName="transform" type="rotate" from="0 40 155" to="360 40 155" dur="10s" repeatCount="indefinite" />
+                    </rect>
+                </svg>
+            </div>
+            <div style="margin-top: 30px; text-align: center;">
+                <h2 style="font-family: 'Manrope'; font-weight: 800; color: #fff; font-size: 1.4rem;">Unlock Your Future</h2>
+                <p style="color: var(--on-surface-variant); font-size: 0.9rem; margin-top: 8px;">Connect with top-tier AI companies worldwide.</p>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-section">
+            <div class="branding">
+                <div class="logo-text" id="logo-container"></div>
+            </div>
+
+            <div class="form-wrapper">
+                <!-- Login Form -->
+                <div class="auth-form form-login" id="login-form">
+                    <h2 style="margin-bottom: 24px; font-weight: 800; font-family: 'Manrope';">Welcome Back</h2>
+                    <div class="input-group">
+                        <span class="label">Work Email</span>
+                        <input type="email" id="email" class="input-field" placeholder="name@company.com" onfocus="reactCharacter('looking')">
+                    </div>
+                    <div class="input-group">
+                        <span class="label">Password</span>
+                        <input type="password" id="pass" class="input-field" placeholder="••••••••" onfocus="reactCharacter('shy')">
+                    </div>
+                    <button class="btn btn-primary" onclick="handleAuth(event)">Sign In</button>
+                    <div class="switch-text">
+                        Don't have an account? <span class="switch-link" onclick="toggleAuth('register')">Start for free</span>
+                    </div>
+                </div>
+
+                <!-- Register Form -->
+                <div class="auth-form form-register" id="register-form">
+                    <h2 style="margin-bottom: 24px; font-weight: 800; font-family: 'Manrope';">Create Account</h2>
+                    <div class="input-group">
+                        <span class="label">Full Name</span>
+                        <input type="text" id="reg-name" class="input-field" placeholder="Jeeban Jyoti" onfocus="reactCharacter('happy')">
+                    </div>
+                    <div class="input-group">
+                        <span class="label">Work Email</span>
+                        <input type="email" id="reg-email" class="input-field" placeholder="name@company.com" onfocus="reactCharacter('looking')">
+                    </div>
+                    <div class="input-group">
+                        <span class="label">Password</span>
+                        <input type="password" id="reg-pass" class="input-field" placeholder="Minimum 8 characters" onfocus="reactCharacter('shy')">
+                    </div>
+                    <button class="btn btn-primary" onclick="handleAuth(event)">Create Account</button>
+                    <div class="switch-text">
+                        Already have an account? <span class="switch-link" onclick="toggleAuth('login')">Return to Sign In</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Professional Logo Animation
+        const name = "SkillMatch AI";
+        const logoContainer = document.getElementById('logo-container');
+        
+        name.split('').forEach((l, i) => {
+            const span = document.createElement('span');
+            span.innerText = l === ' ' ? '\u00A0' : l;
+            span.className = 'letter';
+            span.style.animationDelay = `${i * 0.05}s`;
+            if (i > 10) span.style.color = '#90abff'; // "AI" part
+            logoContainer.appendChild(span);
+        });
+
+        // Ambient Particles
+        const partContainer = document.getElementById('particles-container');
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 80 + 20;
+            p.style.width = size + 'px'; p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.top = Math.random() * 100 + 'vh';
+            p.style.opacity = Math.random() * 0.1;
+            partContainer.appendChild(p);
+            
+            p.animate([
+                { transform: 'translate(0, 0)' },
+                { transform: `translate(${(Math.random()-0.5)*100}px, ${(Math.random()-0.5)*100}px)` }
+            ], {
+                duration: 5000 + Math.random() * 5000,
+                iterations: Infinity,
+                direction: 'alternate',
+                easing: 'ease-in-out'
+            });
+        }
+
+        // Toggle Logic
+        function toggleAuth(type) {
+            const container = document.getElementById('auth-container');
+            const mouth = document.getElementById('mouth');
+            if (type === 'register') {
+                container.classList.add('is-register');
+                mouth.setAttribute('d', 'M90 82 Q100 90 110 82'); // Wider smile
+            } else {
+                container.classList.remove('is-register');
+                mouth.setAttribute('d', 'M92 82 Q100 87 108 82'); // Normal smile
+            }
+        }
+
+        // Professional 3D & Focus Interactions
+        const glassCard = document.querySelector('.glass-card');
+        document.addEventListener('mousemove', (e) => {
+            const box = document.querySelector('.character-viz').getBoundingClientRect();
+            const centerX = box.left + box.width / 2;
+            const centerY = box.top + box.height / 2;
+            
+            // Refined Eye Tracking
+            const moveX = (e.clientX - centerX) / window.innerWidth * 15;
+            const moveY = (e.clientY - centerY) / window.innerHeight * 15;
+            
+            document.querySelectorAll('.eye').forEach(eye => {
+                eye.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+            
+            // 3D Tilt for Card
+            const cardX = (window.innerWidth / 2 - e.clientX) / 40;
+            const cardY = (window.innerHeight / 2 - e.clientY) / 40;
+            glassCard.style.transform = `rotateY(${cardX * -1}deg) rotateX(${cardY}deg) scale(1.02)`;
+        });
+
+        function reactCharacter(mode) {
+            const mouth = document.getElementById('mouth');
+            if (mode === 'shy') {
+                mouth.setAttribute('d', 'M95 85 Q100 85 105 85'); // Straight line
+            } else if (mode === 'looking') {
+                mouth.setAttribute('d', 'M92 82 Q100 85 108 82'); // Slight smile
+            } else if (mode === 'happy') {
+                mouth.setAttribute('d', 'M90 82 Q100 95 110 82'); // Big smile
+            }
+        }
+
+        async function handleAuth(event) {
+            const btn = event ? (event.currentTarget || event.target) : {};
+            const isLogin = !document.getElementById('auth-container').classList.contains('is-register');
+            const email = document.getElementById(isLogin ? 'email' : 'reg-email').value;
+            const pass = document.getElementById(isLogin ? 'pass' : 'reg-pass').value;
+            const name = isLogin ? '' : document.getElementById('reg-name').value;
+            
+            const originalText = btn.innerText;
+            btn.innerText = "Securing Session...";
+            btn.style.opacity = "0.7";
+            
+            const mouth = document.getElementById('mouth');
+            mouth.setAttribute('d', 'M90 82 Q100 95 110 82'); // Big smile during auth
+
+            try {
+                // Actually calling the backend registration if it's registration
+                if (!isLogin) {
+                    await fetch('http://localhost:5050/api/users/register', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password: pass, name })
+                    });
+                }
+            } catch (e) { console.error('Auth error:', e); }
+
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('skillmatch_user_email', email);
+            setTimeout(() => {
+                window.location.href = "job-matching-professional.html"; // Redirect to main app
+            }, 1200);
+        }
+    </script>
+</body>
+</html>

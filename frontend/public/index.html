@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillMatch AI | Skill to Job Matching Platform</title>
+    <meta name="description" content="SkillMatch AI is an AI-powered platform that matches skills to jobs and builds personalized learning paths.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f3f5fb;
+            --bg-soft: #f8faff;
+            --ink: #101828;
+            --ink-soft: #344054;
+            --brand: #4b6fb6;
+            --brand-soft: #cfdaf3;
+            --accent: #2f4a86;
+            --card: #fffdfa;
+            --line: rgba(16, 24, 40, 0.12);
+            --shadow: 0 18px 50px rgba(16, 24, 40, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Outfit", sans-serif;
+            color: var(--ink);
+            background: radial-gradient(circle at 8% 12%, #f9fbff 0%, var(--bg) 40%, #e8edf8 100%);
+            overflow-x: hidden;
+        }
+
+        .ambient {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .ambient::before,
+        .ambient::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.35;
+            animation: floatOrb 14s ease-in-out infinite;
+        }
+
+        .ambient::before {
+            width: 300px;
+            height: 300px;
+            background: #d3def5;
+            top: 8%;
+            left: 2%;
+        }
+
+        .ambient::after {
+            width: 260px;
+            height: 260px;
+            background: #aabce3;
+            right: 6%;
+            top: 32%;
+            animation-delay: -7s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(26px, -18px) scale(1.08); }
+        }
+
+        .container {
+            width: min(1140px, 92vw);
+            margin: 0 auto;
+        }
+
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(8px);
+            background: rgba(243, 245, 251, 0.86);
+            border-bottom: 1px solid rgba(16, 24, 40, 0.08);
+        }
+
+        .top-nav .container {
+            height: 92px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            min-width: 260px;
+        }
+
+        .brand-logo {
+            width: 210px;
+            height: 72px;
+            object-fit: contain;
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .brand-logo.ready {
+            opacity: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            font-weight: 600;
+            color: var(--ink-soft);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--ink);
+        }
+
+        .quote-btn {
+            border: 1px solid #c7bca7;
+            border-radius: 999px;
+            padding: 11px 20px;
+            background: #f5f8ff;
+            color: #2f4a86;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .quote-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(47, 74, 134, 0.16);
+        }
+
+        .hero {
+            padding: 56px 0 30px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            align-items: center;
+            gap: 34px;
+        }
+
+        .hero-title {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2rem, 4.6vw, 4rem);
+            line-height: 1.08;
+            margin-bottom: 18px;
+            letter-spacing: 0.2px;
+        }
+
+        .hero-title .highlight {
+            color: #3b5fa8;
+            border: 2px dashed #9bb0df;
+            display: inline-block;
+            padding: 2px 10px;
+            transform: rotate(-1deg);
+            margin: 4px 0;
+        }
+
+        .hero-copy {
+            color: var(--ink-soft);
+            line-height: 1.7;
+            max-width: 560px;
+            margin-bottom: 24px;
+            font-size: 1.03rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 26px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 999px;
+            padding: 13px 24px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(150deg, #4868b2, #6f8fd2);
+            color: #fff;
+            box-shadow: 0 10px 20px rgba(72, 104, 178, 0.26);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #c7bca7;
+            color: #4a5568;
+        }
+
+        .trust-strip {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .chip {
+            background: #ffffff;
+            border: 1px solid #ede4d5;
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-weight: 600;
+            color: #475467;
+        }
+
+        .hero-visual {
+            position: relative;
+            min-height: 560px;
+            display: grid;
+            place-items: center;
+            isolation: isolate;
+        }
+
+        .hero-image-wrap {
+            width: min(430px, 80vw);
+            aspect-ratio: 1;
+            position: relative;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            overflow: hidden;
+            background: transparent;
+            z-index: 2;
+        }
+
+        .ring {
+            width: min(490px, 90vw);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 3px solid #c9d5f0;
+            position: absolute;
+            animation: pulseRing 4s ease-in-out infinite;
+        }
+
+        .sun-disc {
+            width: min(430px, 80vw);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 25%, #f6f8ff 0%, #e8eefc 58%, #d7e0f5 100%);
+            position: absolute;
+            box-shadow: inset 0 14px 34px rgba(255, 255, 255, 0.48);
+        }
+
+        .hero-image {
+            width: auto;
+            height: 99%;
+            max-width: 99%;
+            max-height: 99%;
+            object-fit: contain;
+            object-position: center center;
+            position: relative;
+            z-index: 2;
+            align-self: center;
+            justify-self: center;
+            margin-bottom: 0;
+            filter: drop-shadow(0 12px 28px rgba(16, 24, 40, 0.18));
+            animation: enterCard 0.9s ease-out;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .hero-image.ready {
+            opacity: 1;
+        }
+
+        .floating-badge {
+            position: absolute;
+            z-index: 3;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #f0e5d4;
+            border-radius: 18px;
+            padding: 12px 14px;
+            box-shadow: var(--shadow);
+            font-size: 0.9rem;
+            color: #3a404d;
+            font-weight: 600;
+        }
+
+        .badge-left {
+            left: 2%;
+            bottom: 8%;
+            animation: bob 3s ease-in-out infinite;
+        }
+
+        .badge-right {
+            right: 2%;
+            top: 8%;
+            animation: bob 3.4s ease-in-out infinite;
+            animation-delay: -1s;
+        }
+
+        @keyframes pulseRing {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.03); opacity: 0.85; }
+        }
+
+        @keyframes bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
+
+        @keyframes enterCard {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .section {
+            padding: 74px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(1.8rem, 3.4vw, 2.9rem);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #475467;
+            max-width: 760px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .feature-card {
+            background: var(--card);
+            border: 1px solid #ecdcc4;
+            border-radius: 20px;
+            padding: 22px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(16, 24, 40, 0.12);
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            font-size: 1.25rem;
+            margin-bottom: 14px;
+            background: linear-gradient(150deg, #edf2ff, #d4def7);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 8px;
+            font-size: 1.08rem;
+        }
+
+        .feature-card p {
+            color: #475467;
+            line-height: 1.65;
+            font-size: 0.98rem;
+        }
+
+        .project-overview {
+            background: linear-gradient(145deg, #fffaf2, #f6eddc);
+            border: 1px solid #ebdcc2;
+            border-radius: 28px;
+            padding: 26px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .step {
+            background: #fff;
+            border: 1px solid #f0e6d7;
+            border-radius: 16px;
+            padding: 14px;
+            font-size: 0.95rem;
+            color: #344054;
+        }
+
+        .step strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #111827;
+        }
+
+        .cta-box {
+            margin-top: 30px;
+            background: linear-gradient(150deg, #1f356a, #314c89);
+            color: #eef3ff;
+            border-radius: 24px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .cta-box h3 {
+            font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+            margin-bottom: 7px;
+        }
+
+        .cta-box p {
+            color: rgba(238, 243, 255, 0.9);
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-light {
+            background: #ffffff;
+            color: #1f356a;
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            color: #eef3ff;
+        }
+
+        .footer {
+            padding: 26px 0 36px;
+            text-align: center;
+            color: #667085;
+            font-size: 0.95rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1060px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-copy {
+                max-width: 100%;
+            }
+
+            .hero-visual {
+                min-height: 500px;
+            }
+
+            .hero-image-wrap {
+                width: min(400px, 84vw);
+            }
+
+            .hero-image {
+                width: auto;
+                height: 97%;
+                max-width: 97%;
+                max-height: 97%;
+            }
+
+            .ring {
+                width: min(460px, 94vw);
+            }
+
+            .sun-disc {
+                width: min(400px, 84vw);
+            }
+
+            .badge-left {
+                left: 5%;
+                bottom: 9%;
+            }
+
+            .badge-right {
+                right: 5%;
+                top: 9%;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .timeline {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 720px) {
+            .top-nav .container {
+                height: auto;
+                padding: 14px 0;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
+            .brand-logo {
+                width: 160px;
+                height: 56px;
+            }
+
+            .brand {
+                min-width: auto;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: space-around;
+                gap: 12px;
+                font-size: 0.9rem;
+                padding-bottom: 6px;
+            }
+
+            .quote-btn {
+                padding: 9px 16px;
+            }
+
+            .hero {
+                padding-top: 34px;
+            }
+
+            .hero-visual {
+                min-height: 420px;
+            }
+
+            .hero-image-wrap {
+                width: min(330px, 82vw);
+            }
+
+            .hero-image {
+                width: auto;
+                height: 95%;
+                max-width: 95%;
+                max-height: 95%;
+                margin-bottom: 0;
+            }
+
+            .ring {
+                width: min(390px, 96vw);
+            }
+
+            .sun-disc {
+                width: min(330px, 80vw);
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .badge-left,
+            .badge-right {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient"></div>
+
+    <header class="top-nav">
+        <div class="container">
+            <div class="brand">
+                <img class="brand-logo" id="brandLogo" src="logo.png" alt="SkillMatch AI logo">
+            </div>
+            <nav class="nav-links">
+                <a href="#why">Why SkillMatch AI</a>
+                <a href="#features">Features</a>
+                <a href="#flow">How It Works</a>
+                <a href="#launch">Launch</a>
+            </nav>
+            <a class="quote-btn" href="auth.html">Sign In / Sign Up</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <div class="hero-grid">
+                <div class="reveal">
+                    <h1 class="hero-title">We Build <span class="highlight">Skill-to-Job</span><br>Career Intelligence Platform</h1>
+                    <p class="hero-copy">
+                        SkillMatch AI is a full-stack project that connects candidate skills with real opportunities. It combines hybrid AI matching,
+                        personalized learning resources, and real-time recommendations so users can move from confusion to confident career action.
+                    </p>
+                    <div class="hero-cta">
+                        <a class="btn btn-primary" href="auth.html">Sign Up Now</a>
+                        <a class="btn btn-secondary" href="learning-resources.html">Explore Learning Hub</a>
+                    </div>
+                    <div class="trust-strip">
+                        <span>Built With</span>
+                        <span class="chip">Node.js + Express</span>
+                        <span class="chip">MongoDB</span>
+                        <span class="chip">AI Services</span>
+                        <span class="chip">Real-time APIs</span>
+                    </div>
+                </div>
+                <div class="hero-visual reveal">
+                    <div class="ring"></div>
+                    <div class="sun-disc"></div>
+                    <div class="hero-image-wrap">
+                        <img
+                            class="hero-image"
+                            id="heroModel"
+                            src="model.png"
+                            alt="Professional learner using AI platform"
+                        >
+                    </div>
+                    <div class="floating-badge badge-left">98% Match Clarity</div>
+                    <div class="floating-badge badge-right">Live Skill Gap Insights</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="why" class="section container">
+            <h2 class="section-title reveal">What This Project Solves</h2>
+            <p class="section-subtitle reveal">
+                Most users know where they want to go, but not what to learn next or which jobs they already qualify for. This project bridges that gap with explainable recommendations and a practical action path.
+            </p>
+            <div class="project-overview reveal">
+                <div class="timeline">
+                    <div class="step"><strong>Input Skills</strong>Users add current skills, interests, and targets.</div>
+                    <div class="step"><strong>Match Jobs</strong>Hybrid model scores opportunities with relevance insights.</div>
+                    <div class="step"><strong>Learn Faster</strong>Resources are filtered for quality and role fit.</div>
+                    <div class="step"><strong>Track Growth</strong>User interactions improve recommendations over time.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section container">
+            <h2 class="section-title reveal">Platform Features</h2>
+            <p class="section-subtitle reveal">Every major module in your repository is represented here so visitors understand exactly what the system can do.</p>
+            <div class="feature-grid">
+                <article class="feature-card reveal">
+                    <div class="feature-icon">01</div>
+                    <h3>Hybrid Job Matching Engine</h3>
+                    <p>Combines API-driven listings and learned relevance signals to rank jobs according to user skill profiles and goals.</p>
+                </article>
+                <article class="feature-card reveal">
+                    <div class="feature-icon">02</div>
+                    <h3>Skill Gap Detection</h3>
+                    <p>Compares user capabilities with role requirements and highlights missing skills that need immediate focus.</p>
+                </article>
+                <article class="feature-card reveal">
+                    <div class="feature-icon">03</div>
+                    <h3>Learning Resource Pipeline</h3>
+                    <p>Uses curated datasets and YouTube resource filtering to suggest practical, high-quality learning content.</p>
+                </article>
+                <article class="feature-card reveal">
+                    <div class="feature-icon">04</div>
+                    <h3>Advanced Recommendation Service</h3>
+                    <p>Delivers smarter suggestions by combining user history, engagement patterns, and model-driven ranking.</p>
+                </article>
+                <article class="feature-card reveal">
+                    <div class="feature-icon">05</div>
+                    <h3>Real-time Learning Updates</h3>
+                    <p>Updates learning recommendations dynamically as user interactions and preferences evolve.</p>
+                </article>
+                <article class="feature-card reveal">
+                    <div class="feature-icon">06</div>
+                    <h3>AI Career Chatbot</h3>
+                    <p>Provides conversational guidance for role exploration, next-step learning, and personalized career planning.</p>
+                </article>
+                <article class="feature-card reveal">
+                    <div class="feature-icon">07</div>
+                    <h3>User & Interaction Tracking</h3>
+                    <p>Maintains structured user profiles and interaction data to improve recommendation relevance over time.</p>
+                </article>
+                <article class="feature-card reveal">
+                    <div class="feature-icon">08</div>
+                    <h3>Scalable Backend Architecture</h3>
+                    <p>Express service layers, modular routes, and separate pipelines support maintainability and future scaling.</p>
+                </article>
+                <article class="feature-card reveal">
+                    <div class="feature-icon">09</div>
+                    <h3>Performance-Ready Data Pipeline</h3>
+                    <p>Dataset builders, feature engineering, and modeling scripts accelerate continuous improvement of recommendations.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="flow" class="section container">
+            <h2 class="section-title reveal">How Users Experience It</h2>
+            <p class="section-subtitle reveal">A focused journey from entering skills to getting role matches and an upskilling action plan.</p>
+            <div class="feature-grid">
+                <article class="feature-card reveal">
+                    <div class="feature-icon">A</div>
+                    <h3>Create Profile</h3>
+                    <p>Users define their skills, interests, and preferred job domains to initialize the recommendation context.</p>
+                </article>
+                <article class="feature-card reveal">
+                    <div class="feature-icon">B</div>
+                    <h3>Receive Ranked Jobs</h3>
+                    <p>System returns best-fit opportunities with transparent relevance scoring and role-level insights.</p>
+                </article>
+                <article class="feature-card reveal">
+                    <div class="feature-icon">C</div>
+                    <h3>Follow Learning Plan</h3>
+                    <p>Users get curated resources to close gaps quickly, with updates based on ongoing interactions.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="launch" class="section container">
+            <div class="cta-box reveal">
+                <div>
+                    <h3>Launch the Project Experience</h3>
+                    <p>Open job matching or learning recommendations and test the end-to-end flow now.</p>
+                </div>
+                <div class="cta-actions">
+                    <a class="btn btn-light" href="auth.html">Sign in to Platform</a>
+                    <a class="btn btn-outline-light" href="learning-resources.html">Open Learning Resources</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <style>
+        .sm-chat-widget {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 11000;
+            font-family: "Outfit", "Segoe UI", Tahoma, sans-serif;
+        }
+
+        .sm-chat-toggle {
+            width: 62px;
+            height: 62px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #fff;
+            background: linear-gradient(135deg, #4d72bd, #6f8fd2);
+            box-shadow: 0 12px 28px rgba(77, 114, 189, 0.45);
+            display: grid;
+            place-items: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .sm-chat-toggle:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 16px 34px rgba(77, 114, 189, 0.55);
+        }
+
+        .sm-chat-tooltip {
+            position: absolute;
+            right: 6px;
+            bottom: 70px;
+            background: #ffffff;
+            color: #1f2a44;
+            border: 1px solid #d6e0f5;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.14);
+        }
+
+        .sm-chat-panel {
+            position: absolute;
+            right: 0;
+            bottom: 76px;
+            width: min(360px, calc(100vw - 24px));
+            height: min(540px, calc(100vh - 110px));
+            border-radius: 16px;
+            border: 1px solid #d6e0f5;
+            background: #ffffff;
+            box-shadow: 0 24px 54px rgba(15, 23, 42, 0.24);
+            display: none;
+            grid-template-rows: auto 1fr auto auto;
+            overflow: hidden;
+        }
+
+        .sm-chat-panel.open {
+            display: grid;
+        }
+
+        .sm-chat-panel.fullscreen {
+            position: fixed;
+            inset: 12px;
+            width: auto;
+            height: auto;
+            max-width: none;
+            border-radius: 18px;
+            z-index: 12000;
+        }
+
+        .sm-chat-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 14px;
+            color: #1f3970;
+            border-bottom: 1px solid #d6e0f5;
+            background: linear-gradient(150deg, #f8fbff, #ecf3ff);
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .sm-chat-head-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sm-chat-icon-btn {
+            min-width: 30px;
+            height: 26px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #1f3970;
+            background: #dfe9ff;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0 8px;
+        }
+
+        .sm-chat-close {
+            width: 26px;
+            height: 26px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #1f3970;
+            background: #dfe9ff;
+            font-weight: 700;
+        }
+
+        .sm-chat-messages {
+            overflow: auto;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: radial-gradient(circle at 85% 10%, #f7faff 0%, transparent 42%), #fefefe;
+        }
+
+        .sm-chat-msg {
+            max-width: 86%;
+            border: 1px solid #d6e0f5;
+            border-radius: 12px;
+            padding: 9px 11px;
+            font-size: 0.88rem;
+            line-height: 1.42;
+        }
+
+        .sm-chat-msg.user {
+            margin-left: auto;
+            color: #1e3a8a;
+            background: #eaf1ff;
+        }
+
+        .sm-chat-msg.bot {
+            margin-right: auto;
+            color: #1f2937;
+            background: #ffffff;
+        }
+
+        .sm-chat-typing {
+            display: none;
+            color: #667085;
+            font-size: 0.8rem;
+            padding: 6px 12px 8px;
+        }
+
+        .sm-chat-suggestions {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            padding: 8px 12px 10px;
+            border-top: 1px solid #edf2ff;
+            background: #f9fbff;
+        }
+
+        .sm-chat-chip {
+            border: 1px solid #c9d7f4;
+            border-radius: 999px;
+            background: #edf3ff;
+            color: #27457f;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 6px 9px;
+            cursor: pointer;
+        }
+
+        .sm-chat-compose {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            border-top: 1px solid #d6e0f5;
+            background: #ffffff;
+            padding: 10px;
+        }
+
+        .sm-chat-input {
+            border: 1px solid #cad6ef;
+            border-radius: 10px;
+            padding: 9px 10px;
+            font-size: 0.88rem;
+        }
+
+        .sm-chat-send {
+            border: none;
+            border-radius: 10px;
+            padding: 0 12px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: 700;
+            background: linear-gradient(150deg, #4d72bd, #6f8fd2);
+        }
+
+        @media (max-width: 620px) {
+            .sm-chat-widget {
+                right: 10px;
+                bottom: 10px;
+            }
+
+            .sm-chat-tooltip {
+                display: none;
+            }
+
+            .sm-chat-panel {
+                right: 0;
+                bottom: 72px;
+                width: calc(100vw - 20px);
+                height: min(530px, calc(100vh - 90px));
+            }
+
+            .sm-chat-panel.fullscreen {
+                inset: 0;
+                border-radius: 0;
+            }
+        }
+    </style>
+
+    <div id="smChatWidget" class="sm-chat-widget">
+        <div class="sm-chat-tooltip">Chat with SkillMatch AI</div>
+        <button id="smChatToggle" type="button" class="sm-chat-toggle" aria-label="Open chatbot">
+            <svg viewBox="0 0 100 100" width="30" height="30" aria-hidden="true">
+                <circle cx="50" cy="50" r="45" fill="rgba(255,255,255,0.2)"></circle>
+                <rect x="25" y="25" width="50" height="40" rx="10" fill="white"></rect>
+                <circle cx="38" cy="42" r="5" fill="#4d72bd"></circle>
+                <circle cx="62" cy="42" r="5" fill="#4d72bd"></circle>
+                <rect x="32" y="55" width="36" height="4" rx="2" fill="#4d72bd"></rect>
+            </svg>
+        </button>
+
+        <section id="smChatPanel" class="sm-chat-panel" aria-live="polite">
+            <div class="sm-chat-head">
+                <span>SkillMatch AI Assistant</span>
+                <div class="sm-chat-head-actions">
+                    <button id="smChatHideSuggestions" type="button" class="sm-chat-icon-btn" aria-label="Hide suggestions">Hide Tips</button>
+                    <button id="smChatFullscreen" type="button" class="sm-chat-icon-btn" aria-label="Toggle fullscreen">⛶</button>
+                    <button id="smChatClose" type="button" class="sm-chat-close" aria-label="Close chatbot">x</button>
+                </div>
+            </div>
+
+            <div id="smChatMessages" class="sm-chat-messages"></div>
+            <div id="smChatTyping" class="sm-chat-typing">SkillMatch AI is typing...</div>
+            <div id="smChatSuggestions" class="sm-chat-suggestions"></div>
+
+            <div class="sm-chat-compose">
+                <input id="smChatInput" class="sm-chat-input" type="text" placeholder="Ask about jobs, skills, and career path...">
+                <button id="smChatSend" type="button" class="sm-chat-send">Send</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
+
+        function stripEdgeBackground(img) {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d", { willReadFrequently: true });
+            const width = img.naturalWidth;
+            const height = img.naturalHeight;
+
+            if (!ctx || !width || !height) {
+                img.classList.add("ready");
+                return;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0);
+
+            const imageData = ctx.getImageData(0, 0, width, height);
+            const pixels = imageData.data;
+            const visited = new Uint8Array(width * height);
+            const queue = [];
+
+            const isLikelyBg = (idx) => {
+                const r = pixels[idx];
+                const g = pixels[idx + 1];
+                const b = pixels[idx + 2];
+                const a = pixels[idx + 3];
+                if (a < 8) return true;
+
+                const maxDiff = Math.max(Math.abs(r - g), Math.abs(g - b), Math.abs(b - r));
+                const lum = (r + g + b) / 3;
+
+                return lum > 145 && maxDiff < 34;
+            };
+
+            const pushPixel = (x, y) => {
+                if (x < 0 || y < 0 || x >= width || y >= height) return;
+                const p = y * width + x;
+                if (visited[p]) return;
+                const idx = p * 4;
+                if (!isLikelyBg(idx)) return;
+
+                visited[p] = 1;
+                queue.push(p);
+            };
+
+            for (let x = 0; x < width; x += 1) {
+                pushPixel(x, 0);
+                pushPixel(x, height - 1);
+            }
+
+            for (let y = 0; y < height; y += 1) {
+                pushPixel(0, y);
+                pushPixel(width - 1, y);
+            }
+
+            const dirs = [
+                [1, 0],
+                [-1, 0],
+                [0, 1],
+                [0, -1]
+            ];
+
+            while (queue.length > 0) {
+                const p = queue.pop();
+                const x = p % width;
+                const y = Math.floor(p / width);
+                const idx = p * 4;
+
+                pixels[idx + 3] = 0;
+
+                for (const [dx, dy] of dirs) {
+                    pushPixel(x + dx, y + dy);
+                }
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+
+            let minX = width;
+            let minY = height;
+            let maxX = -1;
+            let maxY = -1;
+
+            for (let y = 0; y < height; y += 1) {
+                for (let x = 0; x < width; x += 1) {
+                    const idx = (y * width + x) * 4;
+                    if (pixels[idx + 3] > 10) {
+                        if (x < minX) minX = x;
+                        if (y < minY) minY = y;
+                        if (x > maxX) maxX = x;
+                        if (y > maxY) maxY = y;
+                    }
+                }
+            }
+
+            if (maxX >= minX && maxY >= minY) {
+                const outCanvas = document.createElement("canvas");
+                const outCtx = outCanvas.getContext("2d");
+                const pad = 8;
+                const cropX = Math.max(0, minX - pad);
+                const cropY = Math.max(0, minY - pad);
+                const cropW = Math.min(width - cropX, maxX - minX + 1 + (pad * 2));
+                const cropH = Math.min(height - cropY, maxY - minY + 1 + (pad * 2));
+
+                outCanvas.width = cropW;
+                outCanvas.height = cropH;
+
+                if (outCtx) {
+                    outCtx.drawImage(canvas, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
+                    img.src = outCanvas.toDataURL("image/png");
+                } else {
+                    img.src = canvas.toDataURL("image/png");
+                }
+            } else {
+                img.src = canvas.toDataURL("image/png");
+            }
+
+            img.classList.add("ready");
+        }
+
+        function stripNearWhiteEdges(img) {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d", { willReadFrequently: true });
+            const width = img.naturalWidth;
+            const height = img.naturalHeight;
+
+            if (!ctx || !width || !height) {
+                img.classList.add("ready");
+                return;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0);
+
+            const imageData = ctx.getImageData(0, 0, width, height);
+            const pixels = imageData.data;
+            const visited = new Uint8Array(width * height);
+            const queue = [];
+
+            const isNearWhite = (idx) => {
+                const r = pixels[idx];
+                const g = pixels[idx + 1];
+                const b = pixels[idx + 2];
+                const a = pixels[idx + 3];
+                if (a < 8) return true;
+
+                const maxDiff = Math.max(Math.abs(r - g), Math.abs(g - b), Math.abs(b - r));
+                const lum = (r + g + b) / 3;
+
+                return lum > 218 && maxDiff < 24;
+            };
+
+            const pushPixel = (x, y) => {
+                if (x < 0 || y < 0 || x >= width || y >= height) return;
+                const p = y * width + x;
+                if (visited[p]) return;
+                const idx = p * 4;
+                if (!isNearWhite(idx)) return;
+
+                visited[p] = 1;
+                queue.push(p);
+            };
+
+            for (let x = 0; x < width; x += 1) {
+                pushPixel(x, 0);
+                pushPixel(x, height - 1);
+            }
+
+            for (let y = 0; y < height; y += 1) {
+                pushPixel(0, y);
+                pushPixel(width - 1, y);
+            }
+
+            const dirs = [
+                [1, 0],
+                [-1, 0],
+                [0, 1],
+                [0, -1]
+            ];
+
+            while (queue.length > 0) {
+                const p = queue.pop();
+                const x = p % width;
+                const y = Math.floor(p / width);
+                const idx = p * 4;
+
+                pixels[idx + 3] = 0;
+
+                for (const [dx, dy] of dirs) {
+                    pushPixel(x + dx, y + dy);
+                }
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+
+            let minX = width;
+            let minY = height;
+            let maxX = -1;
+            let maxY = -1;
+
+            for (let y = 0; y < height; y += 1) {
+                for (let x = 0; x < width; x += 1) {
+                    const idx = (y * width + x) * 4;
+                    if (pixels[idx + 3] > 10) {
+                        if (x < minX) minX = x;
+                        if (y < minY) minY = y;
+                        if (x > maxX) maxX = x;
+                        if (y > maxY) maxY = y;
+                    }
+                }
+            }
+
+            if (maxX >= minX && maxY >= minY) {
+                const outCanvas = document.createElement("canvas");
+                const outCtx = outCanvas.getContext("2d");
+                const pad = 6;
+                const cropX = Math.max(0, minX - pad);
+                const cropY = Math.max(0, minY - pad);
+                const cropW = Math.min(width - cropX, maxX - minX + 1 + (pad * 2));
+                const cropH = Math.min(height - cropY, maxY - minY + 1 + (pad * 2));
+
+                outCanvas.width = cropW;
+                outCanvas.height = cropH;
+
+                if (outCtx) {
+                    outCtx.drawImage(canvas, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
+                    img.src = outCanvas.toDataURL("image/png");
+                } else {
+                    img.src = canvas.toDataURL("image/png");
+                }
+            } else {
+                img.src = canvas.toDataURL("image/png");
+            }
+
+            img.classList.add("ready");
+        }
+
+        const heroModel = document.getElementById("heroModel");
+        if (heroModel) {
+            const processModel = () => stripEdgeBackground(heroModel);
+            if (heroModel.complete) {
+                processModel();
+            } else {
+                heroModel.addEventListener("load", processModel, { once: true });
+                heroModel.addEventListener("error", () => heroModel.classList.add("ready"), { once: true });
+            }
+        }
+
+        const brandLogo = document.getElementById("brandLogo");
+        if (brandLogo) {
+            const processLogo = () => stripNearWhiteEdges(brandLogo);
+            if (brandLogo.complete) {
+                processLogo();
+            } else {
+                brandLogo.addEventListener("load", processLogo, { once: true });
+                brandLogo.addEventListener("error", () => brandLogo.classList.add("ready"), { once: true });
+            }
+        }
+
+        (function initEmbeddedChatbot() {
+            const panel = document.getElementById('smChatPanel');
+            const toggle = document.getElementById('smChatToggle');
+            const closeBtn = document.getElementById('smChatClose');
+            const fullscreenBtn = document.getElementById('smChatFullscreen');
+            const hideSuggestionsBtn = document.getElementById('smChatHideSuggestions');
+            const messagesEl = document.getElementById('smChatMessages');
+            const suggestionsEl = document.getElementById('smChatSuggestions');
+            const typingEl = document.getElementById('smChatTyping');
+            const inputEl = document.getElementById('smChatInput');
+            const sendBtn = document.getElementById('smChatSend');
+            const tooltip = document.querySelector('.sm-chat-tooltip');
+            let hasSentMessage = false;
+            let suggestionsHidden = false;
+
+            if (!panel || !toggle || !messagesEl || !suggestionsEl || !inputEl || !sendBtn) {
+                return;
+            }
+
+            const chatBaseUrl = (
+                (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') &&
+                window.location.port === '5050'
+            ) ? window.location.origin : 'http://localhost:5050';
+
+            function setOpen(open) {
+                panel.classList.toggle('open', open);
+                if (open) {
+                    inputEl.focus();
+                    if (tooltip) {
+                        tooltip.style.display = 'none';
+                    }
+                }
+            }
+
+            function addMessage(role, text) {
+                const item = document.createElement('div');
+                item.className = 'sm-chat-msg ' + role;
+                item.textContent = text;
+                messagesEl.appendChild(item);
+                messagesEl.scrollTop = messagesEl.scrollHeight;
+            }
+
+            function setSuggestionsVisible(visible) {
+                suggestionsHidden = !visible;
+                suggestionsEl.style.display = visible ? 'flex' : 'none';
+
+                if (hideSuggestionsBtn) {
+                    hideSuggestionsBtn.textContent = visible ? 'Hide Tips' : 'Show Tips';
+                    hideSuggestionsBtn.setAttribute('aria-label', visible ? 'Hide suggestions' : 'Show suggestions');
+                }
+            }
+
+            function setFullscreen(on) {
+                panel.classList.toggle('fullscreen', on);
+                if (fullscreenBtn) {
+                    fullscreenBtn.textContent = on ? '↙' : '⛶';
+                    fullscreenBtn.setAttribute('aria-label', on ? 'Exit fullscreen' : 'Toggle fullscreen');
+                }
+            }
+
+            function getBotText(payload) {
+                if (!payload || typeof payload !== 'object') {
+                    return 'Sorry, I could not understand that.';
+                }
+
+                return payload.response || payload.reply || payload.message || payload.text || payload.answer ||
+                    'I received your message. Could you rephrase it?';
+            }
+
+            async function loadSuggestions() {
+                try {
+                    const res = await fetch(chatBaseUrl + '/api/chatbot/suggestions');
+                    const data = await res.json();
+                    const list = Array.isArray(data.suggestions) ? data.suggestions : [];
+
+                    suggestionsEl.innerHTML = '';
+
+                    list.slice(0, 4).forEach((item) => {
+                        const btn = document.createElement('button');
+                        btn.type = 'button';
+                        btn.className = 'sm-chat-chip';
+                        btn.textContent = ((item.icon || '💬') + ' ' + (item.text || '')).trim();
+                        btn.addEventListener('click', () => sendMessage(item.text || 'Help me with career guidance'));
+                        suggestionsEl.appendChild(btn);
+                    });
+
+                    if (!suggestionsEl.childElementCount) {
+                        suggestionsEl.innerHTML = '<button type="button" class="sm-chat-chip">💬 Ask for skill gap advice</button>';
+                    }
+
+                    if (suggestionsHidden) {
+                        suggestionsEl.style.display = 'none';
+                    }
+                } catch (error) {
+                    suggestionsEl.innerHTML = '<button type="button" class="sm-chat-chip">💬 Ask for skill gap advice</button>';
+
+                    if (suggestionsHidden) {
+                        suggestionsEl.style.display = 'none';
+                    }
+                }
+            }
+
+            async function sendMessage(prefill) {
+                const message = (typeof prefill === 'string' ? prefill : inputEl.value).trim();
+                if (!message) {
+                    return;
+                }
+
+                if (!prefill) {
+                    inputEl.value = '';
+                }
+
+                setOpen(true);
+                addMessage('user', message);
+                if (!hasSentMessage) {
+                    hasSentMessage = true;
+                    setSuggestionsVisible(false);
+                }
+                typingEl.style.display = 'block';
+
+                try {
+                    const res = await fetch(chatBaseUrl + '/api/chatbot/message', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            message,
+                            context: {
+                                sourcePage: 'index'
+                            }
+                        })
+                    });
+
+                    const data = await res.json();
+                    addMessage('bot', getBotText(data));
+                } catch (error) {
+                    addMessage('bot', 'Unable to connect to chatbot right now. Please try again.');
+                } finally {
+                    typingEl.style.display = 'none';
+                }
+            }
+
+            toggle.addEventListener('click', () => setOpen(!panel.classList.contains('open')));
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    setOpen(false);
+                    setFullscreen(false);
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                    setFullscreen(!panel.classList.contains('fullscreen'));
+                });
+            }
+
+            if (hideSuggestionsBtn) {
+                hideSuggestionsBtn.addEventListener('click', () => {
+                    setSuggestionsVisible(suggestionsHidden);
+                });
+            }
+
+            sendBtn.addEventListener('click', () => sendMessage());
+            inputEl.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && panel.classList.contains('fullscreen')) {
+                    setFullscreen(false);
+                }
+            });
+
+            addMessage('bot', 'Hi! Welcome to SkillMatching AI. Tell me your current skills or IT interests, and I will help you find matching jobs, skill gaps, and the best next learning path.');
+            loadSuggestions();
+        })();
+    </script>
+</body>
+</html>

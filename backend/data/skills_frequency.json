@@ -1,0 +1,4893 @@
+{
+  "total_unique_skills": 1222,
+  "skills": [
+    {
+      "name": "cloud computing",
+      "frequency": 69
+    },
+    {
+      "name": "automation",
+      "frequency": 55
+    },
+    {
+      "name": "ci/cd",
+      "frequency": 53
+    },
+    {
+      "name": "python",
+      "frequency": 51
+    },
+    {
+      "name": "linux",
+      "frequency": 46
+    },
+    {
+      "name": "docker",
+      "frequency": 44
+    },
+    {
+      "name": "sql",
+      "frequency": 43
+    },
+    {
+      "name": "git",
+      "frequency": 42
+    },
+    {
+      "name": "scripting",
+      "frequency": 40
+    },
+    {
+      "name": "security",
+      "frequency": 39
+    },
+    {
+      "name": "networking",
+      "frequency": 39
+    },
+    {
+      "name": "project management",
+      "frequency": 38
+    },
+    {
+      "name": "kubernetes",
+      "frequency": 37
+    },
+    {
+      "name": "java",
+      "frequency": 37
+    },
+    {
+      "name": "aws",
+      "frequency": 36
+    },
+    {
+      "name": "team leadership",
+      "frequency": 31
+    },
+    {
+      "name": "azure",
+      "frequency": 30
+    },
+    {
+      "name": "javascript",
+      "frequency": 29
+    },
+    {
+      "name": "troubleshooting",
+      "frequency": 25
+    },
+    {
+      "name": "data analysis",
+      "frequency": 23
+    },
+    {
+      "name": "css",
+      "frequency": 23
+    },
+    {
+      "name": "html",
+      "frequency": 23
+    },
+    {
+      "name": "data modeling",
+      "frequency": 22
+    },
+    {
+      "name": "leadership",
+      "frequency": 21
+    },
+    {
+      "name": "algorithms",
+      "frequency": 19
+    },
+    {
+      "name": "terraform",
+      "frequency": 17
+    },
+    {
+      "name": "version control",
+      "frequency": 17
+    },
+    {
+      "name": "communication",
+      "frequency": 17
+    },
+    {
+      "name": "software development",
+      "frequency": 17
+    },
+    {
+      "name": "data structures",
+      "frequency": 17
+    },
+    {
+      "name": "cloud platforms",
+      "frequency": 16
+    },
+    {
+      "name": "jenkins",
+      "frequency": 16
+    },
+    {
+      "name": "system administration",
+      "frequency": 16
+    },
+    {
+      "name": "monitoring",
+      "frequency": 15
+    },
+    {
+      "name": "devops",
+      "frequency": 15
+    },
+    {
+      "name": "ui/ux design",
+      "frequency": 15
+    },
+    {
+      "name": "react",
+      "frequency": 15
+    },
+    {
+      "name": "ansible",
+      "frequency": 14
+    },
+    {
+      "name": "budgeting",
+      "frequency": 14
+    },
+    {
+      "name": "system architecture",
+      "frequency": 14
+    },
+    {
+      "name": "devops practices",
+      "frequency": 14
+    },
+    {
+      "name": "usability testing",
+      "frequency": 14
+    },
+    {
+      "name": "machine learning",
+      "frequency": 13
+    },
+    {
+      "name": "compliance",
+      "frequency": 13
+    },
+    {
+      "name": "security protocols",
+      "frequency": 13
+    },
+    {
+      "name": "programming languages",
+      "frequency": 13
+    },
+    {
+      "name": "rest apis",
+      "frequency": 12
+    },
+    {
+      "name": "incident response",
+      "frequency": 12
+    },
+    {
+      "name": "etl",
+      "frequency": 11
+    },
+    {
+      "name": "build automation",
+      "frequency": 11
+    },
+    {
+      "name": "data visualization",
+      "frequency": 11
+    },
+    {
+      "name": "google cloud",
+      "frequency": 11
+    },
+    {
+      "name": "node.js",
+      "frequency": 11
+    },
+    {
+      "name": "programming",
+      "frequency": 11
+    },
+    {
+      "name": "c++",
+      "frequency": 11
+    },
+    {
+      "name": "hadoop",
+      "frequency": 10
+    },
+    {
+      "name": "ci/cd pipelines",
+      "frequency": 10
+    },
+    {
+      "name": "maven",
+      "frequency": 10
+    },
+    {
+      "name": "deep learning",
+      "frequency": 10
+    },
+    {
+      "name": "cloud security",
+      "frequency": 10
+    },
+    {
+      "name": "prototyping",
+      "frequency": 10
+    },
+    {
+      "name": "user research",
+      "frequency": 10
+    },
+    {
+      "name": "data warehousing",
+      "frequency": 9
+    },
+    {
+      "name": "mentoring",
+      "frequency": 9
+    },
+    {
+      "name": "configuration management",
+      "frequency": 9
+    },
+    {
+      "name": "technical support",
+      "frequency": 9
+    },
+    {
+      "name": ".net",
+      "frequency": 9
+    },
+    {
+      "name": "penetration testing",
+      "frequency": 9
+    },
+    {
+      "name": "embedded systems",
+      "frequency": 9
+    },
+    {
+      "name": "vue.js",
+      "frequency": 9
+    },
+    {
+      "name": "wireframing",
+      "frequency": 9
+    },
+    {
+      "name": "argocd",
+      "frequency": 9
+    },
+    {
+      "name": "gradle",
+      "frequency": 8
+    },
+    {
+      "name": "agile methodologies",
+      "frequency": 8
+    },
+    {
+      "name": "alerting",
+      "frequency": 8
+    },
+    {
+      "name": "problem solving",
+      "frequency": 8
+    },
+    {
+      "name": "3d modeling",
+      "frequency": 8
+    },
+    {
+      "name": "tcp/ip",
+      "frequency": 8
+    },
+    {
+      "name": "junit",
+      "frequency": 8
+    },
+    {
+      "name": "threat analysis",
+      "frequency": 8
+    },
+    {
+      "name": "risk management",
+      "frequency": 8
+    },
+    {
+      "name": "nativescript",
+      "frequency": 8
+    },
+    {
+      "name": "prodigy",
+      "frequency": 8
+    },
+    {
+      "name": "spark",
+      "frequency": 7
+    },
+    {
+      "name": "infrastructure as code",
+      "frequency": 7
+    },
+    {
+      "name": "stakeholder management",
+      "frequency": 7
+    },
+    {
+      "name": "data science",
+      "frequency": 7
+    },
+    {
+      "name": "innovation",
+      "frequency": 7
+    },
+    {
+      "name": "tensorflow",
+      "frequency": 7
+    },
+    {
+      "name": "ruby",
+      "frequency": 7
+    },
+    {
+      "name": "database design",
+      "frequency": 7
+    },
+    {
+      "name": "system monitoring",
+      "frequency": 7
+    },
+    {
+      "name": "code review",
+      "frequency": 7
+    },
+    {
+      "name": "incident management",
+      "frequency": 7
+    },
+    {
+      "name": "kotlin",
+      "frequency": 7
+    },
+    {
+      "name": "firebase",
+      "frequency": 7
+    },
+    {
+      "name": "vulnerability management",
+      "frequency": 7
+    },
+    {
+      "name": "requirements gathering",
+      "frequency": 7
+    },
+    {
+      "name": "visual effects",
+      "frequency": 7
+    },
+    {
+      "name": "testing",
+      "frequency": 7
+    },
+    {
+      "name": "mysql",
+      "frequency": 7
+    },
+    {
+      "name": "learning agility",
+      "frequency": 7
+    },
+    {
+      "name": "swift",
+      "frequency": 7
+    },
+    {
+      "name": "php",
+      "frequency": 7
+    },
+    {
+      "name": "reporting",
+      "frequency": 7
+    },
+    {
+      "name": "skaffold",
+      "frequency": 7
+    },
+    {
+      "name": "frrouting",
+      "frequency": 7
+    },
+    {
+      "name": "the graph",
+      "frequency": 7
+    },
+    {
+      "name": "chai",
+      "frequency": 7
+    },
+    {
+      "name": "cri-o",
+      "frequency": 7
+    },
+    {
+      "name": "remix",
+      "frequency": 7
+    },
+    {
+      "name": "vyos",
+      "frequency": 7
+    },
+    {
+      "name": "data governance",
+      "frequency": 6
+    },
+    {
+      "name": "system design",
+      "frequency": 6
+    },
+    {
+      "name": "etl processes",
+      "frequency": 6
+    },
+    {
+      "name": "r",
+      "frequency": 6
+    },
+    {
+      "name": "groovy",
+      "frequency": 6
+    },
+    {
+      "name": "sre",
+      "frequency": 6
+    },
+    {
+      "name": "sql server",
+      "frequency": 6
+    },
+    {
+      "name": "scrum",
+      "frequency": 6
+    },
+    {
+      "name": "android sdk",
+      "frequency": 6
+    },
+    {
+      "name": "documentation",
+      "frequency": 6
+    },
+    {
+      "name": "process improvement",
+      "frequency": 6
+    },
+    {
+      "name": "virtualization",
+      "frequency": 6
+    },
+    {
+      "name": "debugging",
+      "frequency": 6
+    },
+    {
+      "name": "responsive design",
+      "frequency": 6
+    },
+    {
+      "name": "hibernate",
+      "frequency": 6
+    },
+    {
+      "name": "objective-c",
+      "frequency": 6
+    },
+    {
+      "name": "unit testing",
+      "frequency": 6
+    },
+    {
+      "name": "packer",
+      "frequency": 6
+    },
+    {
+      "name": "web development",
+      "frequency": 6
+    },
+    {
+      "name": "selenium",
+      "frequency": 6
+    },
+    {
+      "name": "t-sql",
+      "frequency": 6
+    },
+    {
+      "name": "html5",
+      "frequency": 6
+    },
+    {
+      "name": "css3",
+      "frequency": 6
+    },
+    {
+      "name": "risk assessment",
+      "frequency": 6
+    },
+    {
+      "name": "technical expertise",
+      "frequency": 6
+    },
+    {
+      "name": "bitrise",
+      "frequency": 6
+    },
+    {
+      "name": "haskell",
+      "frequency": 6
+    },
+    {
+      "name": "solidjs",
+      "frequency": 6
+    },
+    {
+      "name": "storybook",
+      "frequency": 6
+    },
+    {
+      "name": "tilt",
+      "frequency": 6
+    },
+    {
+      "name": "uiautomator",
+      "frequency": 6
+    },
+    {
+      "name": "openzeppelin",
+      "frequency": 6
+    },
+    {
+      "name": "dask",
+      "frequency": 6
+    },
+    {
+      "name": "labview",
+      "frequency": 6
+    },
+    {
+      "name": "vlan",
+      "frequency": 6
+    },
+    {
+      "name": "shell scripting",
+      "frequency": 6
+    },
+    {
+      "name": "vegeta",
+      "frequency": 6
+    },
+    {
+      "name": "gatsby",
+      "frequency": 6
+    },
+    {
+      "name": "pfsense",
+      "frequency": 6
+    },
+    {
+      "name": "bootstrap",
+      "frequency": 6
+    },
+    {
+      "name": "rpa - robotic process automation",
+      "frequency": 6
+    },
+    {
+      "name": "vultr",
+      "frequency": 6
+    },
+    {
+      "name": "rust",
+      "frequency": 6
+    },
+    {
+      "name": "nosql",
+      "frequency": 5
+    },
+    {
+      "name": "team management",
+      "frequency": 5
+    },
+    {
+      "name": "pytorch",
+      "frequency": 5
+    },
+    {
+      "name": "software configuration management",
+      "frequency": 5
+    },
+    {
+      "name": "chef",
+      "frequency": 5
+    },
+    {
+      "name": "elasticsearch",
+      "frequency": 5
+    },
+    {
+      "name": "jira",
+      "frequency": 5
+    },
+    {
+      "name": "atlassian suite",
+      "frequency": 5
+    },
+    {
+      "name": "windows server",
+      "frequency": 5
+    },
+    {
+      "name": "itil",
+      "frequency": 5
+    },
+    {
+      "name": "c#",
+      "frequency": 5
+    },
+    {
+      "name": "confluence",
+      "frequency": 5
+    },
+    {
+      "name": "metrics",
+      "frequency": 5
+    },
+    {
+      "name": "owasp",
+      "frequency": 5
+    },
+    {
+      "name": "bitbucket",
+      "frequency": 5
+    },
+    {
+      "name": "solidity",
+      "frequency": 5
+    },
+    {
+      "name": "microservices",
+      "frequency": 5
+    },
+    {
+      "name": "firewalls",
+      "frequency": 5
+    },
+    {
+      "name": "animation software",
+      "frequency": 5
+    },
+    {
+      "name": "collaboration",
+      "frequency": 5
+    },
+    {
+      "name": "performance tuning",
+      "frequency": 5
+    },
+    {
+      "name": "load balancing",
+      "frequency": 5
+    },
+    {
+      "name": "angular",
+      "frequency": 5
+    },
+    {
+      "name": "spring framework",
+      "frequency": 5
+    },
+    {
+      "name": "sass",
+      "frequency": 5
+    },
+    {
+      "name": "information architecture",
+      "frequency": 5
+    },
+    {
+      "name": "istio",
+      "frequency": 5
+    },
+    {
+      "name": "test automation",
+      "frequency": 5
+    },
+    {
+      "name": "octopus deploy",
+      "frequency": 5
+    },
+    {
+      "name": "pl/sql",
+      "frequency": 5
+    },
+    {
+      "name": "active directory",
+      "frequency": 5
+    },
+    {
+      "name": "prometheus",
+      "frequency": 5
+    },
+    {
+      "name": "customer relationship management",
+      "frequency": 5
+    },
+    {
+      "name": "customer service",
+      "frequency": 5
+    },
+    {
+      "name": "hardware/software",
+      "frequency": 5
+    },
+    {
+      "name": "cobol",
+      "frequency": 5
+    },
+    {
+      "name": "apache bench",
+      "frequency": 5
+    },
+    {
+      "name": "onnx",
+      "frequency": 5
+    },
+    {
+      "name": "hsm",
+      "frequency": 5
+    },
+    {
+      "name": "kms",
+      "frequency": 5
+    },
+    {
+      "name": "accessibility",
+      "frequency": 5
+    },
+    {
+      "name": "jaeger",
+      "frequency": 5
+    },
+    {
+      "name": "ibm cloud",
+      "frequency": 5
+    },
+    {
+      "name": "saltstack",
+      "frequency": 5
+    },
+    {
+      "name": "aws secrets manager",
+      "frequency": 5
+    },
+    {
+      "name": "dart",
+      "frequency": 5
+    },
+    {
+      "name": "docusaurus",
+      "frequency": 5
+    },
+    {
+      "name": "karma",
+      "frequency": 5
+    },
+    {
+      "name": "loki",
+      "frequency": 5
+    },
+    {
+      "name": "swagger",
+      "frequency": 5
+    },
+    {
+      "name": "langchain",
+      "frequency": 5
+    },
+    {
+      "name": "path planning",
+      "frequency": 5
+    },
+    {
+      "name": "trino",
+      "frequency": 5
+    },
+    {
+      "name": "airflow",
+      "frequency": 5
+    },
+    {
+      "name": "jwt",
+      "frequency": 5
+    },
+    {
+      "name": "mobile-first design",
+      "frequency": 5
+    },
+    {
+      "name": "prefect",
+      "frequency": 5
+    },
+    {
+      "name": "yii",
+      "frequency": 5
+    },
+    {
+      "name": "ros2",
+      "frequency": 5
+    },
+    {
+      "name": "apache",
+      "frequency": 5
+    },
+    {
+      "name": "streamsets",
+      "frequency": 5
+    },
+    {
+      "name": "llamaindex",
+      "frequency": 5
+    },
+    {
+      "name": "browserstack",
+      "frequency": 5
+    },
+    {
+      "name": "google bigtable",
+      "frequency": 5
+    },
+    {
+      "name": "perl",
+      "frequency": 5
+    },
+    {
+      "name": "cdn",
+      "frequency": 5
+    },
+    {
+      "name": "graphql",
+      "frequency": 5
+    },
+    {
+      "name": "databricks",
+      "frequency": 5
+    },
+    {
+      "name": "containerd",
+      "frequency": 5
+    },
+    {
+      "name": "ifttt",
+      "frequency": 5
+    },
+    {
+      "name": "kedro",
+      "frequency": 5
+    },
+    {
+      "name": "teradata",
+      "frequency": 5
+    },
+    {
+      "name": "fastapi",
+      "frequency": 5
+    },
+    {
+      "name": "microsoft project",
+      "frequency": 5
+    },
+    {
+      "name": "next.js",
+      "frequency": 5
+    },
+    {
+      "name": "nmap",
+      "frequency": 5
+    },
+    {
+      "name": "smartsheet",
+      "frequency": 5
+    },
+    {
+      "name": "motion control",
+      "frequency": 5
+    },
+    {
+      "name": "mqtt",
+      "frequency": 5
+    },
+    {
+      "name": "radar",
+      "frequency": 5
+    },
+    {
+      "name": "webdriverio",
+      "frequency": 5
+    },
+    {
+      "name": "particle filter",
+      "frequency": 5
+    },
+    {
+      "name": "actix",
+      "frequency": 5
+    },
+    {
+      "name": "riak",
+      "frequency": 5
+    },
+    {
+      "name": "model deployment",
+      "frequency": 4
+    },
+    {
+      "name": "statistical analysis",
+      "frequency": 4
+    },
+    {
+      "name": "research methodologies",
+      "frequency": 4
+    },
+    {
+      "name": "database management",
+      "frequency": 4
+    },
+    {
+      "name": "data mining",
+      "frequency": 4
+    },
+    {
+      "name": "build systems",
+      "frequency": 4
+    },
+    {
+      "name": "power bi",
+      "frequency": 4
+    },
+    {
+      "name": "statistics",
+      "frequency": 4
+    },
+    {
+      "name": "elk stack",
+      "frequency": 4
+    },
+    {
+      "name": "user management",
+      "frequency": 4
+    },
+    {
+      "name": "machine learning algorithms",
+      "frequency": 4
+    },
+    {
+      "name": "puppet",
+      "frequency": 4
+    },
+    {
+      "name": "accessibility testing",
+      "frequency": 4
+    },
+    {
+      "name": "mobile development",
+      "frequency": 4
+    },
+    {
+      "name": "mobile app development",
+      "frequency": 4
+    },
+    {
+      "name": "cloud architecture",
+      "frequency": 4
+    },
+    {
+      "name": "ethereum",
+      "frequency": 4
+    },
+    {
+      "name": "smart contracts",
+      "frequency": 4
+    },
+    {
+      "name": "routing",
+      "frequency": 4
+    },
+    {
+      "name": "network security",
+      "frequency": 4
+    },
+    {
+      "name": "graphic design",
+      "frequency": 4
+    },
+    {
+      "name": "ui/ux basics",
+      "frequency": 4
+    },
+    {
+      "name": "django",
+      "frequency": 4
+    },
+    {
+      "name": "typescript",
+      "frequency": 4
+    },
+    {
+      "name": "express.js",
+      "frequency": 4
+    },
+    {
+      "name": "github actions",
+      "frequency": 4
+    },
+    {
+      "name": "github",
+      "frequency": 4
+    },
+    {
+      "name": "security auditing",
+      "frequency": 4
+    },
+    {
+      "name": "interaction design",
+      "frequency": 4
+    },
+    {
+      "name": "react native",
+      "frequency": 4
+    },
+    {
+      "name": "nomad",
+      "frequency": 4
+    },
+    {
+      "name": "openshift",
+      "frequency": 4
+    },
+    {
+      "name": "performance testing",
+      "frequency": 4
+    },
+    {
+      "name": "ros",
+      "frequency": 4
+    },
+    {
+      "name": "figma",
+      "frequency": 4
+    },
+    {
+      "name": "animation",
+      "frequency": 4
+    },
+    {
+      "name": "change management",
+      "frequency": 4
+    },
+    {
+      "name": "ethical hacking",
+      "frequency": 4
+    },
+    {
+      "name": "ethers.js",
+      "frequency": 4
+    },
+    {
+      "name": "k6",
+      "frequency": 4
+    },
+    {
+      "name": "bgp",
+      "frequency": 4
+    },
+    {
+      "name": "basecamp",
+      "frequency": 4
+    },
+    {
+      "name": "cairo",
+      "frequency": 4
+    },
+    {
+      "name": "robot framework",
+      "frequency": 4
+    },
+    {
+      "name": "amazon neptune",
+      "frequency": 4
+    },
+    {
+      "name": "autosar",
+      "frequency": 4
+    },
+    {
+      "name": "cordova",
+      "frequency": 4
+    },
+    {
+      "name": "sflow",
+      "frequency": 4
+    },
+    {
+      "name": "edge computing",
+      "frequency": 4
+    },
+    {
+      "name": "solana",
+      "frequency": 4
+    },
+    {
+      "name": "tcl",
+      "frequency": 4
+    },
+    {
+      "name": "api documentation",
+      "frequency": 4
+    },
+    {
+      "name": "cypress",
+      "frequency": 4
+    },
+    {
+      "name": "telnet",
+      "frequency": 4
+    },
+    {
+      "name": "mcafee",
+      "frequency": 4
+    },
+    {
+      "name": "mypy",
+      "frequency": 4
+    },
+    {
+      "name": "codeclimate",
+      "frequency": 4
+    },
+    {
+      "name": "greenplum",
+      "frequency": 4
+    },
+    {
+      "name": "bentoml",
+      "frequency": 4
+    },
+    {
+      "name": "problem management",
+      "frequency": 4
+    },
+    {
+      "name": "readthedocs",
+      "frequency": 4
+    },
+    {
+      "name": "linkerd",
+      "frequency": 4
+    },
+    {
+      "name": "qiskit",
+      "frequency": 4
+    },
+    {
+      "name": "relay",
+      "frequency": 4
+    },
+    {
+      "name": "aws codedeploy",
+      "frequency": 4
+    },
+    {
+      "name": "gatling",
+      "frequency": 4
+    },
+    {
+      "name": "snort",
+      "frequency": 4
+    },
+    {
+      "name": "fastly",
+      "frequency": 4
+    },
+    {
+      "name": "hive",
+      "frequency": 4
+    },
+    {
+      "name": "nunit",
+      "frequency": 4
+    },
+    {
+      "name": "ios development",
+      "frequency": 4
+    },
+    {
+      "name": "observium",
+      "frequency": 4
+    },
+    {
+      "name": "cis controls",
+      "frequency": 4
+    },
+    {
+      "name": "mlflow",
+      "frequency": 4
+    },
+    {
+      "name": "pid control",
+      "frequency": 4
+    },
+    {
+      "name": "autogpt",
+      "frequency": 4
+    },
+    {
+      "name": "azure devops",
+      "frequency": 4
+    },
+    {
+      "name": "cardano",
+      "frequency": 4
+    },
+    {
+      "name": "route 53",
+      "frequency": 4
+    },
+    {
+      "name": "samza",
+      "frequency": 4
+    },
+    {
+      "name": "vagrant",
+      "frequency": 4
+    },
+    {
+      "name": "mbed",
+      "frequency": 4
+    },
+    {
+      "name": "tailwind css",
+      "frequency": 4
+    },
+    {
+      "name": "dgraph",
+      "frequency": 4
+    },
+    {
+      "name": "hardhat",
+      "frequency": 4
+    },
+    {
+      "name": "memcached",
+      "frequency": 4
+    },
+    {
+      "name": "wireshark",
+      "frequency": 4
+    },
+    {
+      "name": "matplotlib",
+      "frequency": 4
+    },
+    {
+      "name": "lxc",
+      "frequency": 4
+    },
+    {
+      "name": "technical writing",
+      "frequency": 4
+    },
+    {
+      "name": "duckdb",
+      "frequency": 4
+    },
+    {
+      "name": "podman",
+      "frequency": 4
+    },
+    {
+      "name": "llm fine-tuning",
+      "frequency": 4
+    },
+    {
+      "name": "mikrotik",
+      "frequency": 4
+    },
+    {
+      "name": "leveldb",
+      "frequency": 4
+    },
+    {
+      "name": "dynamodb",
+      "frequency": 4
+    },
+    {
+      "name": "cucumber",
+      "frequency": 4
+    },
+    {
+      "name": "garden",
+      "frequency": 4
+    },
+    {
+      "name": "typeorm",
+      "frequency": 4
+    },
+    {
+      "name": "awk",
+      "frequency": 4
+    },
+    {
+      "name": "oracle db",
+      "frequency": 4
+    },
+    {
+      "name": "pyspark",
+      "frequency": 4
+    },
+    {
+      "name": "unittest",
+      "frequency": 4
+    },
+    {
+      "name": "metasploit",
+      "frequency": 4
+    },
+    {
+      "name": "weaviate",
+      "frequency": 4
+    },
+    {
+      "name": "cisco asa",
+      "frequency": 4
+    },
+    {
+      "name": "rag - retrieval augmented generation",
+      "frequency": 4
+    },
+    {
+      "name": "devops culture",
+      "frequency": 4
+    },
+    {
+      "name": "saml",
+      "frequency": 4
+    },
+    {
+      "name": "netflow",
+      "frequency": 4
+    },
+    {
+      "name": "numpy",
+      "frequency": 4
+    },
+    {
+      "name": "vyper",
+      "frequency": 4
+    },
+    {
+      "name": "vhdl",
+      "frequency": 4
+    },
+    {
+      "name": "clearml",
+      "frequency": 4
+    },
+    {
+      "name": "iptables",
+      "frequency": 4
+    },
+    {
+      "name": "neural architecture search",
+      "frequency": 4
+    },
+    {
+      "name": "ospf",
+      "frequency": 4
+    },
+    {
+      "name": "hazelcast",
+      "frequency": 4
+    },
+    {
+      "name": "strategic planning",
+      "frequency": 3
+    },
+    {
+      "name": "ai strategy",
+      "frequency": 3
+    },
+    {
+      "name": "scientific writing",
+      "frequency": 3
+    },
+    {
+      "name": "ai/ml algorithms",
+      "frequency": 3
+    },
+    {
+      "name": "kafka",
+      "frequency": 3
+    },
+    {
+      "name": "big data technologies",
+      "frequency": 3
+    },
+    {
+      "name": "scala",
+      "frequency": 3
+    },
+    {
+      "name": "log management",
+      "frequency": 3
+    },
+    {
+      "name": "workflow configuration",
+      "frequency": 3
+    },
+    {
+      "name": "keras",
+      "frequency": 3
+    },
+    {
+      "name": "linux/windows servers",
+      "frequency": 3
+    },
+    {
+      "name": "dashboards",
+      "frequency": 3
+    },
+    {
+      "name": "kanban",
+      "frequency": 3
+    },
+    {
+      "name": "cloudformation",
+      "frequency": 3
+    },
+    {
+      "name": "blockchain",
+      "frequency": 3
+    },
+    {
+      "name": ".net framework",
+      "frequency": 3
+    },
+    {
+      "name": "adobe creative suite",
+      "frequency": 3
+    },
+    {
+      "name": "storyboarding",
+      "frequency": 3
+    },
+    {
+      "name": "switching",
+      "frequency": 3
+    },
+    {
+      "name": "vpn",
+      "frequency": 3
+    },
+    {
+      "name": "network design",
+      "frequency": 3
+    },
+    {
+      "name": "it consulting",
+      "frequency": 3
+    },
+    {
+      "name": "software quality",
+      "frequency": 3
+    },
+    {
+      "name": "postgresql",
+      "frequency": 3
+    },
+    {
+      "name": "datadog",
+      "frequency": 3
+    },
+    {
+      "name": "devsecops",
+      "frequency": 3
+    },
+    {
+      "name": "security automation",
+      "frequency": 3
+    },
+    {
+      "name": "firmware development",
+      "frequency": 3
+    },
+    {
+      "name": "envoy",
+      "frequency": 3
+    },
+    {
+      "name": "threat detection",
+      "frequency": 3
+    },
+    {
+      "name": "mongodb",
+      "frequency": 3
+    },
+    {
+      "name": "flask",
+      "frequency": 3
+    },
+    {
+      "name": "gitlab",
+      "frequency": 3
+    },
+    {
+      "name": "gitlab ci",
+      "frequency": 3
+    },
+    {
+      "name": "grafana",
+      "frequency": 3
+    },
+    {
+      "name": "content strategy",
+      "frequency": 3
+    },
+    {
+      "name": "it management",
+      "frequency": 3
+    },
+    {
+      "name": "networking protocols",
+      "frequency": 3
+    },
+    {
+      "name": "powershell",
+      "frequency": 3
+    },
+    {
+      "name": "database development",
+      "frequency": 3
+    },
+    {
+      "name": "windows server administration",
+      "frequency": 3
+    },
+    {
+      "name": "pytest",
+      "frequency": 3
+    },
+    {
+      "name": "testng",
+      "frequency": 3
+    },
+    {
+      "name": "ruby on rails",
+      "frequency": 3
+    },
+    {
+      "name": "linux administration",
+      "frequency": 3
+    },
+    {
+      "name": "sales",
+      "frequency": 3
+    },
+    {
+      "name": "implementation",
+      "frequency": 3
+    },
+    {
+      "name": "design patterns",
+      "frequency": 3
+    },
+    {
+      "name": "it strategy",
+      "frequency": 3
+    },
+    {
+      "name": "drawing",
+      "frequency": 3
+    },
+    {
+      "name": "compositing",
+      "frequency": 3
+    },
+    {
+      "name": "buildkite",
+      "frequency": 3
+    },
+    {
+      "name": "oracle cloud",
+      "frequency": 3
+    },
+    {
+      "name": "pci dss",
+      "frequency": 3
+    },
+    {
+      "name": "prisma",
+      "frequency": 3
+    },
+    {
+      "name": "vitess",
+      "frequency": 3
+    },
+    {
+      "name": "apollo",
+      "frequency": 3
+    },
+    {
+      "name": "espresso",
+      "frequency": 3
+    },
+    {
+      "name": "pki",
+      "frequency": 3
+    },
+    {
+      "name": "prompt engineering",
+      "frequency": 3
+    },
+    {
+      "name": "comet.ml",
+      "frequency": 3
+    },
+    {
+      "name": "gin",
+      "frequency": 3
+    },
+    {
+      "name": "puppeteer",
+      "frequency": 3
+    },
+    {
+      "name": "sealed secrets",
+      "frequency": 3
+    },
+    {
+      "name": "clickup",
+      "frequency": 3
+    },
+    {
+      "name": "orientdb",
+      "frequency": 3
+    },
+    {
+      "name": "informatica",
+      "frequency": 3
+    },
+    {
+      "name": "percona",
+      "frequency": 3
+    },
+    {
+      "name": "rocksdb",
+      "frequency": 3
+    },
+    {
+      "name": "specflow",
+      "frequency": 3
+    },
+    {
+      "name": "in-app purchases",
+      "frequency": 3
+    },
+    {
+      "name": "principle",
+      "frequency": 3
+    },
+    {
+      "name": "white space",
+      "frequency": 3
+    },
+    {
+      "name": "cisco ios",
+      "frequency": 3
+    },
+    {
+      "name": "cloudflare",
+      "frequency": 3
+    },
+    {
+      "name": "ipsec",
+      "frequency": 3
+    },
+    {
+      "name": "dhcp",
+      "frequency": 3
+    },
+    {
+      "name": "lightgbm",
+      "frequency": 3
+    },
+    {
+      "name": "noir",
+      "frequency": 3
+    },
+    {
+      "name": "artillery",
+      "frequency": 3
+    },
+    {
+      "name": "detox",
+      "frequency": 3
+    },
+    {
+      "name": "firewalld",
+      "frequency": 3
+    },
+    {
+      "name": "mpls",
+      "frequency": 3
+    },
+    {
+      "name": "tpot",
+      "frequency": 3
+    },
+    {
+      "name": "agent development",
+      "frequency": 3
+    },
+    {
+      "name": "ksql",
+      "frequency": 3
+    },
+    {
+      "name": "tecton",
+      "frequency": 3
+    },
+    {
+      "name": "prettier",
+      "frequency": 3
+    },
+    {
+      "name": "protopie",
+      "frequency": 3
+    },
+    {
+      "name": "seldon",
+      "frequency": 3
+    },
+    {
+      "name": "kustomize",
+      "frequency": 3
+    },
+    {
+      "name": "sysdig",
+      "frequency": 3
+    },
+    {
+      "name": "aerospike",
+      "frequency": 3
+    },
+    {
+      "name": "apache flink",
+      "frequency": 3
+    },
+    {
+      "name": "freertos",
+      "frequency": 3
+    },
+    {
+      "name": "transformer",
+      "frequency": 3
+    },
+    {
+      "name": "truffle",
+      "frequency": 3
+    },
+    {
+      "name": "quantum computing",
+      "frequency": 3
+    },
+    {
+      "name": "neptune.ai",
+      "frequency": 3
+    },
+    {
+      "name": "activerecord",
+      "frequency": 3
+    },
+    {
+      "name": "arista eos",
+      "frequency": 3
+    },
+    {
+      "name": "nifi",
+      "frequency": 3
+    },
+    {
+      "name": "zephyr",
+      "frequency": 3
+    },
+    {
+      "name": "gobgp",
+      "frequency": 3
+    },
+    {
+      "name": "ssl/tls",
+      "frequency": 3
+    },
+    {
+      "name": "weights & biases",
+      "frequency": 3
+    },
+    {
+      "name": "azure traffic manager",
+      "frequency": 3
+    },
+    {
+      "name": "scipy",
+      "frequency": 3
+    },
+    {
+      "name": "digitalocean",
+      "frequency": 3
+    },
+    {
+      "name": "eslint",
+      "frequency": 3
+    },
+    {
+      "name": "testcafe",
+      "frequency": 3
+    },
+    {
+      "name": "weak supervision",
+      "frequency": 3
+    },
+    {
+      "name": "asp.net core",
+      "frequency": 3
+    },
+    {
+      "name": "bash",
+      "frequency": 3
+    },
+    {
+      "name": "cirq",
+      "frequency": 3
+    },
+    {
+      "name": "debezium",
+      "frequency": 3
+    },
+    {
+      "name": "pinecone",
+      "frequency": 3
+    },
+    {
+      "name": "design systems",
+      "frequency": 3
+    },
+    {
+      "name": "mongoose",
+      "frequency": 3
+    },
+    {
+      "name": "vector databases",
+      "frequency": 3
+    },
+    {
+      "name": "assembly",
+      "frequency": 3
+    },
+    {
+      "name": "citizen development",
+      "frequency": 3
+    },
+    {
+      "name": "security testing",
+      "frequency": 3
+    },
+    {
+      "name": "threat modeling",
+      "frequency": 3
+    },
+    {
+      "name": "apparmor",
+      "frequency": 3
+    },
+    {
+      "name": "webassembly",
+      "frequency": 3
+    },
+    {
+      "name": "app center",
+      "frequency": 3
+    },
+    {
+      "name": "druid",
+      "frequency": 3
+    },
+    {
+      "name": "janusgraph",
+      "frequency": 3
+    },
+    {
+      "name": "micronaut",
+      "frequency": 3
+    },
+    {
+      "name": "palo alto",
+      "frequency": 3
+    },
+    {
+      "name": "tpm",
+      "frequency": 3
+    },
+    {
+      "name": "vertica",
+      "frequency": 3
+    },
+    {
+      "name": "feast",
+      "frequency": 3
+    },
+    {
+      "name": "snmp",
+      "frequency": 3
+    },
+    {
+      "name": "svelte",
+      "frequency": 3
+    },
+    {
+      "name": "app store optimization",
+      "frequency": 3
+    },
+    {
+      "name": "gemfire",
+      "frequency": 3
+    },
+    {
+      "name": "qos",
+      "frequency": 3
+    },
+    {
+      "name": "sentinelone",
+      "frequency": 3
+    },
+    {
+      "name": "polars",
+      "frequency": 3
+    },
+    {
+      "name": "akamai",
+      "frequency": 3
+    },
+    {
+      "name": "chart.js",
+      "frequency": 3
+    },
+    {
+      "name": "kafka streams",
+      "frequency": 3
+    },
+    {
+      "name": "agile ux",
+      "frequency": 3
+    },
+    {
+      "name": "xamarin",
+      "frequency": 3
+    },
+    {
+      "name": "abstract",
+      "frequency": 3
+    },
+    {
+      "name": "azure key vault",
+      "frequency": 3
+    },
+    {
+      "name": "invision",
+      "frequency": 3
+    },
+    {
+      "name": "jmeter",
+      "frequency": 3
+    },
+    {
+      "name": "mybatis",
+      "frequency": 3
+    },
+    {
+      "name": "quarkus",
+      "frequency": 3
+    },
+    {
+      "name": "ravendb",
+      "frequency": 3
+    },
+    {
+      "name": "sops",
+      "frequency": 3
+    },
+    {
+      "name": "scikit-learn",
+      "frequency": 3
+    },
+    {
+      "name": "axum",
+      "frequency": 3
+    },
+    {
+      "name": "can bus",
+      "frequency": 3
+    },
+    {
+      "name": "power automate",
+      "frequency": 3
+    },
+    {
+      "name": "nest.js",
+      "frequency": 3
+    },
+    {
+      "name": "lisp",
+      "frequency": 3
+    },
+    {
+      "name": "storm",
+      "frequency": 3
+    },
+    {
+      "name": "haproxy",
+      "frequency": 3
+    },
+    {
+      "name": "arkit",
+      "frequency": 3
+    },
+    {
+      "name": "azure pipelines",
+      "frequency": 3
+    },
+    {
+      "name": "no-code platforms",
+      "frequency": 3
+    },
+    {
+      "name": "stable diffusion",
+      "frequency": 3
+    },
+    {
+      "name": "fortran",
+      "frequency": 3
+    },
+    {
+      "name": "check point",
+      "frequency": 3
+    },
+    {
+      "name": "sensor fusion",
+      "frequency": 3
+    },
+    {
+      "name": "coap",
+      "frequency": 3
+    },
+    {
+      "name": "z-wave",
+      "frequency": 3
+    },
+    {
+      "name": "librenms",
+      "frequency": 3
+    },
+    {
+      "name": "locust",
+      "frequency": 3
+    },
+    {
+      "name": "concourse",
+      "frequency": 3
+    },
+    {
+      "name": "ubiquiti",
+      "frequency": 3
+    },
+    {
+      "name": "ipfs",
+      "frequency": 3
+    },
+    {
+      "name": "mtr",
+      "frequency": 3
+    },
+    {
+      "name": "ccpa",
+      "frequency": 3
+    },
+    {
+      "name": "flux",
+      "frequency": 3
+    },
+    {
+      "name": "lxd",
+      "frequency": 3
+    },
+    {
+      "name": "grid systems",
+      "frequency": 3
+    },
+    {
+      "name": "iot",
+      "frequency": 3
+    },
+    {
+      "name": "wireguard",
+      "frequency": 3
+    },
+    {
+      "name": "coveralls",
+      "frequency": 3
+    },
+    {
+      "name": "sre principles",
+      "frequency": 3
+    },
+    {
+      "name": "kaspersky",
+      "frequency": 3
+    },
+    {
+      "name": "oauth 2.0",
+      "frequency": 3
+    },
+    {
+      "name": "mocha",
+      "frequency": 3
+    },
+    {
+      "name": "sqlite",
+      "frequency": 3
+    },
+    {
+      "name": "chromatic",
+      "frequency": 3
+    },
+    {
+      "name": "fortinet",
+      "frequency": 3
+    },
+    {
+      "name": "mapreduce",
+      "frequency": 2
+    },
+    {
+      "name": "big data architecture",
+      "frequency": 2
+    },
+    {
+      "name": "data lakes",
+      "frequency": 2
+    },
+    {
+      "name": "artifactory",
+      "frequency": 2
+    },
+    {
+      "name": "ai/ml frameworks",
+      "frequency": 2
+    },
+    {
+      "name": "scalability",
+      "frequency": 2
+    },
+    {
+      "name": "research methods",
+      "frequency": 2
+    },
+    {
+      "name": "algorithm design",
+      "frequency": 2
+    },
+    {
+      "name": "data processing",
+      "frequency": 2
+    },
+    {
+      "name": "data pipelines",
+      "frequency": 2
+    },
+    {
+      "name": "build tools",
+      "frequency": 2
+    },
+    {
+      "name": "ant",
+      "frequency": 2
+    },
+    {
+      "name": "infrastructure management",
+      "frequency": 2
+    },
+    {
+      "name": "excel",
+      "frequency": 2
+    },
+    {
+      "name": "data cleansing",
+      "frequency": 2
+    },
+    {
+      "name": "tableau",
+      "frequency": 2
+    },
+    {
+      "name": "kibana",
+      "frequency": 2
+    },
+    {
+      "name": "gerrit",
+      "frequency": 2
+    },
+    {
+      "name": "container orchestration",
+      "frequency": 2
+    },
+    {
+      "name": "computer vision",
+      "frequency": 2
+    },
+    {
+      "name": "ai/ml architecture",
+      "frequency": 2
+    },
+    {
+      "name": "statistical modeling",
+      "frequency": 2
+    },
+    {
+      "name": "databases",
+      "frequency": 2
+    },
+    {
+      "name": "splunk",
+      "frequency": 2
+    },
+    {
+      "name": "asp.net",
+      "frequency": 2
+    },
+    {
+      "name": "web api",
+      "frequency": 2
+    },
+    {
+      "name": "mvc",
+      "frequency": 2
+    },
+    {
+      "name": "entity framework",
+      "frequency": 2
+    },
+    {
+      "name": "linq",
+      "frequency": 2
+    },
+    {
+      "name": "user experience design",
+      "frequency": 2
+    },
+    {
+      "name": "aria",
+      "frequency": 2
+    },
+    {
+      "name": "wcag",
+      "frequency": 2
+    },
+    {
+      "name": "application performance monitoring",
+      "frequency": 2
+    },
+    {
+      "name": "application security",
+      "frequency": 2
+    },
+    {
+      "name": "secure coding",
+      "frequency": 2
+    },
+    {
+      "name": "aws services",
+      "frequency": 2
+    },
+    {
+      "name": "arm templates",
+      "frequency": 2
+    },
+    {
+      "name": "bamboo",
+      "frequency": 2
+    },
+    {
+      "name": "branching strategies",
+      "frequency": 2
+    },
+    {
+      "name": "ci/cd integration",
+      "frequency": 2
+    },
+    {
+      "name": "cryptography",
+      "frequency": 2
+    },
+    {
+      "name": "uml",
+      "frequency": 2
+    },
+    {
+      "name": "object-oriented programming",
+      "frequency": 2
+    },
+    {
+      "name": "chef inspec",
+      "frequency": 2
+    },
+    {
+      "name": "cloud networking",
+      "frequency": 2
+    },
+    {
+      "name": "encryption",
+      "frequency": 2
+    },
+    {
+      "name": "gcp",
+      "frequency": 2
+    },
+    {
+      "name": "2d animation",
+      "frequency": 2
+    },
+    {
+      "name": "motion graphics",
+      "frequency": 2
+    },
+    {
+      "name": "3d animation",
+      "frequency": 2
+    },
+    {
+      "name": "hardware design",
+      "frequency": 2
+    },
+    {
+      "name": "lan/wan",
+      "frequency": 2
+    },
+    {
+      "name": "network protocols",
+      "frequency": 2
+    },
+    {
+      "name": "collaboration tools",
+      "frequency": 2
+    },
+    {
+      "name": "infrastructure automation",
+      "frequency": 2
+    },
+    {
+      "name": "consul",
+      "frequency": 2
+    },
+    {
+      "name": "code coverage",
+      "frequency": 2
+    },
+    {
+      "name": "quality assurance",
+      "frequency": 2
+    },
+    {
+      "name": "oracle",
+      "frequency": 2
+    },
+    {
+      "name": "system performance",
+      "frequency": 2
+    },
+    {
+      "name": "containerization",
+      "frequency": 2
+    },
+    {
+      "name": "hardware interfaces",
+      "frequency": 2
+    },
+    {
+      "name": "rtos",
+      "frequency": 2
+    },
+    {
+      "name": "c/c++",
+      "frequency": 2
+    },
+    {
+      "name": "programming basics",
+      "frequency": 2
+    },
+    {
+      "name": "basic web development",
+      "frequency": 2
+    },
+    {
+      "name": "web development fundamentals",
+      "frequency": 2
+    },
+    {
+      "name": "service mesh",
+      "frequency": 2
+    },
+    {
+      "name": "traffic management",
+      "frequency": 2
+    },
+    {
+      "name": "fluentd",
+      "frequency": 2
+    },
+    {
+      "name": "static code analysis",
+      "frequency": 2
+    },
+    {
+      "name": "spring",
+      "frequency": 2
+    },
+    {
+      "name": "j2ee",
+      "frequency": 2
+    },
+    {
+      "name": "ids/ips",
+      "frequency": 2
+    },
+    {
+      "name": "ios sdk",
+      "frequency": 2
+    },
+    {
+      "name": "xcode",
+      "frequency": 2
+    },
+    {
+      "name": "cybersecurity",
+      "frequency": 2
+    },
+    {
+      "name": "jacoco",
+      "frequency": 2
+    },
+    {
+      "name": "java testing",
+      "frequency": 2
+    },
+    {
+      "name": "api design",
+      "frequency": 2
+    },
+    {
+      "name": "soa",
+      "frequency": 2
+    },
+    {
+      "name": "ios",
+      "frequency": 2
+    },
+    {
+      "name": "ios/android sdks",
+      "frequency": 2
+    },
+    {
+      "name": "flutter",
+      "frequency": 2
+    },
+    {
+      "name": "api development",
+      "frequency": 2
+    },
+    {
+      "name": "nagios",
+      "frequency": 2
+    },
+    {
+      "name": "deployment automation",
+      "frequency": 2
+    },
+    {
+      "name": "oracle database",
+      "frequency": 2
+    },
+    {
+      "name": "laravel",
+      "frequency": 2
+    },
+    {
+      "name": "product management",
+      "frequency": 2
+    },
+    {
+      "name": "market analysis",
+      "frequency": 2
+    },
+    {
+      "name": "seo",
+      "frequency": 2
+    },
+    {
+      "name": "keyword research",
+      "frequency": 2
+    },
+    {
+      "name": "sharepoint",
+      "frequency": 2
+    },
+    {
+      "name": "software design",
+      "frequency": 2
+    },
+    {
+      "name": "sonarqube",
+      "frequency": 2
+    },
+    {
+      "name": "teamcity",
+      "frequency": 2
+    },
+    {
+      "name": "jquery",
+      "frequency": 2
+    },
+    {
+      "name": "angularjs",
+      "frequency": 2
+    },
+    {
+      "name": "hashicorp vault",
+      "frequency": 2
+    },
+    {
+      "name": "frameworks",
+      "frequency": 2
+    },
+    {
+      "name": "network monitoring",
+      "frequency": 2
+    },
+    {
+      "name": "zabbix",
+      "frequency": 2
+    },
+    {
+      "name": "digital strategy",
+      "frequency": 2
+    },
+    {
+      "name": "business process analysis",
+      "frequency": 2
+    },
+    {
+      "name": "training",
+      "frequency": 2
+    },
+    {
+      "name": "qa processes",
+      "frequency": 2
+    },
+    {
+      "name": "test planning",
+      "frequency": 2
+    },
+    {
+      "name": "ux/ui design",
+      "frequency": 2
+    },
+    {
+      "name": "web design",
+      "frequency": 2
+    },
+    {
+      "name": "ui/ux principles",
+      "frequency": 2
+    },
+    {
+      "name": "a/b testing",
+      "frequency": 2
+    },
+    {
+      "name": "technology solutions",
+      "frequency": 2
+    },
+    {
+      "name": "cloud services",
+      "frequency": 2
+    },
+    {
+      "name": "application development",
+      "frequency": 2
+    },
+    {
+      "name": "system engineering",
+      "frequency": 2
+    },
+    {
+      "name": "sales strategy",
+      "frequency": 2
+    },
+    {
+      "name": "hardware management",
+      "frequency": 2
+    },
+    {
+      "name": "program management",
+      "frequency": 2
+    },
+    {
+      "name": "planning",
+      "frequency": 2
+    },
+    {
+      "name": "execution",
+      "frequency": 2
+    },
+    {
+      "name": "software architecture",
+      "frequency": 2
+    },
+    {
+      "name": "illustration",
+      "frequency": 2
+    },
+    {
+      "name": "rigging",
+      "frequency": 2
+    },
+    {
+      "name": "visual communication",
+      "frequency": 2
+    },
+    {
+      "name": "visual design",
+      "frequency": 2
+    },
+    {
+      "name": "auto-sklearn",
+      "frequency": 2
+    },
+    {
+      "name": "azure synapse",
+      "frequency": 2
+    },
+    {
+      "name": "black",
+      "frequency": 2
+    },
+    {
+      "name": "linode",
+      "frequency": 2
+    },
+    {
+      "name": "xdr",
+      "frequency": 2
+    },
+    {
+      "name": "fastify",
+      "frequency": 2
+    },
+    {
+      "name": "ray",
+      "frequency": 2
+    },
+    {
+      "name": "dns",
+      "frequency": 2
+    },
+    {
+      "name": "nist",
+      "frequency": 2
+    },
+    {
+      "name": "voltdb",
+      "frequency": 2
+    },
+    {
+      "name": "clickhouse",
+      "frequency": 2
+    },
+    {
+      "name": "user interviews",
+      "frequency": 2
+    },
+    {
+      "name": "circleci",
+      "frequency": 2
+    },
+    {
+      "name": "semantic search",
+      "frequency": 2
+    },
+    {
+      "name": "snowflake",
+      "frequency": 2
+    },
+    {
+      "name": "apache phoenix",
+      "frequency": 2
+    },
+    {
+      "name": "faunadb",
+      "frequency": 2
+    },
+    {
+      "name": "helm",
+      "frequency": 2
+    },
+    {
+      "name": "netscaler",
+      "frequency": 2
+    },
+    {
+      "name": "sacred",
+      "frequency": 2
+    },
+    {
+      "name": "matter",
+      "frequency": 2
+    },
+    {
+      "name": "seaborn",
+      "frequency": 2
+    },
+    {
+      "name": "realm",
+      "frequency": 2
+    },
+    {
+      "name": "push notifications",
+      "frequency": 2
+    },
+    {
+      "name": "cacti",
+      "frequency": 2
+    },
+    {
+      "name": "chroma",
+      "frequency": 2
+    },
+    {
+      "name": "cloudbees",
+      "frequency": 2
+    },
+    {
+      "name": "lin bus",
+      "frequency": 2
+    },
+    {
+      "name": "persona development",
+      "frequency": 2
+    },
+    {
+      "name": "service design",
+      "frequency": 2
+    },
+    {
+      "name": "langsmith",
+      "frequency": 2
+    },
+    {
+      "name": "user journey mapping",
+      "frequency": 2
+    },
+    {
+      "name": "yolo",
+      "frequency": 2
+    },
+    {
+      "name": "less",
+      "frequency": 2
+    },
+    {
+      "name": "postman",
+      "frequency": 2
+    },
+    {
+      "name": "siem",
+      "frequency": 2
+    },
+    {
+      "name": "agile",
+      "frequency": 2
+    },
+    {
+      "name": "bert",
+      "frequency": 2
+    },
+    {
+      "name": "material-ui",
+      "frequency": 2
+    },
+    {
+      "name": "xctest",
+      "frequency": 2
+    },
+    {
+      "name": "asana",
+      "frequency": 2
+    },
+    {
+      "name": "sed",
+      "frequency": 2
+    },
+    {
+      "name": "testflight",
+      "frequency": 2
+    },
+    {
+      "name": "wazuh",
+      "frequency": 2
+    },
+    {
+      "name": "ionic",
+      "frequency": 2
+    },
+    {
+      "name": "label studio",
+      "frequency": 2
+    },
+    {
+      "name": "uipath",
+      "frequency": 2
+    },
+    {
+      "name": "android development",
+      "frequency": 2
+    },
+    {
+      "name": "nuxt.js",
+      "frequency": 2
+    },
+    {
+      "name": "astro",
+      "frequency": 2
+    },
+    {
+      "name": "timescaledb",
+      "frequency": 2
+    },
+    {
+      "name": "zapier",
+      "frequency": 2
+    },
+    {
+      "name": "alibaba cloud",
+      "frequency": 2
+    },
+    {
+      "name": "atomic design",
+      "frequency": 2
+    },
+    {
+      "name": "catboost",
+      "frequency": 2
+    },
+    {
+      "name": "core data",
+      "frequency": 2
+    },
+    {
+      "name": "parse",
+      "frequency": 2
+    },
+    {
+      "name": "http/https",
+      "frequency": 2
+    },
+    {
+      "name": "kerberos",
+      "frequency": 2
+    },
+    {
+      "name": "cosmos",
+      "frequency": 2
+    },
+    {
+      "name": "crowdstrike",
+      "frequency": 2
+    },
+    {
+      "name": "elixir",
+      "frequency": 2
+    },
+    {
+      "name": "playwright",
+      "frequency": 2
+    },
+    {
+      "name": "load testing",
+      "frequency": 2
+    },
+    {
+      "name": "slam",
+      "frequency": 2
+    },
+    {
+      "name": "cobit",
+      "frequency": 2
+    },
+    {
+      "name": "merge strategies",
+      "frequency": 2
+    },
+    {
+      "name": "resnet",
+      "frequency": 2
+    },
+    {
+      "name": "xcuitest",
+      "frequency": 2
+    },
+    {
+      "name": "pulumi",
+      "frequency": 2
+    },
+    {
+      "name": "burp suite",
+      "frequency": 2
+    },
+    {
+      "name": "sd-wan",
+      "frequency": 2
+    },
+    {
+      "name": "asyncapi",
+      "frequency": 2
+    },
+    {
+      "name": "echo",
+      "frequency": 2
+    },
+    {
+      "name": "jetpack compose",
+      "frequency": 2
+    },
+    {
+      "name": "azure ad",
+      "frequency": 2
+    },
+    {
+      "name": "juniper junos",
+      "frequency": 2
+    },
+    {
+      "name": "redis",
+      "frequency": 2
+    },
+    {
+      "name": "scratch",
+      "frequency": 2
+    },
+    {
+      "name": "filecoin",
+      "frequency": 2
+    },
+    {
+      "name": "maestro",
+      "frequency": 2
+    },
+    {
+      "name": "firestore",
+      "frequency": 2
+    },
+    {
+      "name": "room",
+      "frequency": 2
+    },
+    {
+      "name": "esp32",
+      "frequency": 2
+    },
+    {
+      "name": "erlang",
+      "frequency": 2
+    },
+    {
+      "name": "lorawan",
+      "frequency": 2
+    },
+    {
+      "name": "pandas",
+      "frequency": 2
+    },
+    {
+      "name": "soar",
+      "frequency": 2
+    },
+    {
+      "name": "spring boot",
+      "frequency": 2
+    },
+    {
+      "name": "avalanche",
+      "frequency": 2
+    },
+    {
+      "name": "couchdb",
+      "frequency": 2
+    },
+    {
+      "name": "mercurial",
+      "frequency": 2
+    },
+    {
+      "name": "raspberry pi",
+      "frequency": 2
+    },
+    {
+      "name": "yugabytedb",
+      "frequency": 2
+    },
+    {
+      "name": "zipkin",
+      "frequency": 2
+    },
+    {
+      "name": "julia",
+      "frequency": 2
+    },
+    {
+      "name": "tornado",
+      "frequency": 2
+    },
+    {
+      "name": "cassandra",
+      "frequency": 2
+    },
+    {
+      "name": "jax",
+      "frequency": 2
+    },
+    {
+      "name": "optuna",
+      "frequency": 2
+    },
+    {
+      "name": "tempo",
+      "frequency": 2
+    },
+    {
+      "name": "tigergraph",
+      "frequency": 2
+    },
+    {
+      "name": "arangodb",
+      "frequency": 2
+    },
+    {
+      "name": "chakra ui",
+      "frequency": 2
+    },
+    {
+      "name": "mask r-cnn",
+      "frequency": 2
+    },
+    {
+      "name": "perforce",
+      "frequency": 2
+    },
+    {
+      "name": "zeplin",
+      "frequency": 2
+    },
+    {
+      "name": "dbt",
+      "frequency": 2
+    },
+    {
+      "name": "ignite",
+      "frequency": 2
+    },
+    {
+      "name": "influxdb",
+      "frequency": 2
+    },
+    {
+      "name": "l2tp",
+      "frequency": 2
+    },
+    {
+      "name": "ecto",
+      "frequency": 2
+    },
+    {
+      "name": "safe",
+      "frequency": 2
+    },
+    {
+      "name": "blue prism",
+      "frequency": 2
+    },
+    {
+      "name": "gdpr",
+      "frequency": 2
+    },
+    {
+      "name": "traceroute",
+      "frequency": 2
+    },
+    {
+      "name": "couchbase",
+      "frequency": 2
+    },
+    {
+      "name": "kotlin multiplatform",
+      "frequency": 2
+    },
+    {
+      "name": "pylint",
+      "frequency": 2
+    },
+    {
+      "name": "presto",
+      "frequency": 2
+    },
+    {
+      "name": "feature store",
+      "frequency": 2
+    },
+    {
+      "name": "polygon",
+      "frequency": 2
+    },
+    {
+      "name": "low-code development",
+      "frequency": 2
+    },
+    {
+      "name": "appium",
+      "frequency": 2
+    },
+    {
+      "name": "polkadot",
+      "frequency": 2
+    },
+    {
+      "name": "typography",
+      "frequency": 2
+    },
+    {
+      "name": "soc 2",
+      "frequency": 2
+    },
+    {
+      "name": "tensorrt",
+      "frequency": 2
+    },
+    {
+      "name": "thread",
+      "frequency": 2
+    },
+    {
+      "name": "integration testing",
+      "frequency": 2
+    },
+    {
+      "name": "move",
+      "frequency": 2
+    },
+    {
+      "name": "redshift",
+      "frequency": 2
+    },
+    {
+      "name": "pptp",
+      "frequency": 2
+    },
+    {
+      "name": "suricata",
+      "frequency": 2
+    },
+    {
+      "name": "carbon black",
+      "frequency": 2
+    },
+    {
+      "name": "koa",
+      "frequency": 2
+    },
+    {
+      "name": "zigbee",
+      "frequency": 2
+    },
+    {
+      "name": "neo4j",
+      "frequency": 2
+    },
+    {
+      "name": "smokeping",
+      "frequency": 2
+    },
+    {
+      "name": "great expectations",
+      "frequency": 2
+    },
+    {
+      "name": "rocket",
+      "frequency": 2
+    },
+    {
+      "name": "f5",
+      "frequency": 2
+    },
+    {
+      "name": "big data management",
+      "frequency": 1
+    },
+    {
+      "name": "devops tools",
+      "frequency": 1
+    },
+    {
+      "name": "repository management",
+      "frequency": 1
+    },
+    {
+      "name": "jfrog cli",
+      "frequency": 1
+    },
+    {
+      "name": "advanced ai/ml",
+      "frequency": 1
+    },
+    {
+      "name": "strategic vision",
+      "frequency": 1
+    },
+    {
+      "name": "ai architecture",
+      "frequency": 1
+    },
+    {
+      "name": "data security",
+      "frequency": 1
+    },
+    {
+      "name": "data integration",
+      "frequency": 1
+    },
+    {
+      "name": "logstash",
+      "frequency": 1
+    },
+    {
+      "name": "natural language processing",
+      "frequency": 1
+    },
+    {
+      "name": "deployment",
+      "frequency": 1
+    },
+    {
+      "name": "model development",
+      "frequency": 1
+    },
+    {
+      "name": "web accessibility guidelines",
+      "frequency": 1
+    },
+    {
+      "name": "ui/ux",
+      "frequency": 1
+    },
+    {
+      "name": "ada compliance",
+      "frequency": 1
+    },
+    {
+      "name": "assistive technologies",
+      "frequency": 1
+    },
+    {
+      "name": "project management tools",
+      "frequency": 1
+    },
+    {
+      "name": "android studio",
+      "frequency": 1
+    },
+    {
+      "name": "automation scripts",
+      "frequency": 1
+    },
+    {
+      "name": "appdynamics",
+      "frequency": 1
+    },
+    {
+      "name": "dast",
+      "frequency": 1
+    },
+    {
+      "name": "secure coding practices",
+      "frequency": 1
+    },
+    {
+      "name": "sast",
+      "frequency": 1
+    },
+    {
+      "name": "continuous integration",
+      "frequency": 1
+    },
+    {
+      "name": "software packaging",
+      "frequency": 1
+    },
+    {
+      "name": "s3",
+      "frequency": 1
+    },
+    {
+      "name": "solution design",
+      "frequency": 1
+    },
+    {
+      "name": "aws lambda",
+      "frequency": 1
+    },
+    {
+      "name": "cost optimization",
+      "frequency": 1
+    },
+    {
+      "name": "ec2",
+      "frequency": 1
+    },
+    {
+      "name": "azure services",
+      "frequency": 1
+    },
+    {
+      "name": "blockchain technologies",
+      "frequency": 1
+    },
+    {
+      "name": "distributed ledger",
+      "frequency": 1
+    },
+    {
+      "name": "cryptocurrency",
+      "frequency": 1
+    },
+    {
+      "name": "consensus algorithms",
+      "frequency": 1
+    },
+    {
+      "name": "web3",
+      "frequency": 1
+    },
+    {
+      "name": "business analysis",
+      "frequency": 1
+    },
+    {
+      "name": "bpmn",
+      "frequency": 1
+    },
+    {
+      "name": "process analysis",
+      "frequency": 1
+    },
+    {
+      "name": "compliance as code",
+      "frequency": 1
+    },
+    {
+      "name": "infrastructure testing",
+      "frequency": 1
+    },
+    {
+      "name": "compliance automation",
+      "frequency": 1
+    },
+    {
+      "name": "cloud automation tools",
+      "frequency": 1
+    },
+    {
+      "name": "subnets",
+      "frequency": 1
+    },
+    {
+      "name": "security groups",
+      "frequency": 1
+    },
+    {
+      "name": "vpc",
+      "frequency": 1
+    },
+    {
+      "name": "virtual networks",
+      "frequency": 1
+    },
+    {
+      "name": "iam",
+      "frequency": 1
+    },
+    {
+      "name": "identity and access management",
+      "frequency": 1
+    },
+    {
+      "name": "machining",
+      "frequency": 1
+    },
+    {
+      "name": "cnc machines",
+      "frequency": 1
+    },
+    {
+      "name": "g-code",
+      "frequency": 1
+    },
+    {
+      "name": "cnc programming",
+      "frequency": 1
+    },
+    {
+      "name": "cad/cam",
+      "frequency": 1
+    },
+    {
+      "name": "toolpath optimization",
+      "frequency": 1
+    },
+    {
+      "name": "blueprints",
+      "frequency": 1
+    },
+    {
+      "name": "cad/cam software",
+      "frequency": 1
+    },
+    {
+      "name": "manufacturing processes",
+      "frequency": 1
+    },
+    {
+      "name": "blender",
+      "frequency": 1
+    },
+    {
+      "name": "maya",
+      "frequency": 1
+    },
+    {
+      "name": "circuit design",
+      "frequency": 1
+    },
+    {
+      "name": "validation",
+      "frequency": 1
+    },
+    {
+      "name": "pcb design",
+      "frequency": 1
+    },
+    {
+      "name": "microprocessors",
+      "frequency": 1
+    },
+    {
+      "name": "publications",
+      "frequency": 1
+    },
+    {
+      "name": "systems analysis",
+      "frequency": 1
+    },
+    {
+      "name": "system analysis",
+      "frequency": 1
+    },
+    {
+      "name": "service discovery",
+      "frequency": 1
+    },
+    {
+      "name": "test coverage analysis",
+      "frequency": 1
+    },
+    {
+      "name": "python testing",
+      "frequency": 1
+    },
+    {
+      "name": "coverage.py",
+      "frequency": 1
+    },
+    {
+      "name": "data modeling techniques",
+      "frequency": 1
+    },
+    {
+      "name": "er diagrams",
+      "frequency": 1
+    },
+    {
+      "name": "data wrangling",
+      "frequency": 1
+    },
+    {
+      "name": "backup and recovery",
+      "frequency": 1
+    },
+    {
+      "name": "cloud infrastructure",
+      "frequency": 1
+    },
+    {
+      "name": "devsecops practices",
+      "frequency": 1
+    },
+    {
+      "name": "continuous security",
+      "frequency": 1
+    },
+    {
+      "name": "vulnerability scanning",
+      "frequency": 1
+    },
+    {
+      "name": "orchestration",
+      "frequency": 1
+    },
+    {
+      "name": "embedded c",
+      "frequency": 1
+    },
+    {
+      "name": "communication protocols",
+      "frequency": 1
+    },
+    {
+      "name": "microcontrollers",
+      "frequency": 1
+    },
+    {
+      "name": "networking basics",
+      "frequency": 1
+    },
+    {
+      "name": "envoy proxy",
+      "frequency": 1
+    },
+    {
+      "name": "kubernetes security",
+      "frequency": 1
+    },
+    {
+      "name": "falco",
+      "frequency": 1
+    },
+    {
+      "name": "data collection",
+      "frequency": 1
+    },
+    {
+      "name": "log aggregation",
+      "frequency": 1
+    },
+    {
+      "name": "fortify",
+      "frequency": 1
+    },
+    {
+      "name": "framework development",
+      "frequency": 1
+    },
+    {
+      "name": "software frameworks",
+      "frequency": 1
+    },
+    {
+      "name": "back-end technologies",
+      "frequency": 1
+    },
+    {
+      "name": "game design",
+      "frequency": 1
+    },
+    {
+      "name": "unreal engine",
+      "frequency": 1
+    },
+    {
+      "name": "unity",
+      "frequency": 1
+    },
+    {
+      "name": "game engines",
+      "frequency": 1
+    },
+    {
+      "name": "vr development",
+      "frequency": 1
+    },
+    {
+      "name": "google cloud platform",
+      "frequency": 1
+    },
+    {
+      "name": "taxonomy",
+      "frequency": 1
+    },
+    {
+      "name": "it infrastructure",
+      "frequency": 1
+    },
+    {
+      "name": "basic mobile app development",
+      "frequency": 1
+    },
+    {
+      "name": "dependency management",
+      "frequency": 1
+    },
+    {
+      "name": "mulesoft",
+      "frequency": 1
+    },
+    {
+      "name": "mulesoft anypoint platform",
+      "frequency": 1
+    },
+    {
+      "name": "integration",
+      "frequency": 1
+    },
+    {
+      "name": "api integration",
+      "frequency": 1
+    },
+    {
+      "name": "anypoint platform",
+      "frequency": 1
+    },
+    {
+      "name": "integration patterns",
+      "frequency": 1
+    },
+    {
+      "name": "cisco",
+      "frequency": 1
+    },
+    {
+      "name": "cisco/juniper devices",
+      "frequency": 1
+    },
+    {
+      "name": "new relic",
+      "frequency": 1
+    },
+    {
+      "name": "artifact management",
+      "frequency": 1
+    },
+    {
+      "name": "artifact repository",
+      "frequency": 1
+    },
+    {
+      "name": "nexus repository manager",
+      "frequency": 1
+    },
+    {
+      "name": "nexus",
+      "frequency": 1
+    },
+    {
+      "name": "hashicorp tools",
+      "frequency": 1
+    },
+    {
+      "name": "trust management",
+      "frequency": 1
+    },
+    {
+      "name": "container security",
+      "frequency": 1
+    },
+    {
+      "name": "notary",
+      "frequency": 1
+    },
+    {
+      "name": "openstack",
+      "frequency": 1
+    },
+    {
+      "name": "oracle sql",
+      "frequency": 1
+    },
+    {
+      "name": "oracle sql developer",
+      "frequency": 1
+    },
+    {
+      "name": "symfony",
+      "frequency": 1
+    },
+    {
+      "name": "restful apis",
+      "frequency": 1
+    },
+    {
+      "name": "frameworks (laravel",
+      "frequency": 1
+    },
+    {
+      "name": "symfony)",
+      "frequency": 1
+    },
+    {
+      "name": "product roadmap",
+      "frequency": 1
+    },
+    {
+      "name": "product strategy",
+      "frequency": 1
+    },
+    {
+      "name": "roadmap planning",
+      "frequency": 1
+    },
+    {
+      "name": "web frameworks (django",
+      "frequency": 1
+    },
+    {
+      "name": "flask)",
+      "frequency": 1
+    },
+    {
+      "name": "automation testing",
+      "frequency": 1
+    },
+    {
+      "name": "agile testing",
+      "frequency": 1
+    },
+    {
+      "name": "redux",
+      "frequency": 1
+    },
+    {
+      "name": "robotics",
+      "frequency": 1
+    },
+    {
+      "name": "control systems",
+      "frequency": 1
+    },
+    {
+      "name": "sensors",
+      "frequency": 1
+    },
+    {
+      "name": "actuators",
+      "frequency": 1
+    },
+    {
+      "name": "salesforce",
+      "frequency": 1
+    },
+    {
+      "name": "apex",
+      "frequency": 1
+    },
+    {
+      "name": "visualforce",
+      "frequency": 1
+    },
+    {
+      "name": "lightning",
+      "frequency": 1
+    },
+    {
+      "name": "soql",
+      "frequency": 1
+    },
+    {
+      "name": "salesforce administration",
+      "frequency": 1
+    },
+    {
+      "name": "on-page optimization",
+      "frequency": 1
+    },
+    {
+      "name": "off-page optimization",
+      "frequency": 1
+    },
+    {
+      "name": "content marketing",
+      "frequency": 1
+    },
+    {
+      "name": "analytics",
+      "frequency": 1
+    },
+    {
+      "name": "webdriver",
+      "frequency": 1
+    },
+    {
+      "name": "testing frameworks",
+      "frequency": 1
+    },
+    {
+      "name": "sharepoint framework",
+      "frequency": 1
+    },
+    {
+      "name": "code quality",
+      "frequency": 1
+    },
+    {
+      "name": "splunk enterprise security",
+      "frequency": 1
+    },
+    {
+      "name": "security information and event management (siem)",
+      "frequency": 1
+    },
+    {
+      "name": "security analysis",
+      "frequency": 1
+    },
+    {
+      "name": "ssrs",
+      "frequency": 1
+    },
+    {
+      "name": "ssis",
+      "frequency": 1
+    },
+    {
+      "name": "systems design",
+      "frequency": 1
+    },
+    {
+      "name": "technical sales",
+      "frequency": 1
+    },
+    {
+      "name": "product knowledge",
+      "frequency": 1
+    },
+    {
+      "name": "customer engagement",
+      "frequency": 1
+    },
+    {
+      "name": "networking technologies",
+      "frequency": 1
+    },
+    {
+      "name": "account management",
+      "frequency": 1
+    },
+    {
+      "name": "customer relationship management (crm)",
+      "frequency": 1
+    },
+    {
+      "name": "technical leadership",
+      "frequency": 1
+    },
+    {
+      "name": "software development lifecycle (sdlc)",
+      "frequency": 1
+    },
+    {
+      "name": "infrastructure as code (iac)",
+      "frequency": 1
+    },
+    {
+      "name": "tfs (team foundation server)",
+      "frequency": 1
+    },
+    {
+      "name": ".net development tools",
+      "frequency": 1
+    },
+    {
+      "name": "udeploy (urbancode deploy)",
+      "frequency": 1
+    },
+    {
+      "name": "deployment strategies",
+      "frequency": 1
+    },
+    {
+      "name": "ui design principles",
+      "frequency": 1
+    },
+    {
+      "name": "user testing",
+      "frequency": 1
+    },
+    {
+      "name": "reactjs",
+      "frequency": 1
+    },
+    {
+      "name": "unity3d engine",
+      "frequency": 1
+    },
+    {
+      "name": "game development principles",
+      "frequency": 1
+    },
+    {
+      "name": "user experience design principles",
+      "frequency": 1
+    },
+    {
+      "name": "secrets management",
+      "frequency": 1
+    },
+    {
+      "name": "access control",
+      "frequency": 1
+    },
+    {
+      "name": "wordpress",
+      "frequency": 1
+    },
+    {
+      "name": "xl deploy",
+      "frequency": 1
+    },
+    {
+      "name": "alerting systems",
+      "frequency": 1
+    },
+    {
+      "name": "monitoring tools",
+      "frequency": 1
+    },
+    {
+      "name": "system reliability",
+      "frequency": 1
+    },
+    {
+      "name": "restful services",
+      "frequency": 1
+    },
+    {
+      "name": "automation tools",
+      "frequency": 1
+    },
+    {
+      "name": "business acumen",
+      "frequency": 1
+    },
+    {
+      "name": "migration tools",
+      "frequency": 1
+    },
+    {
+      "name": "system migration",
+      "frequency": 1
+    },
+    {
+      "name": "data quality tools",
+      "frequency": 1
+    },
+    {
+      "name": "data profiling",
+      "frequency": 1
+    },
+    {
+      "name": "technology consulting",
+      "frequency": 1
+    },
+    {
+      "name": "business process improvement",
+      "frequency": 1
+    },
+    {
+      "name": "e-commerce platforms",
+      "frequency": 1
+    },
+    {
+      "name": "payment gateways",
+      "frequency": 1
+    },
+    {
+      "name": "erp systems",
+      "frequency": 1
+    },
+    {
+      "name": "gis software",
+      "frequency": 1
+    },
+    {
+      "name": "spatial analysis",
+      "frequency": 1
+    },
+    {
+      "name": "cartography",
+      "frequency": 1
+    },
+    {
+      "name": "iam systems",
+      "frequency": 1
+    },
+    {
+      "name": "authentication",
+      "frequency": 1
+    },
+    {
+      "name": "authorization",
+      "frequency": 1
+    },
+    {
+      "name": "iot platforms",
+      "frequency": 1
+    },
+    {
+      "name": "sensor technology",
+      "frequency": 1
+    },
+    {
+      "name": "it auditing",
+      "frequency": 1
+    },
+    {
+      "name": "linux servers",
+      "frequency": 1
+    },
+    {
+      "name": "mainframe systems",
+      "frequency": 1
+    },
+    {
+      "name": "jcl",
+      "frequency": 1
+    },
+    {
+      "name": "vsam",
+      "frequency": 1
+    },
+    {
+      "name": "microsoft dynamics",
+      "frequency": 1
+    },
+    {
+      "name": "crm",
+      "frequency": 1
+    },
+    {
+      "name": "development",
+      "frequency": 1
+    },
+    {
+      "name": "mobile security",
+      "frequency": 1
+    },
+    {
+      "name": "nlp algorithms",
+      "frequency": 1
+    },
+    {
+      "name": "text analysis",
+      "frequency": 1
+    },
+    {
+      "name": "security audits",
+      "frequency": 1
+    },
+    {
+      "name": "vulnerability assessment",
+      "frequency": 1
+    },
+    {
+      "name": "release management",
+      "frequency": 1
+    },
+    {
+      "name": "coordination",
+      "frequency": 1
+    },
+    {
+      "name": "sap modules",
+      "frequency": 1
+    },
+    {
+      "name": "customization",
+      "frequency": 1
+    },
+    {
+      "name": "server-side programming",
+      "frequency": 1
+    },
+    {
+      "name": "web technologies",
+      "frequency": 1
+    },
+    {
+      "name": "performance optimization",
+      "frequency": 1
+    },
+    {
+      "name": "web content management",
+      "frequency": 1
+    },
+    {
+      "name": "content creation",
+      "frequency": 1
+    },
+    {
+      "name": "cms",
+      "frequency": 1
+    },
+    {
+      "name": "multimedia design",
+      "frequency": 1
+    },
+    {
+      "name": "video production",
+      "frequency": 1
+    },
+    {
+      "name": "audio production",
+      "frequency": 1
+    },
+    {
+      "name": "web analytics tools",
+      "frequency": 1
+    },
+    {
+      "name": "search engine optimization",
+      "frequency": 1
+    },
+    {
+      "name": "content optimization",
+      "frequency": 1
+    },
+    {
+      "name": "link building",
+      "frequency": 1
+    },
+    {
+      "name": "seo strategy",
+      "frequency": 1
+    },
+    {
+      "name": "performance monitoring",
+      "frequency": 1
+    },
+    {
+      "name": "internet technologies",
+      "frequency": 1
+    },
+    {
+      "name": "dax",
+      "frequency": 1
+    },
+    {
+      "name": "business intelligence",
+      "frequency": 1
+    },
+    {
+      "name": "neural networks",
+      "frequency": 1
+    },
+    {
+      "name": "digital forensics",
+      "frequency": 1
+    },
+    {
+      "name": "data recovery",
+      "frequency": 1
+    },
+    {
+      "name": "legal compliance",
+      "frequency": 1
+    },
+    {
+      "name": "security management",
+      "frequency": 1
+    },
+    {
+      "name": "security consulting",
+      "frequency": 1
+    },
+    {
+      "name": "security solutions",
+      "frequency": 1
+    },
+    {
+      "name": "security leadership",
+      "frequency": 1
+    },
+    {
+      "name": "security tools",
+      "frequency": 1
+    },
+    {
+      "name": "security policies",
+      "frequency": 1
+    },
+    {
+      "name": "firewall management",
+      "frequency": 1
+    },
+    {
+      "name": "intrusion detection",
+      "frequency": 1
+    },
+    {
+      "name": "performance analysis",
+      "frequency": 1
+    },
+    {
+      "name": "network operations",
+      "frequency": 1
+    },
+    {
+      "name": "network reliability",
+      "frequency": 1
+    },
+    {
+      "name": "networking hardware",
+      "frequency": 1
+    },
+    {
+      "name": "cabling",
+      "frequency": 1
+    },
+    {
+      "name": "it analysis",
+      "frequency": 1
+    },
+    {
+      "name": "intelligence gathering",
+      "frequency": 1
+    },
+    {
+      "name": "platform engineering",
+      "frequency": 1
+    },
+    {
+      "name": "test execution",
+      "frequency": 1
+    },
+    {
+      "name": "ui design",
+      "frequency": 1
+    },
+    {
+      "name": "sales leadership",
+      "frequency": 1
+    },
+    {
+      "name": "administrative support",
+      "frequency": 1
+    },
+    {
+      "name": "it support",
+      "frequency": 1
+    },
+    {
+      "name": "knowledge management",
+      "frequency": 1
+    },
+    {
+      "name": "inventory management",
+      "frequency": 1
+    },
+    {
+      "name": "analysis",
+      "frequency": 1
+    },
+    {
+      "name": "implementation management",
+      "frequency": 1
+    },
+    {
+      "name": "business systems",
+      "frequency": 1
+    },
+    {
+      "name": "net development",
+      "frequency": 1
+    },
+    {
+      "name": "systems integration",
+      "frequency": 1
+    },
+    {
+      "name": "integration management",
+      "frequency": 1
+    },
+    {
+      "name": "php development",
+      "frequency": 1
+    },
+    {
+      "name": "it program management",
+      "frequency": 1
+    },
+    {
+      "name": "unix administration",
+      "frequency": 1
+    },
+    {
+      "name": "technology adoption",
+      "frequency": 1
+    },
+    {
+      "name": "portfolio management",
+      "frequency": 1
+    },
+    {
+      "name": "investment management",
+      "frequency": 1
+    },
+    {
+      "name": "financial analysis",
+      "frequency": 1
+    },
+    {
+      "name": "technology strategy",
+      "frequency": 1
+    },
+    {
+      "name": "research and development",
+      "frequency": 1
+    },
+    {
+      "name": "technical operations",
+      "frequency": 1
+    },
+    {
+      "name": "information management",
+      "frequency": 1
+    },
+    {
+      "name": "systems administration",
+      "frequency": 1
+    },
+    {
+      "name": "data management",
+      "frequency": 1
+    },
+    {
+      "name": "client management",
+      "frequency": 1
+    },
+    {
+      "name": "research management",
+      "frequency": 1
+    },
+    {
+      "name": "application design",
+      "frequency": 1
+    },
+    {
+      "name": "team facilitation",
+      "frequency": 1
+    },
+    {
+      "name": "content management",
+      "frequency": 1
+    },
+    {
+      "name": "2d/3d animation",
+      "frequency": 1
+    },
+    {
+      "name": "modeling",
+      "frequency": 1
+    },
+    {
+      "name": "texturing",
+      "frequency": 1
+    },
+    {
+      "name": "character design",
+      "frequency": 1
+    },
+    {
+      "name": "film/animation",
+      "frequency": 1
+    },
+    {
+      "name": "simulation",
+      "frequency": 1
+    },
+    {
+      "name": "character setup",
+      "frequency": 1
+    },
+    {
+      "name": "technical animation",
+      "frequency": 1
+    },
+    {
+      "name": "art direction",
+      "frequency": 1
+    },
+    {
+      "name": "animation direction",
+      "frequency": 1
+    },
+    {
+      "name": "storytelling",
+      "frequency": 1
+    },
+    {
+      "name": "visual effects supervision",
+      "frequency": 1
+    },
+    {
+      "name": "forensic animation",
+      "frequency": 1
+    },
+    {
+      "name": "legal expertise",
+      "frequency": 1
+    },
+    {
+      "name": "color correction",
+      "frequency": 1
+    },
+    {
+      "name": "image manipulation",
+      "frequency": 1
+    },
+    {
+      "name": "layout",
+      "frequency": 1
+    },
+    {
+      "name": "cinematography",
+      "frequency": 1
+    },
+    {
+      "name": "visual storytelling",
+      "frequency": 1
+    },
+    {
+      "name": "business intelligence tools",
+      "frequency": 1
+    },
+    {
+      "name": "phoenix",
+      "frequency": 1
+    },
+    {
+      "name": "altair",
+      "frequency": 1
+    },
+    {
+      "name": "hugging face",
+      "frequency": 1
+    },
+    {
+      "name": "heroku",
+      "frequency": 1
+    },
+    {
+      "name": "dagster",
+      "frequency": 1
+    },
+    {
+      "name": "arcore",
+      "frequency": 1
+    },
+    {
+      "name": "qdrant",
+      "frequency": 1
+    },
+    {
+      "name": "pinot",
+      "frequency": 1
+    },
+    {
+      "name": "notion",
+      "frequency": 1
+    },
+    {
+      "name": "pig",
+      "frequency": 1
+    },
+    {
+      "name": "bird",
+      "frequency": 1
+    },
+    {
+      "name": "lua",
+      "frequency": 1
+    },
+    {
+      "name": "web3.js",
+      "frequency": 1
+    },
+    {
+      "name": "automation anywhere",
+      "frequency": 1
+    },
+    {
+      "name": "f#",
+      "frequency": 1
+    },
+    {
+      "name": "uikit",
+      "frequency": 1
+    },
+    {
+      "name": "bigquery",
+      "frequency": 1
+    },
+    {
+      "name": "travis ci",
+      "frequency": 1
+    },
+    {
+      "name": "flake8",
+      "frequency": 1
+    },
+    {
+      "name": "openid connect",
+      "frequency": 1
+    },
+    {
+      "name": "color theory",
+      "frequency": 1
+    },
+    {
+      "name": "lean",
+      "frequency": 1
+    },
+    {
+      "name": "binance smart chain",
+      "frequency": 1
+    },
+    {
+      "name": "mariadb",
+      "frequency": 1
+    },
+    {
+      "name": "function calling",
+      "frequency": 1
+    },
+    {
+      "name": "linear",
+      "frequency": 1
+    },
+    {
+      "name": "symantec",
+      "frequency": 1
+    },
+    {
+      "name": "bokeh",
+      "frequency": 1
+    },
+    {
+      "name": "hipaa",
+      "frequency": 1
+    },
+    {
+      "name": "stress testing",
+      "frequency": 1
+    },
+    {
+      "name": "rancher",
+      "frequency": 1
+    },
+    {
+      "name": "openvpn",
+      "frequency": 1
+    },
+    {
+      "name": "plotly",
+      "frequency": 1
+    },
+    {
+      "name": "hapi",
+      "frequency": 1
+    },
+    {
+      "name": "snorkel",
+      "frequency": 1
+    },
+    {
+      "name": "design thinking",
+      "frequency": 1
+    },
+    {
+      "name": "prtg",
+      "frequency": 1
+    },
+    {
+      "name": "d3.js",
+      "frequency": 1
+    },
+    {
+      "name": "gazebo",
+      "frequency": 1
+    },
+    {
+      "name": "sketch",
+      "frequency": 1
+    },
+    {
+      "name": "lidar",
+      "frequency": 1
+    },
+    {
+      "name": "chainlink",
+      "frequency": 1
+    },
+    {
+      "name": "seccomp",
+      "frequency": 1
+    },
+    {
+      "name": "kalman filter",
+      "frequency": 1
+    },
+    {
+      "name": "ldap",
+      "frequency": 1
+    },
+    {
+      "name": "jest",
+      "frequency": 1
+    },
+    {
+      "name": "q#",
+      "frequency": 1
+    },
+    {
+      "name": "framer",
+      "frequency": 1
+    },
+    {
+      "name": "behave",
+      "frequency": 1
+    },
+    {
+      "name": "trello",
+      "frequency": 1
+    },
+    {
+      "name": "adobe xd",
+      "frequency": 1
+    },
+    {
+      "name": "kong",
+      "frequency": 1
+    },
+    {
+      "name": "sequelize",
+      "frequency": 1
+    },
+    {
+      "name": "trpc",
+      "frequency": 1
+    },
+    {
+      "name": "tidb",
+      "frequency": 1
+    },
+    {
+      "name": "matlab",
+      "frequency": 1
+    },
+    {
+      "name": "auth0",
+      "frequency": 1
+    },
+    {
+      "name": "capacitor",
+      "frequency": 1
+    },
+    {
+      "name": "kubeflow",
+      "frequency": 1
+    },
+    {
+      "name": "trend micro",
+      "frequency": 1
+    },
+    {
+      "name": "obd-ii",
+      "frequency": 1
+    },
+    {
+      "name": "tekton",
+      "frequency": 1
+    },
+    {
+      "name": "codeigniter",
+      "frequency": 1
+    },
+    {
+      "name": "design sprint",
+      "frequency": 1
+    },
+    {
+      "name": "arduino",
+      "frequency": 1
+    },
+    {
+      "name": "drone",
+      "frequency": 1
+    },
+    {
+      "name": "okteto",
+      "frequency": 1
+    },
+    {
+      "name": "xgboost",
+      "frequency": 1
+    },
+    {
+      "name": "codemagic",
+      "frequency": 1
+    },
+    {
+      "name": "vault",
+      "frequency": 1
+    },
+    {
+      "name": "verilog",
+      "frequency": 1
+    },
+    {
+      "name": "gestalt principles",
+      "frequency": 1
+    },
+    {
+      "name": "clojure",
+      "frequency": 1
+    },
+    {
+      "name": "monday.com",
+      "frequency": 1
+    },
+    {
+      "name": "caddy",
+      "frequency": 1
+    },
+    {
+      "name": "design tokens",
+      "frequency": 1
+    },
+    {
+      "name": "qwik",
+      "frequency": 1
+    },
+    {
+      "name": "opencv",
+      "frequency": 1
+    },
+    {
+      "name": "quantum algorithms",
+      "frequency": 1
+    },
+    {
+      "name": "memsql",
+      "frequency": 1
+    },
+    {
+      "name": "accumulo",
+      "frequency": 1
+    },
+    {
+      "name": "e2e testing",
+      "frequency": 1
+    },
+    {
+      "name": "openapi",
+      "frequency": 1
+    },
+    {
+      "name": "h2o.ai",
+      "frequency": 1
+    },
+    {
+      "name": "iso 27001",
+      "frequency": 1
+    },
+    {
+      "name": "opnsense",
+      "frequency": 1
+    },
+    {
+      "name": "opentelemetry",
+      "frequency": 1
+    },
+    {
+      "name": "codecov",
+      "frequency": 1
+    },
+    {
+      "name": "cockroachdb",
+      "frequency": 1
+    },
+    {
+      "name": "apache spark",
+      "frequency": 1
+    },
+    {
+      "name": "supabase",
+      "frequency": 1
+    },
+    {
+      "name": "swiftui",
+      "frequency": 1
+    },
+    {
+      "name": "lean ux",
+      "frequency": 1
+    },
+    {
+      "name": "talend",
+      "frequency": 1
+    }
+  ]
+}

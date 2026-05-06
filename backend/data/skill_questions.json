@@ -1,0 +1,246 @@
+[
+  {
+    "skill": "Python",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which of the following data types is not supported in Python?",
+    "options": ["String", "List", "Tuple", "Slice"],
+    "answer": "Slice",
+    "explanation": "Slice is not a built-in standard data type, it is an operation."
+  },
+  {
+    "skill": "Python",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "What is the output of print(2 ** 3)?",
+    "options": ["5", "6", "8", "9"],
+    "answer": "8",
+    "explanation": "The ** operator calculate powers, so 2 to the power of 3 is 8."
+  },
+  {
+    "skill": "Python",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which of these collections defines a Python Dictionary?",
+    "options": ["{'apple', 'banana', 'cherry'}", "['apple', 'banana', 'cherry']", "('apple', 'banana', 'cherry')", "{'name': 'apple', 'color': 'green'}"],
+    "answer": "{'name': 'apple', 'color': 'green'}",
+    "explanation": "Dictionaries consist of key-value pairs wrapped in curly braces."
+  },
+  {
+    "skill": "Python",
+    "difficulty": "medium",
+    "type": "fill_in_blank",
+    "question": "The ___ keyword is used to create a function in Python.",
+    "answer": "def",
+    "explanation": "Functions are defined using the 'def' keyword in Python."
+  },
+  {
+    "skill": "JavaScript",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which keyword is used to declare a variable in JavaScript that cannot be reassigned?",
+    "options": ["var", "let", "const", "static"],
+    "answer": "const",
+    "explanation": "'const' creates a block-scoped, read-only reference to a value."
+  },
+  {
+    "skill": "JavaScript",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What gets logged in the console: console.log(typeof NaN)?",
+    "options": ["NaN", "number", "undefined", "string"],
+    "answer": "number",
+    "explanation": "In JavaScript, the type of NaN (Not a Number) is technically 'number'."
+  },
+  {
+    "skill": "JavaScript",
+    "difficulty": "medium",
+    "type": "fill_in_blank",
+    "question": "The ___ method adds an element to the end of an array in JS.",
+    "answer": "push",
+    "explanation": "The push() method adds one or more elements to the end of an array."
+  },
+  {
+    "skill": "React",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which hook is used to manage state in functional components?",
+    "options": ["useEffect", "useMemo", "useState", "useRef"],
+    "answer": "useState",
+    "explanation": "The useState hook lets you add state variables to functional components."
+  },
+  {
+    "skill": "SQL",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which SQL statement is used to extract data from a database?",
+    "options": ["EXTRACT", "SELECT", "PULL", "GET"],
+    "answer": "SELECT",
+    "explanation": "The SELECT statement is used to select data from a database."
+  },
+  {
+    "skill": "SQL",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "What does the DROP statement do?",
+    "options": ["Removes data inside a table", "Deletes a table completely", "Hides a table", "Drops a secondary index only"],
+    "answer": "Deletes a table completely",
+    "explanation": "DROP TABLE drops the table permanently from the database schema."
+  },
+  {
+    "skill": "General",
+    "difficulty": "medium",
+    "type": "fill_in_blank",
+    "question": "In Git, the ___ command is used to save changes locally without pushing.",
+    "answer": "commit",
+    "explanation": "Commit takes a snapshot of changes."
+  },
+  {
+    "skill": "General",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which protocol is used for secure communication over the web?",
+    "options": ["HTTP", "HTTPS", "FTP", "SSH"],
+    "answer": "HTTPS",
+    "explanation": "HTTPS is the secure version of HTTP."
+  },
+  {
+    "skill": "General",
+    "difficulty": "medium",
+    "type": "technical",
+    "question": "Explain the difference between a process and a thread.",
+    "answer": "A process is a program in execution with its own memory space, while a thread is a lightweight unit of execution within a process that shares the same memory.",
+    "explanation": "Threads share process resources, making them faster to switch between."
+  },
+  {
+    "skill": "JavaScript",
+    "difficulty": "hard",
+    "type": "coding",
+    "question": "Write a function to check if a string is a palindrome.",
+    "answer": "function isPalindrome(str) { return str === str.split('').reverse().join(''); }",
+    "explanation": "Coding question for logic check."
+  },
+  {
+    "skill": "General",
+    "difficulty": "medium",
+    "type": "fill_in_blank",
+    "question": "The ___ protocol translates domain names into IP addresses.",
+    "answer": "DNS",
+    "explanation": "DNS stands for Domain Name System."
+  },
+  {
+    "skill": "Data Structures",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which data structure follows the LIFO (Last In First Out) principle?",
+    "options": ["Queue", "Linked List", "Stack", "Tree"],
+    "answer": "Stack",
+    "explanation": "Stacks place items on top and take them from the top."
+  },
+  {
+    "skill": "Data Structures",
+    "difficulty": "medium",
+    "type": "fill_in_blank",
+    "question": "A ___ search algorithm has a time complexity of O(log n).",
+    "answer": "binary",
+    "explanation": "Binary search splits the search space in half repeatedly."
+  },
+  {
+    "skill": "Node.js",
+    "difficulty": "medium",
+    "type": "technical",
+    "question": "What is the Event Loop in Node.js?",
+    "answer": "An event loop allows Node.js to perform non-blocking I/O operations by offloading tasks to the system kernel whenever possible.",
+    "explanation": "Core concurrency model of Node.js."
+  },
+  {
+    "skill": "React",
+    "difficulty": "medium",
+    "type": "fill_in_blank",
+    "question": "In React, ___ are used to pass data from parent to child components.",
+    "answer": "props",
+    "explanation": "Props are short for properties."
+  },
+  {
+    "skill": "Python",
+    "difficulty": "hard",
+    "type": "coding",
+    "question": "Write a list comprehension to square all even numbers in a list 'nums'.",
+    "answer": "[x*x for x in nums if x % 2 == 0]",
+    "explanation": "Advanced Python shorthand."
+  },
+  {
+    "skill": "Docker",
+    "difficulty": "easy",
+    "type": "mcq",
+    "question": "Which Docker command is used to build an image from a Dockerfile?",
+    "options": ["docker run", "docker create", "docker build", "docker push"],
+    "answer": "docker build",
+    "explanation": "Build command constructs the container layers."
+  },
+  {
+    "skill": "General",
+    "difficulty": "medium",
+    "type": "technical",
+    "question": "What is REST API?",
+    "answer": "Representational State Transfer is an architectural style for providing standards between computer systems on the web.",
+    "explanation": "Standard communication pattern."
+  },
+  {
+    "skill": "General",
+    "difficulty": "easy",
+    "type": "fill_in_blank",
+    "question": "Cloud provider AWS stands for Amazon ___ Services.",
+    "answer": "Web",
+    "explanation": "AWS naming."
+  },
+  {
+    "skill": "Algorithm",
+    "difficulty": "medium",
+    "type": "mcq",
+    "question": "Which sorting algorithm is generally the fastest for large datasets?",
+    "options": ["Bubble Sort", "Insertion Sort", "Selection Sort", "Quick Sort"],
+    "answer": "Quick Sort",
+    "explanation": "Quick Sort has an average O(n log n) complexity."
+  },
+  {
+    "skill": "General",
+    "difficulty": "medium",
+    "type": "technical",
+    "question": "How does asymmetric encryption differ from symmetric encryption?",
+    "answer": "Symmetric use one key for both, asymmetric uses a public/private key pair.",
+    "explanation": "Security fundamentals."
+  },
+  {
+    "skill": "General",
+    "difficulty": "medium",
+    "type": "technical",
+    "question": "What is the purpose of a Load Balancer?",
+    "answer": "It distributes incoming network traffic across multiple servers to ensure reliability and performance.",
+    "explanation": "Architecture concepts."
+  },
+  {
+    "skill": "Cloud",
+    "difficulty": "medium",
+    "type": "technical",
+    "question": "Describe Infrastructure as Code (IaC).",
+    "answer": "IaC is the managing and provisioning of infrastructure through code instead of manual processes.",
+    "explanation": "Modern DevOps practice."
+  },
+  {
+    "skill": "Security",
+    "difficulty": "medium",
+    "type": "technical",
+    "question": "What is SQL Injection?",
+    "answer": "A vulnerability where an attacker can interfere with the queries that an application makes to its database.",
+    "explanation": "Security basics."
+  },
+  {
+    "skill": "General",
+    "difficulty": "medium",
+    "type": "technical",
+    "question": "What is the difference between SQL and NoSQL databases?",
+    "answer": "SQL databases are relational and table-based, while NoSQL databases are non-relational and can be document, key-value, or graph-based.",
+    "explanation": "Data architecture."
+  }
+]

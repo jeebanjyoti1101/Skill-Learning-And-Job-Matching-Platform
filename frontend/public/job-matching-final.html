@@ -1,0 +1,2972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Matching Platform - AI Skill Learning</title>
+    <style>
+        :root {
+            --bg: #f3f6fd;
+            --bg-soft: #f8faff;
+            --panel: #ffffff;
+            --panel-soft: #eef3ff;
+            --ink: #0f172a;
+            --ink-soft: #475467;
+            --line: #d6e0f5;
+            --brand: #4d72bd;
+            --brand-dark: #27457f;
+            --ok: #067647;
+            --warn: #b54708;
+            --danger: #b42318;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --shadow-soft: 0 10px 26px rgba(16, 24, 40, 0.08);
+            --shadow-panel: 0 22px 50px rgba(16, 24, 40, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Outfit", "Segoe UI", Tahoma, sans-serif;
+            color: var(--ink);
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            min-height: 100vh;
+            padding: 26px 20px 60px;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.22) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(30, 64, 175, 0.22) 0%, transparent 35%),
+                radial-gradient(circle at 50% 50%, rgba(147, 197, 253, 0.12) 0%, transparent 45%);
+            z-index: -1;
+            animation: floatBg 16s ease-in-out infinite;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        @keyframes floatBg {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(15px, -12px) scale(1.04);
+            }
+        }
+
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.14;
+            animation: floatIcon linear infinite;
+            filter: drop-shadow(0 4px 10px rgba(15, 23, 42, 0.25));
+        }
+
+        @keyframes floatIcon {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.14;
+            }
+            90% {
+                opacity: 0.14;
+            }
+            100% {
+                transform: translateY(-110px) translateX(90px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .floating-icon:nth-child(1) { left: 8%; animation-duration: 20s; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { left: 20%; animation-duration: 23s; animation-delay: 3s; }
+        .floating-icon:nth-child(3) { left: 33%; animation-duration: 18s; animation-delay: 7s; }
+        .floating-icon:nth-child(4) { left: 47%; animation-duration: 26s; animation-delay: 2s; }
+        .floating-icon:nth-child(5) { left: 61%; animation-duration: 22s; animation-delay: 9s; }
+        .floating-icon:nth-child(6) { left: 74%; animation-duration: 19s; animation-delay: 5s; }
+        .floating-icon:nth-child(7) { left: 87%; animation-duration: 24s; animation-delay: 1s; }
+
+        .container {
+            width: min(1200px, 96vw);
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(214, 224, 245, 0.7);
+            border-radius: 26px;
+            box-shadow: var(--shadow-panel);
+            padding: 32px;
+            margin-bottom: 24px;
+            position: relative;
+            animation: riseIn 0.55s ease both;
+        }
+
+        .header a {
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border: 1px solid #c9d7f4;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #2d4b86;
+            background: #f3f7ff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .header a:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(69, 103, 178, 0.18);
+        }
+
+        .header h1 {
+            font-size: clamp(1.55rem, 3.2vw, 2.45rem);
+            letter-spacing: 0.2px;
+            margin-bottom: 8px;
+            color: #1f3970;
+            text-shadow: 0 2px 12px rgba(88, 125, 196, 0.16);
+            padding-right: 220px;
+        }
+
+        .header p {
+            color: var(--ink-soft);
+            font-size: 1rem;
+            line-height: 1.55;
+            padding-right: 220px;
+        }
+
+        .emoji {
+            margin-right: 8px;
+            font-style: normal;
+        }
+
+        .test-section {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(214, 224, 245, 0.7);
+            border-radius: 26px;
+            box-shadow: var(--shadow-panel);
+            padding: 26px;
+            animation: riseIn 0.6s ease 0.1s both;
+        }
+
+        .tabs {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 22px;
+            background: var(--panel-soft);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 8px;
+        }
+
+        .tab {
+            border: none;
+            background: transparent;
+            color: #5b6d92;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 10px;
+            padding: 12px 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab:hover {
+            background: #dfe9ff;
+            color: #1f3970;
+        }
+
+        .tab.active {
+            background: linear-gradient(150deg, #4d72bd, #6f8fd2);
+            color: #fff;
+            box-shadow: 0 10px 22px rgba(77, 114, 189, 0.32);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: riseIn 0.35s ease both;
+        }
+
+        .match-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 16px;
+            align-items: start;
+        }
+
+        .match-panel {
+            border: 1px solid #d8e2f7;
+            background: linear-gradient(165deg, #fbfdff 0%, #f4f8ff 100%);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 10px 24px rgba(24, 48, 98, 0.08);
+            animation: riseIn 0.35s ease both;
+        }
+
+        .match-side {
+            display: grid;
+            gap: 12px;
+        }
+
+        .mini-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .mini-stat {
+            border: 1px solid #d5e0f8;
+            border-radius: 12px;
+            background: #ffffff;
+            padding: 12px;
+            box-shadow: 0 6px 16px rgba(16, 24, 40, 0.08);
+        }
+
+        .mini-stat .label {
+            color: #667085;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            text-transform: uppercase;
+        }
+
+        .mini-stat .value {
+            color: #1f3970;
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-top: 4px;
+        }
+
+        .advanced-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .control-card {
+            border: 1px solid #d8e2f7;
+            border-radius: 12px;
+            background: #ffffff;
+            padding: 12px;
+        }
+
+        .control-card h4 {
+            color: #27457f;
+            font-size: 0.86rem;
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: 0.15px;
+        }
+
+        .toggle-stack {
+            display: grid;
+            gap: 8px;
+        }
+
+        .toggle-stack label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #344054;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .result-view-switch {
+            display: inline-flex;
+            gap: 8px;
+            padding: 6px;
+            border: 1px solid #cfe0ff;
+            border-radius: 12px;
+            background: #f4f8ff;
+            margin: 6px 0 12px;
+        }
+
+        .result-view-btn {
+            border: 1px solid #bfd4fb;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #27457f;
+            font-size: 0.82rem;
+            font-weight: 800;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+        }
+
+        .result-view-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.16);
+        }
+
+        .result-view-btn.active {
+            border-color: #3b82f6;
+            background: linear-gradient(150deg, #dbeafe, #eff6ff);
+            color: #1e3a8a;
+        }
+
+        .source-section.hidden {
+            display: none;
+        }
+
+        .btn-ghost {
+            border: 1px solid #c9d7f4;
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #27457f;
+            background: #edf3ff;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-ghost:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(77, 114, 189, 0.22);
+        }
+
+        .eval-box {
+            border: 1px solid #bfd2fb;
+            border-radius: 14px;
+            background: linear-gradient(165deg, #f3f8ff 0%, #eaf2ff 100%);
+            padding: 14px;
+        }
+
+        .thinking-panel {
+            border: 1px solid #b7cbfb;
+            border-radius: 16px;
+            background:
+                radial-gradient(circle at 88% 12%, rgba(59, 130, 246, 0.2), transparent 32%),
+                linear-gradient(165deg, #f7faff 0%, #ecf3ff 100%);
+            padding: 14px 14px 12px;
+            margin-bottom: 10px;
+            position: relative;
+            overflow: hidden;
+            min-height: 190px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transform-style: preserve-3d;
+        }
+
+        .thinking-panel.loading {
+            box-shadow: 0 14px 28px rgba(37, 99, 235, 0.16);
+        }
+
+        .thinking-panel.done {
+            box-shadow: 0 12px 24px rgba(22, 163, 74, 0.16);
+        }
+
+        .thinking-panel.scene-react {
+            transform: scale(1.015);
+        }
+
+        .thinking-panel::after {
+            content: "";
+            position: absolute;
+            inset: -20% -70% auto -70%;
+            height: 90px;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+            animation: sweepShine 3.2s linear infinite;
+            pointer-events: none;
+        }
+
+        .desk-scene {
+            position: relative;
+            z-index: 1;
+            min-height: 160px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            touch-action: manipulation;
+        }
+
+        .scene-glow {
+            position: absolute;
+            width: 240px;
+            height: 110px;
+            left: 50%;
+            bottom: 42px;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.26), rgba(59, 130, 246, 0));
+            filter: blur(8px);
+            animation: glowBreath 2.6s ease-in-out infinite;
+        }
+
+        .scene-particles {
+            position: absolute;
+            inset: 8px 8px 42px 8px;
+            pointer-events: none;
+        }
+
+        .scene-particles span {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.45);
+            animation: particleFloat 3.6s linear infinite;
+        }
+
+        .scene-particles span:nth-child(1) { left: 22%; top: 68%; animation-delay: 0s; }
+        .scene-particles span:nth-child(2) { left: 38%; top: 54%; animation-delay: 0.7s; }
+        .scene-particles span:nth-child(3) { left: 58%; top: 62%; animation-delay: 1.2s; }
+        .scene-particles span:nth-child(4) { left: 72%; top: 50%; animation-delay: 1.9s; }
+
+        .desk {
+            position: absolute;
+            left: 50%;
+            bottom: 12px;
+            transform: translateX(-50%);
+            width: min(280px, 92%);
+            height: 14px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #9dbcf9, #6f98ed);
+            box-shadow: 0 12px 22px rgba(30, 64, 175, 0.22);
+        }
+
+        .desk::after {
+            content: "";
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            bottom: -8px;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(30, 64, 175, 0.2);
+            filter: blur(2px);
+        }
+
+        .boy-character {
+            position: relative;
+            width: 132px;
+            height: 145px;
+            animation: boyBounce 2.4s ease-in-out infinite;
+            transform-origin: center bottom;
+            transition: transform 0.18s ease;
+        }
+
+        .human-figure {
+            position: relative;
+            width: 170px;
+            height: 150px;
+            transform-origin: center bottom;
+            animation: boyBounce 2.2s ease-in-out infinite;
+            transition: transform 0.18s ease;
+        }
+
+        .human-figure svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            filter: drop-shadow(0 12px 18px rgba(30, 64, 175, 0.18));
+        }
+
+        .human-svg .human-arm {
+            transform-box: fill-box;
+            transform-origin: top center;
+        }
+
+        .human-svg .human-arm.left {
+            animation: typeLeft 0.95s ease-in-out infinite;
+        }
+
+        .human-svg .human-arm.right {
+            animation: typeRight 0.78s ease-in-out infinite;
+        }
+
+        .human-svg .human-head {
+            transform-box: fill-box;
+            transform-origin: center bottom;
+            animation: headNod 2.1s ease-in-out infinite;
+        }
+
+        .human-svg .human-screen {
+            animation: screenPulse 1.25s ease-in-out infinite;
+        }
+
+        .human-svg .human-eye {
+            transform-box: fill-box;
+            transform-origin: center center;
+            animation: eyeBlink 3.2s ease-in-out infinite;
+        }
+
+        .thinking-panel.scene-react .boy-character {
+            animation-duration: 1.5s;
+            transform: translateY(-2px) rotate(-2deg);
+        }
+
+        .thinking-panel.scene-react .human-figure {
+            animation-duration: 1.2s;
+            transform: translateY(-2px) rotate(-1.5deg) scale(1.02);
+        }
+
+        .boy-head {
+            position: absolute;
+            left: 44px;
+            top: 20px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid #96b5f6;
+            background: linear-gradient(170deg, #ffe8cf, #ffd8b0);
+            z-index: 3;
+            box-shadow: inset 0 -2px 0 rgba(124, 45, 18, 0.12);
+        }
+
+        .boy-head::before {
+            content: "";
+            position: absolute;
+            left: 2px;
+            top: -3px;
+            width: 38px;
+            height: 18px;
+            border-radius: 16px 16px 10px 10px;
+            background: linear-gradient(170deg, #213f76, #2f5395);
+        }
+
+        .boy-body {
+            position: absolute;
+            left: 34px;
+            top: 58px;
+            width: 62px;
+            height: 48px;
+            border-radius: 16px 16px 10px 10px;
+            border: 1px solid #84a6ef;
+            background: linear-gradient(165deg, #9bbdff, #7ea5f6);
+            z-index: 2;
+        }
+
+        .boy-arm {
+            position: absolute;
+            right: 26px;
+            top: 70px;
+            width: 34px;
+            height: 8px;
+            border-radius: 999px;
+            background: #ffd2ad;
+            transform-origin: left center;
+            animation: typingArm 0.9s ease-in-out infinite;
+            z-index: 4;
+        }
+
+        .boy-arm.left {
+            left: 26px;
+            right: auto;
+            top: 72px;
+            width: 30px;
+            animation-duration: 1.1s;
+            animation-delay: 0.2s;
+            transform-origin: right center;
+        }
+
+        .laptop {
+            position: absolute;
+            right: 12px;
+            top: 68px;
+            width: 58px;
+            height: 38px;
+            border-radius: 6px;
+            border: 1px solid #89a9ee;
+            background: linear-gradient(165deg, #f8fbff, #dbe8ff);
+            transform: perspective(180px) rotateY(-12deg);
+            z-index: 3;
+            box-shadow: 0 10px 16px rgba(37, 99, 235, 0.18);
+        }
+
+        .laptop::before {
+            content: "";
+            position: absolute;
+            left: 8px;
+            right: 8px;
+            top: 7px;
+            height: 18px;
+            border-radius: 4px;
+            background: linear-gradient(120deg, #2563eb, #60a5fa);
+            animation: screenPulse 1.4s ease-in-out infinite;
+        }
+
+        .laptop::after {
+            content: "";
+            position: absolute;
+            left: -3px;
+            right: -3px;
+            bottom: -8px;
+            height: 8px;
+            border-radius: 0 0 6px 6px;
+            background: #a9c3f8;
+        }
+
+        .wait-dots {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 8px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .wait-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #3b82f6;
+            opacity: 0.35;
+            animation: waitBlink 1.2s ease-in-out infinite;
+        }
+
+        .wait-dots span:nth-child(2) { animation-delay: 0.15s; }
+        .wait-dots span:nth-child(3) { animation-delay: 0.3s; }
+
+        .fetch-wave {
+            position: absolute;
+            right: 6px;
+            top: 42px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 2px solid rgba(37, 99, 235, 0.35);
+            animation: fetchRing 1.6s ease-out infinite;
+        }
+
+        .thinking-panel.scene-react .fetch-wave {
+            border-color: rgba(16, 185, 129, 0.55);
+            animation-duration: 0.8s;
+        }
+
+        .chair {
+            position: absolute;
+            left: 46px;
+            bottom: 20px;
+            width: 46px;
+            height: 52px;
+            border-radius: 10px 10px 14px 14px;
+            background: linear-gradient(165deg, #6085d8, #466cc6);
+            opacity: 0.55;
+            z-index: 1;
+        }
+
+        .lamp {
+            position: absolute;
+            left: 12px;
+            bottom: 26px;
+            width: 34px;
+            height: 58px;
+            z-index: 2;
+        }
+
+        .lamp::before {
+            content: "";
+            position: absolute;
+            left: 14px;
+            bottom: 6px;
+            width: 6px;
+            height: 34px;
+            border-radius: 4px;
+            background: #7ea4f2;
+        }
+
+        .lamp::after {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 2px;
+            width: 22px;
+            height: 14px;
+            border-radius: 10px 10px 6px 6px;
+            background: #5f86da;
+            box-shadow: 0 0 0 rgba(147, 197, 253, 0.5);
+            animation: lampGlow 2.1s ease-in-out infinite;
+        }
+
+
+        .thinking-step {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            gap: 8px;
+            color: #475467;
+            font-size: 0.84rem;
+            font-weight: 600;
+            border: 1px solid #dbe7ff;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 7px 9px;
+        }
+
+        .thinking-step .orb {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #93c5fd;
+        }
+
+        .thinking-step.active .orb {
+            background: #2563eb;
+            box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.16);
+            animation: stepBlink 1.1s ease-in-out infinite;
+        }
+
+        .thinking-step.done .orb {
+            background: #16a34a;
+        }
+
+        @keyframes boyBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        @keyframes glowBreath {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.42; }
+            50% { transform: translateX(-50%) scale(1.08); opacity: 0.72; }
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(0) scale(0.9); opacity: 0; }
+            20% { opacity: 0.65; }
+            100% { transform: translateY(-42px) scale(1.2); opacity: 0; }
+        }
+
+        @keyframes auraPulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.08); opacity: 0.3; }
+        }
+
+        @keyframes typingArm {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(12deg); }
+        }
+
+        @keyframes typeLeft {
+            0%, 100% { transform: rotate(8deg); }
+            50% { transform: rotate(-6deg); }
+        }
+
+        @keyframes typeRight {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        @keyframes headNod {
+            0%, 100% { transform: rotate(0deg) translateY(0); }
+            50% { transform: rotate(2.5deg) translateY(0.8px); }
+        }
+
+        @keyframes eyeBlink {
+            0%, 45%, 100% { transform: scaleY(1); }
+            47%, 49% { transform: scaleY(0.2); }
+        }
+
+        @keyframes screenPulse {
+            0%, 100% { opacity: 0.62; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes waitBlink {
+            0%, 100% { transform: translateY(0); opacity: 0.35; }
+            50% { transform: translateY(-4px); opacity: 1; }
+        }
+
+        @keyframes fetchRing {
+            0% {
+                transform: scale(0.75);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.45);
+                opacity: 0;
+            }
+        }
+
+        @keyframes lampGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(147, 197, 253, 0.5); }
+            50% { box-shadow: 0 0 0 10px rgba(147, 197, 253, 0); }
+        }
+
+        @keyframes sweepShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .eval-box h4 {
+            color: #1e3a8a;
+            margin-bottom: 8px;
+            font-size: 0.92rem;
+        }
+
+        .eval-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .eval-chip {
+            border: 1px solid #d5e2fb;
+            border-radius: 10px;
+            background: #ffffff;
+            padding: 8px 10px;
+            text-align: center;
+        }
+
+        .eval-chip .k {
+            display: block;
+            color: #667085;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .eval-chip .v {
+            display: block;
+            color: #1f3970;
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-top: 3px;
+        }
+
+        .tab-content h2 {
+            color: #27457f;
+            font-size: clamp(1.35rem, 3vw, 1.9rem);
+            margin-bottom: 14px;
+            letter-spacing: 0.2px;
+            text-shadow: 0 1px 8px rgba(104, 139, 214, 0.16);
+        }
+
+        .hint {
+            border: 1px solid #cadefb;
+            background: #edf3ff;
+            border-radius: var(--radius-md);
+            color: #27457f;
+            padding: 14px 16px;
+            margin-bottom: 18px;
+            font-size: 0.93rem;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #344054;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .checkbox-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            color: #344054;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            border: 1px solid #cad6ef;
+            background: #fbfdff;
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-size: 0.95rem;
+            color: #14243f;
+            font-weight: 500;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .input-group input::placeholder {
+            color: #8b96ad;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #6f8fd2;
+            box-shadow: 0 0 0 4px rgba(77, 114, 189, 0.2);
+            background: #ffffff;
+        }
+
+        .input-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            accent-color: var(--brand);
+            vertical-align: middle;
+        }
+
+        .input-with-button {
+            display: flex;
+            gap: 8px;
+        }
+
+        .input-with-button input {
+            flex: 1;
+        }
+
+        .input-with-button button {
+            border: none;
+            border-radius: 12px;
+            padding: 12px 18px;
+            background: linear-gradient(150deg, #4d72bd, #6f8fd2);
+            color: #fff;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .input-with-button button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(77, 114, 189, 0.3);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+            min-height: 34px;
+        }
+
+        .skill-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #c7d6f4;
+            background: linear-gradient(150deg, #edf3ff, #dde8ff);
+            color: #28467f;
+            border-radius: 999px;
+            padding: 7px 12px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 0.15px;
+            animation: popIn 0.25s ease both;
+        }
+
+        .skill-tag button {
+            border: none;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+            color: #28467f;
+            background: rgba(40, 70, 127, 0.12);
+        }
+
+        .btn {
+            border: none;
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 0.94rem;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(150deg, #4d72bd, #6f8fd2);
+            margin-right: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(77, 114, 189, 0.3);
+        }
+
+        .btn-secondary {
+            background: #64748b;
+        }
+
+        .results {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .results.active {
+            display: block;
+        }
+
+        .success,
+        .error {
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-weight: 600;
+            margin-bottom: 14px;
+            line-height: 1.45;
+        }
+
+        .success {
+            background: #ecfdf3;
+            color: var(--ok);
+            border: 1px solid #abefc6;
+        }
+
+        .error {
+            background: #fef3f2;
+            color: var(--danger);
+            border: 1px solid #fecdca;
+        }
+
+        .loading {
+            border: 1px solid #d4e1fa;
+            background: #f6f9ff;
+            border-radius: 14px;
+            padding: 26px;
+            text-align: center;
+            color: #27457f;
+        }
+
+        .loading p {
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 4px solid rgba(77, 114, 189, 0.18);
+            border-top-color: #4d72bd;
+            margin: 0 auto;
+            animation: spin 0.9s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .job-card {
+            background: #f9fbff;
+            border: 1px solid #d7e1f5;
+            border-left: 4px solid #5e81ca;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 14px;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+            animation: riseIn 0.35s ease both;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            overflow: hidden;
+        }
+
+        .job-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 24px rgba(34, 57, 108, 0.14);
+        }
+
+        .job-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.35) 45%, transparent 100%);
+            transform: translateX(-120%);
+            animation: sheen 2.8s ease-in-out infinite;
+            opacity: 0.45;
+        }
+
+        @keyframes sheen {
+            0%, 80%, 100% {
+                transform: translateX(-120%);
+            }
+            35% {
+                transform: translateX(120%);
+            }
+        }
+
+        .job-card h3,
+        .job-card h4 {
+            color: #1f2937;
+            margin-bottom: 8px;
+            padding-right: 112px;
+            line-height: 1.35;
+        }
+
+        .job-card p {
+            color: #475467;
+            line-height: 1.5;
+        }
+
+        .job-meta {
+            margin: 6px 0;
+            color: #3b82f6;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .job-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0 6px;
+        }
+
+        .job-chip {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 999px;
+            border: 1px solid #d4e1fa;
+            background: #ffffff;
+            color: #334155;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 5px 10px;
+        }
+
+        .job-chip.salary {
+            border-color: #bfdbfe;
+            background: linear-gradient(150deg, #eff6ff, #dbeafe);
+            color: #1e3a8a;
+        }
+
+        .job-score-row {
+            margin-top: 4px;
+            font-size: 0.88rem;
+        }
+
+        .job-description {
+            margin: 10px 0;
+            color: #667085;
+        }
+
+        .section-block {
+            margin-top: 14px;
+        }
+
+        .path-group {
+            margin-top: 20px;
+        }
+
+        .path-heading {
+            margin-bottom: 6px;
+            color: #1f2937;
+        }
+
+        .path-advice {
+            color: #667085;
+            margin-bottom: 10px;
+        }
+
+        .match-percentage {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            border-radius: 999px;
+            background: #17b26a;
+            color: #fff;
+            padding: 6px 11px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .match-percentage.medium {
+            background: #f79009;
+        }
+
+        .match-percentage.low {
+            background: #f04438;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .skill-item {
+            border-radius: 999px;
+            border: 1px solid #dce5f8;
+            background: #ffffff;
+            padding: 6px 11px;
+            font-size: 0.82rem;
+            color: #475467;
+            font-weight: 600;
+        }
+
+        .skill-item.matching {
+            background: #ecfdf3;
+            color: var(--ok);
+            border-color: #abefc6;
+        }
+
+        .skill-item.missing {
+            background: #fef3f2;
+            color: var(--danger);
+            border-color: #fecdca;
+        }
+
+        .recommendation-box {
+            margin-top: 14px;
+            border: 1px solid #f9dbaf;
+            background: #fffaf0;
+            border-radius: 14px;
+            padding: 16px;
+            color: #7a2e0e;
+        }
+
+        .recommendation-box strong {
+            color: var(--warn);
+        }
+
+        .recommendation-box ol {
+            margin-left: 18px;
+            margin-top: 10px;
+        }
+
+        .recommendation-box li {
+            margin-bottom: 8px;
+            line-height: 1.45;
+        }
+
+        .job-info-toggle {
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #c9d7f4;
+            border-radius: 999px;
+            background: #edf3ff;
+            color: #27457f;
+            padding: 6px 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .job-info-panel {
+            display: none;
+            margin-top: 10px;
+            border: 1px solid #dbe5fa;
+            border-radius: 12px;
+            background: #f8fbff;
+            padding: 10px 12px;
+            color: #344054;
+            font-size: 0.84rem;
+            line-height: 1.45;
+        }
+
+        .model-info-fab {
+            position: fixed;
+            left: 22px;
+            bottom: 22px;
+            z-index: 10800;
+        }
+
+        .model-info-btn {
+            width: 58px;
+            height: 58px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(140deg, #1d4ed8, #4f46e5, #0ea5e9);
+            background-size: 180% 180%;
+            box-shadow: 0 14px 32px rgba(29, 78, 216, 0.45);
+            animation: gradientPulse 4.2s ease infinite;
+            transition: transform 0.2s ease;
+        }
+
+        .model-info-btn:hover {
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        .model-info-panel {
+            position: absolute;
+            left: 0;
+            bottom: 70px;
+            width: min(380px, calc(100vw - 24px));
+            border-radius: 16px;
+            border: 1px solid #b9ccfb;
+            background: linear-gradient(150deg, #eaf2ff 0%, #eef6ff 35%, #ffffff 100%);
+            box-shadow: 0 24px 52px rgba(29, 78, 216, 0.22);
+            padding: 14px;
+            display: none;
+            overflow: hidden;
+            animation: riseIn 0.32s ease both;
+        }
+
+        .model-info-panel::before {
+            content: "";
+            position: absolute;
+            inset: -30% -20% auto -20%;
+            height: 80px;
+            background: linear-gradient(120deg, rgba(29, 78, 216, 0.28), rgba(79, 70, 229, 0.28), rgba(14, 165, 233, 0.26));
+            filter: blur(22px);
+            pointer-events: none;
+        }
+
+        .model-info-panel.open {
+            display: block;
+        }
+
+        .model-info-title {
+            position: relative;
+            z-index: 1;
+            color: #1e3a8a;
+            font-size: 0.98rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .model-info-list {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: 8px;
+        }
+
+        .model-info-item {
+            border: 1px solid #d4e1fa;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 8px 10px;
+            color: #1f2f4f;
+            font-size: 0.82rem;
+            line-height: 1.38;
+            font-weight: 600;
+        }
+
+        @keyframes gradientPulse {
+            0%, 100% {
+                background-position: 0% 50%;
+                box-shadow: 0 14px 32px rgba(29, 78, 216, 0.45);
+            }
+            50% {
+                background-position: 100% 50%;
+                box-shadow: 0 18px 38px rgba(79, 70, 229, 0.45);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .tabs {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 720px) {
+            body {
+                padding: 16px 12px 44px;
+            }
+
+            .header {
+                padding: 20px 16px 16px;
+            }
+
+            .header a {
+                position: static;
+                margin-bottom: 12px;
+            }
+
+            .header h1,
+            .header p {
+                padding-right: 0;
+            }
+
+            .tabs {
+                grid-template-columns: 1fr;
+            }
+
+            .test-section {
+                padding: 18px 14px;
+            }
+
+            .input-with-button {
+                flex-direction: column;
+            }
+
+            .match-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .advanced-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .eval-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .btn {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .match-percentage {
+                position: static;
+                display: inline-block;
+                margin-bottom: 8px;
+            }
+
+            .job-card h3,
+            .job-card h4 {
+                padding-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icons" aria-hidden="true">
+        <span class="floating-icon">🎯</span>
+        <span class="floating-icon">💼</span>
+        <span class="floating-icon">🚀</span>
+        <span class="floating-icon">📊</span>
+        <span class="floating-icon">🔍</span>
+        <span class="floating-icon">🧠</span>
+        <span class="floating-icon">✨</span>
+    </div>
+    <div class="container">
+        <div class="header">
+            <a href="index.html">← Back to Home</a>
+            <h1><span class="emoji">🚀</span> AI-Powered Job Matching Platform</h1>
+            <p>Find Your Dream IT Job | Match Skills | Get Learning Paths</p>
+        </div>
+        
+        <div class="test-section">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('match', event)">🎯 Job Matching</button>
+                <button class="tab" onclick="switchTab('gap', event)">📊 Skill Gap Analysis</button>
+                <button class="tab" onclick="switchTab('career', event)">🚀 Career Path</button>
+                <button class="tab" onclick="switchTab('search', event)">🔍 Search Jobs</button>
+            </div>
+            
+            <!-- Tab 1: Job Matching -->
+            <div id="match-tab" class="tab-content active">
+                <h2><span class="emoji">🎯</span> Find Matching Jobs</h2>
+                <div class="match-layout">
+                    <div class="match-panel">
+                        <div class="input-group">
+                            <label>Your Skills:</label>
+                            <div class="input-with-button">
+                                <input type="text" id="skills-skills-input" placeholder="e.g., JavaScript, React, Node.js" 
+                                    onkeypress="handleSkillInput(event, 'skills')">
+                                <button onclick="addSkillManually('skills')">Add</button>
+                            </div>
+                            <div class="skill-tags" id="skills-skills-tags"></div>
+                        </div>
+
+                        <div class="advanced-grid">
+                            <div class="control-card">
+                                <h4>Profile</h4>
+                                <div class="input-group" style="margin-bottom:10px;">
+                                    <label>Experience Level:</label>
+                                    <select id="match-experience-level">
+                                        <option>Entry Level</option>
+                                        <option>Mid Level</option>
+                                        <option>Senior Level</option>
+                                        <option>Expert</option>
+                                    </select>
+                                </div>
+                                <div class="input-group" style="margin-bottom:0;">
+                                    <label class="checkbox-row">
+                                        <input type="checkbox" id="realtime-enabled" checked>
+                                        Include Real-Time Jobs (Live API)
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="control-card">
+                                <h4>Result Scope</h4>
+                                <div class="input-group" style="margin-bottom:10px;">
+                                    <label>Top Results:</label>
+                                    <input type="number" id="limit" value="10" min="1" max="50">
+                                </div>
+                                <div class="input-group" style="margin-bottom:0;">
+                                    <label>Minimum Score / Match %:</label>
+                                    <input type="number" id="min-score" value="15" min="0" max="100">
+                                </div>
+                            </div>
+
+                            <div class="control-card">
+                                <h4>Salary Filters</h4>
+                                <div class="input-group" style="margin-bottom:10px;">
+                                    <label>Minimum Salary:</label>
+                                    <input type="number" id="min-salary" placeholder="e.g. 60000" min="0" step="1000">
+                                </div>
+                                <div class="input-group" style="margin-bottom:0;">
+                                    <label>Maximum Salary:</label>
+                                    <input type="number" id="max-salary" placeholder="e.g. 200000" min="0" step="1000">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="btn-row">
+                            <button class="btn" onclick="findJobs()">🚀 Run Hybrid Match</button>
+                            <button class="btn btn-secondary" onclick="clearSkills('skills')">Clear Skills</button>
+                        </div>
+                    </div>
+
+                    <div class="match-side" id="match-side">
+                        <div class="thinking-panel" id="thinking-panel">
+                            <div class="desk-scene" aria-hidden="true">
+                                <div class="scene-glow"></div>
+                                <div class="scene-particles"><span></span><span></span><span></span><span></span></div>
+                                <div class="lamp"></div>
+                                <div class="wait-dots"><span></span><span></span><span></span></div>
+                                <div class="human-figure">
+                                    <svg class="human-svg" viewBox="0 0 220 170" aria-hidden="true" focusable="false">
+                                        <ellipse cx="110" cy="152" rx="76" ry="10" fill="rgba(30, 64, 175, 0.2)"/>
+                                        <rect x="42" y="120" width="40" height="30" rx="10" fill="#4f72c8" opacity="0.45"/>
+
+                                        <g class="human-body-group">
+                                            <path d="M92 78 C96 72, 124 72, 128 78 L137 115 C137 122, 83 122, 83 115 Z" fill="#7ea5f6" stroke="#6f98ed" stroke-width="1.5"/>
+                                            <g class="human-head">
+                                                <ellipse cx="110" cy="57" rx="22" ry="21" fill="#ffd9b3" stroke="#efc89c" stroke-width="1"/>
+                                                <path d="M89 52 C91 37, 103 31, 116 33 C126 34, 132 39, 133 50 C126 46, 119 44, 111 45 C103 46, 96 48, 89 52 Z" fill="#263f73"/>
+                                                <ellipse class="human-eye" cx="103" cy="58" rx="2.2" ry="2.2" fill="#1f2937"/>
+                                                <ellipse class="human-eye" cx="117" cy="58" rx="2.2" ry="2.2" fill="#1f2937"/>
+                                                <path d="M106 66 Q110 69 114 66" stroke="#a84f25" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                                            </g>
+                                        </g>
+
+                                        <g class="human-arm left">
+                                            <path d="M94 95 C86 98, 79 103, 74 111" stroke="#ffd9b3" stroke-width="8" fill="none" stroke-linecap="round"/>
+                                        </g>
+                                        <g class="human-arm right">
+                                            <path d="M127 94 C137 97, 145 102, 152 111" stroke="#ffd9b3" stroke-width="8" fill="none" stroke-linecap="round"/>
+                                        </g>
+
+                                        <g class="human-laptop">
+                                            <polygon points="140,86 194,92 194,123 140,116" fill="#edf3ff" stroke="#8eb0f2" stroke-width="1.3"/>
+                                            <polygon class="human-screen" points="146,92 187,96 187,115 146,111" fill="url(#screenGlow)"/>
+                                            <polygon points="130,118 198,126 180,132 115,123" fill="#b5cbf7"/>
+                                        </g>
+
+                                        <defs>
+                                            <linearGradient id="screenGlow" x1="0" y1="0" x2="1" y2="1">
+                                                <stop offset="0%" stop-color="#1d4ed8"/>
+                                                <stop offset="100%" stop-color="#60a5fa"/>
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                    <div class="fetch-wave"></div>
+                                </div>
+                                <div class="desk"></div>
+                            </div>
+                        </div>
+
+                        <div class="match-panel" id="model-snapshot-panel" style="display:none;">
+                            <h3 style="font-size:1rem;color:#27457f;margin-bottom:10px;">Model Snapshot</h3>
+                            <div class="mini-stat-grid" id="match-mini-stats">
+                                <div class="mini-stat"><span class="label">Primary Split</span><span class="value">-</span></div>
+                                <div class="mini-stat"><span class="label">F1</span><span class="value">-</span></div>
+                                <div class="mini-stat"><span class="label">AUC</span><span class="value">-</span></div>
+                                <div class="mini-stat"><span class="label">Ranker</span><span class="value">-</span></div>
+                            </div>
+                        </div>
+
+                        <div class="eval-box" id="evaluation-box" style="display:none;"></div>
+                    </div>
+                </div>
+                
+                <div class="results" id="match-results"></div>
+            </div>
+            
+            <!-- Tab 2: Skill Gap Analysis -->
+            <div id="gap-tab" class="tab-content">
+                <h2><span class="emoji">📊</span> Skill Gap Analysis</h2>
+                <div class="hint">💡 Add your current skills and target job to see what you need to learn</div>
+                
+                <div class="input-group">
+                    <label>Your Current Skills:</label>
+                    <div class="input-with-button">
+                        <input type="text" id="gap-skills-input" placeholder="e.g., Python, SQL" 
+                               onkeypress="handleSkillInput(event, 'gap')">
+                        <button onclick="addSkillManually('gap')">Add</button>
+                    </div>
+                    <div class="skill-tags" id="gap-skills-tags"></div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Target Job Title:</label>
+                    <input type="text" id="target-job" placeholder="e.g., Data Scientist, Full Stack Developer">
+                </div>
+                
+                <button class="btn" onclick="analyzeSkillGap()">Analyze Skill Gap</button>
+                <button class="btn btn-secondary" onclick="clearSkills('gap')">Clear</button>
+                
+                <div class="results" id="gap-results"></div>
+            </div>
+            
+            <!-- Tab 3: Career Path -->
+            <div id="career-tab" class="tab-content">
+                <h2><span class="emoji">🚀</span> Career Path Recommendations</h2>
+                <div class="hint">💡 Get a personalized career roadmap based on your current skills</div>
+                
+                <div class="input-group">
+                    <label>Your Current Skills:</label>
+                    <div class="input-with-button">
+                        <input type="text" id="career-skills-input" placeholder="e.g., HTML, CSS, JavaScript" 
+                               onkeypress="handleSkillInput(event, 'career')">
+                        <button onclick="addSkillManually('career')">Add</button>
+                    </div>
+                    <div class="skill-tags" id="career-skills-tags"></div>
+                </div>
+                
+                <button class="btn" onclick="getCareerPath()">Get Career Roadmap</button>
+                <button class="btn btn-secondary" onclick="clearSkills('career')">Clear</button>
+                
+                <div class="results" id="career-results"></div>
+            </div>
+            
+            <!-- Tab 4: Search -->
+            <div id="search-tab" class="tab-content">
+                <h2><span class="emoji">🔎</span> Search Jobs by Keyword</h2>
+                <div class="hint">💡 Search for jobs containing specific keywords. Add your skills for match percentage.</div>
+                
+                <div class="input-group">
+                    <label>Search Keyword:</label>
+                    <input type="text" id="search-keyword" placeholder="e.g., Cloud, AI, Frontend, Developer">
+                </div>
+                
+                <div class="input-group">
+                    <label>Your Skills (optional - for match percentage):</label>
+                    <div class="input-with-button">
+                        <input type="text" id="search-skills-input" placeholder="e.g., AWS, Docker" 
+                               onkeypress="handleSkillInput(event, 'search')">
+                        <button onclick="addSkillManually('search')">Add</button>
+                    </div>
+                    <div class="skill-tags" id="search-skills-tags"></div>
+                </div>
+                
+                <button class="btn" onclick="searchJobs()">Search Jobs</button>
+                <button class="btn btn-secondary" onclick="clearSkills('search')">Clear</button>
+                
+                <div class="results" id="search-results"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script>
+        const BACKEND_ORIGIN = 'http://localhost:5050';
+        const isLocalBackendOrigin =
+            (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') &&
+            window.location.port === '5050';
+        const BASE_URL = isLocalBackendOrigin ? window.location.origin : BACKEND_ORIGIN;
+        let resultViewMode = 'ai';
+        let skillsData = {
+            skills: [],
+            gap: [],
+            career: [],
+            search: []
+        };
+        
+        // Load stats on page load
+        window.onload = () => {
+            wrapButtonText();
+            initThinkingPanelInteraction();
+        };
+        
+        // Wrap button and tab text content in spans for proper z-index layering
+        function wrapButtonText() {
+            document.querySelectorAll('.tab, .btn, .input-with-button button').forEach(button => {
+                // Only wrap direct text nodes, not elements
+                const nodes = Array.from(button.childNodes);
+                nodes.forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+                        const span = document.createElement('span');
+                        span.textContent = node.textContent;
+                        span.style.position = 'relative';
+                        span.style.zIndex = '1';
+                        button.replaceChild(span, node);
+                    }
+                });
+            });
+        }
+        
+        // Tab switching
+        function switchTab(tabName, event) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+        }
+        
+        // Handle skill input
+        function handleSkillInput(event, type) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                addSkillManually(type);
+            }
+        }
+        
+        function addSkillManually(type) {
+            const input = document.getElementById(`${type}-skills-input`);
+            const skill = input.value.trim();
+            
+            if (skill && !skillsData[type].includes(skill)) {
+                skillsData[type].push(skill);
+                updateSkillTags(type);
+                input.value = '';
+            } else if (skill && skillsData[type].includes(skill)) {
+                alert('This skill is already added!');
+            }
+        }
+        
+        function updateSkillTags(type) {
+            const container = document.getElementById(`${type}-skills-tags`);
+            container.innerHTML = skillsData[type].map(skill => `
+                <div class="skill-tag">
+                    ${skill}
+                    <button onclick="removeSkill('${type}', '${skill}')">×</button>
+                </div>
+            `).join('');
+        }
+        
+        function removeSkill(type, skill) {
+            skillsData[type] = skillsData[type].filter(s => s !== skill);
+            updateSkillTags(type);
+        }
+        
+        function clearSkills(type) {
+            skillsData[type] = [];
+            updateSkillTags(type);
+            const resultsMap = {
+                'skills': 'match-results',
+                'gap': 'gap-results',
+                'career': 'career-results',
+                'search': 'search-results'
+            };
+            if (resultsMap[type]) {
+                document.getElementById(resultsMap[type]).classList.remove('active');
+            }
+
+            if (type === 'skills') {
+                setModelMetricsVisible(false);
+            }
+        }
+
+        function setModelMetricsVisible(visible) {
+            const snapshot = document.getElementById('model-snapshot-panel');
+            const evalBox = document.getElementById('evaluation-box');
+            if (!snapshot || !evalBox) return;
+
+            snapshot.style.display = visible ? 'block' : 'none';
+            if (!visible) {
+                evalBox.style.display = 'none';
+            }
+        }
+
+        function setThinkingState(stage = 'idle') {
+            const panel = document.getElementById('thinking-panel');
+            if (!panel) return;
+
+            panel.classList.remove('loading', 'done', 'idle');
+            if (stage === 'loading') {
+                panel.classList.add('loading');
+                return;
+            }
+            if (stage === 'done') {
+                panel.classList.add('done');
+                return;
+            }
+            panel.classList.add('idle');
+        }
+
+        function initThinkingPanelInteraction() {
+            const panel = document.getElementById('thinking-panel');
+            const character = panel?.querySelector('.human-figure, .boy-character');
+            if (!panel || !character) return;
+
+            let clearReactTimer = null;
+
+            function reactPulse() {
+                panel.classList.add('scene-react');
+                if (clearReactTimer) clearTimeout(clearReactTimer);
+                clearReactTimer = setTimeout(() => panel.classList.remove('scene-react'), 520);
+            }
+
+            function tiltByPoint(clientX, clientY) {
+                const rect = panel.getBoundingClientRect();
+                const nx = ((clientX - rect.left) / rect.width) - 0.5;
+                const ny = ((clientY - rect.top) / rect.height) - 0.5;
+                const rx = (-ny * 5).toFixed(2);
+                const ry = (nx * 6).toFixed(2);
+                panel.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+                character.style.transform = `translateY(${Math.abs(ny) * 3}px) rotate(${(nx * 5).toFixed(2)}deg)`;
+            }
+
+            panel.addEventListener('pointermove', (event) => {
+                tiltByPoint(event.clientX, event.clientY);
+            });
+
+            panel.addEventListener('pointerleave', () => {
+                panel.style.transform = '';
+                character.style.transform = '';
+            });
+
+            panel.addEventListener('click', () => reactPulse());
+            panel.addEventListener('touchstart', (event) => {
+                const touch = event.touches && event.touches[0];
+                if (touch) {
+                    tiltByPoint(touch.clientX, touch.clientY);
+                }
+                reactPulse();
+            }, { passive: true });
+
+            // Optional anime.js pulse if available; falls back gracefully.
+            if (window.anime) {
+                window.anime({
+                    targets: '.wait-dots span',
+                    translateY: [-1, -7],
+                    opacity: [0.35, 1],
+                    delay: window.anime.stagger(120),
+                    duration: 700,
+                    direction: 'alternate',
+                    easing: 'easeInOutSine',
+                    loop: true
+                });
+            }
+        }
+
+        function setResultView(mode) {
+            resultViewMode = mode === 'live' ? 'live' : 'ai';
+
+            const datasetSection = document.getElementById('dataset-section');
+            const liveSection = document.getElementById('live-section');
+            const aiBtn = document.getElementById('view-ai-btn');
+            const liveBtn = document.getElementById('view-live-btn');
+
+            if (datasetSection) datasetSection.classList.toggle('hidden', resultViewMode !== 'ai');
+            if (liveSection) liveSection.classList.toggle('hidden', resultViewMode !== 'live');
+            if (aiBtn) aiBtn.classList.toggle('active', resultViewMode === 'ai');
+            if (liveBtn) liveBtn.classList.toggle('active', resultViewMode === 'live');
+        }
+        
+        // Find matching jobs
+        async function findJobs() {
+            if (skillsData.skills.length === 0) {
+                alert('Please add at least one skill');
+                return;
+            }
+
+            setModelMetricsVisible(false);
+            setThinkingState('loading');
+            
+            const resultsDiv = document.getElementById('match-results');
+            resultsDiv.classList.add('active');
+            const realtimeEnabled = document.getElementById('realtime-enabled').checked;
+            const loadingMsg = realtimeEnabled
+                ? 'Running AI model and fetching real-time API jobs...'
+                : 'Running hybrid ML matching (cosine + Random Forest + XGBoost/GB)...';
+            resultsDiv.innerHTML = `<div class="loading"><div class="spinner"></div><p>${loadingMsg}</p></div>`;
+            
+            try {
+                const requestBody = {
+                    skills: skillsData.skills,
+                    experienceLevel: document.getElementById('match-experience-level').value,
+                    topN: parseInt(document.getElementById('limit').value),
+                    minScore: parseInt(document.getElementById('min-score').value),
+                    minSalary: document.getElementById('min-salary').value ? Number(document.getElementById('min-salary').value) : null,
+                    maxSalary: document.getElementById('max-salary').value ? Number(document.getElementById('max-salary').value) : null
+                };
+
+                const modelPromise = fetch(`${BASE_URL}/api/recommendations/match`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody)
+                }).then(res => res.json());
+
+                const realtimePromise = realtimeEnabled
+                    ? Promise.race([
+                        fetch(`${BASE_URL}/api/jobs/enriched-match`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                skills: skillsData.skills,
+                                limit: Math.max(5, Math.floor(parseInt(document.getElementById('limit').value) / 2)),
+                                includeRealTime: true
+                            })
+                        }).then(res => res.json()),
+                        new Promise(resolve => setTimeout(() => resolve(null), 2800))
+                    ])
+                    : Promise.resolve(null);
+
+                const [data, realtimeData] = await Promise.all([modelPromise, realtimePromise]);
+                
+                if (data.success) {
+                    const normalizedModelJobs = (data.jobs || []).map(job => ({
+                        ...job,
+                        experienceLevel: resolveExperienceDisplay(job),
+                        _sourceType: 'model',
+                        _displayScore: Number(job.hybridScore || 0)
+                    })).sort((a, b) => b._displayScore - a._displayScore);
+
+                    const normalizedRealtimeJobs = ((realtimeData?.jobs) || []).map(job => ({
+                        ...job,
+                        title: job.title,
+                        company: job.company || 'Various Companies',
+                        location: job.location || 'Remote',
+                        salary: job.salary || null,
+                        experienceLevel: resolveExperienceDisplay(job),
+                        requiredSkills: job.skillsRequired || [],
+                        matchedSkills: job.matchingSkills || [],
+                        missingSkills: job.missingSkills || [],
+                        hybridScore: Number(job.matchPercentage || 0),
+                        cosineSimilarityScore: null,
+                        randomForestProbability: null,
+                        rankingModelScore: null,
+                        xgboostScore: null,
+                        explanation: { whyRecommended: ['Matched from real-time API based on your skills and keyword relevance.'] },
+                        source: job.source || 'Live API',
+                        _sourceType: 'realtime',
+                        _displayScore: Number(job.matchPercentage || 0)
+                    })).sort((a, b) => b._displayScore - a._displayScore);
+
+                    const sectionLimit = parseInt(document.getElementById('limit').value);
+                    const datasetJobs = normalizedModelJobs.slice(0, sectionLimit);
+                    const liveJobs = normalizedRealtimeJobs.slice(0, sectionLimit);
+                    const totalShown = datasetJobs.length + liveJobs.length;
+
+                    if (totalShown === 0) {
+                        setModelMetricsVisible(false);
+                        setThinkingState('idle');
+                        resultsDiv.innerHTML = '<div class="error">No matching jobs found. Try lowering minimum score, relaxing strict experience, or adding more relevant skills.</div>';
+                        return;
+                    }
+
+                    const renderSection = (title, jobs, sectionType) => {
+                        const badge = sectionType === 'live' ? '🔴 Live Jobs (Real-Time API)' : '📚 From Dataset (AI Model)';
+                        let sectionHtml = `
+                            <div class="success" style="margin-top:10px; margin-bottom:10px;">
+                                <strong>${badge}</strong><br>${title}: ${jobs.length}
+                            </div>
+                        `;
+
+                        if (!jobs.length) {
+                            sectionHtml += '<div class="error" style="margin-top:0;">No jobs found in this section for current filters.</div>';
+                            return sectionHtml;
+                        }
+
+                        jobs.forEach((job, idx) => {
+                            const score = Number(job.hybridScore || 0);
+                            const matchClass = score >= 60 ? '' : score >= 40 ? 'medium' : 'low';
+                            const sourceLabel = job._sourceType === 'realtime' ? `Live API · ${job.source || 'Realtime'}` : `AI Model · ${job.source || 'Dataset'}`;
+                            const why = (job.explanation?.whyRecommended || []).slice(0, 4);
+                            const bestRankModelScore = Number(job.xgboostScore || 0) >= Number(job.rankingModelScore || 0)
+                                ? Number(job.xgboostScore || 0)
+                                : Number(job.rankingModelScore || 0);
+                            const bestRankModelName = Number(job.xgboostScore || 0) >= Number(job.rankingModelScore || 0)
+                                ? 'XGBoost'
+                                : 'Gradient Boosting';
+                            const salaryText = resolveSalaryDisplay(job, idx);
+                            const experienceText = resolveExperienceDisplay(job);
+                            const infoId = `${sectionType}-job-info-${idx}`;
+
+                            sectionHtml += `
+                                <div class="job-card" style="animation-delay:${Math.min(idx * 0.06, 0.6)}s;">
+                                    <h3>${idx + 1}. ${job.title}</h3>
+                                    <span class="match-percentage ${matchClass}">${score.toFixed(1)} Hybrid Score</span>
+                                    <p class="job-meta">💾 ${sourceLabel} | ${job.company || 'Various Companies'} | ${job.location || 'Remote'}</p>
+                                    <p class="job-description">${(job.description || '').substring(0, 170)}...</p>
+                                    <div class="job-meta-row">
+                                        <span class="job-chip">Experience: ${experienceText}</span>
+                                        <span class="job-chip salary">Salary: ${salaryText}</span>
+                                    </div>
+                                    <p class="job-score-row"><strong>Cosine:</strong> ${job.cosineSimilarityScore != null ? Number(job.cosineSimilarityScore).toFixed(1) : '-'} | <strong>RF:</strong> ${job.randomForestProbability != null ? Number(job.randomForestProbability).toFixed(1) : '-'} | <strong>Best Rank:</strong> ${job._sourceType === 'model' ? `${bestRankModelName} ${bestRankModelScore.toFixed(1)}` : 'API Relevance'}</p>
+                                    ${job.requiredSkills && job.requiredSkills.length > 0 ? `
+                                    <div class="skill-list">
+                                        ${(job.matchedSkills || []).slice(0, 6).map(s => `<span class="skill-item matching">✓ ${s}</span>`).join('')}
+                                        ${(job.missingSkills || []).slice(0, 6).map(s => `<span class="skill-item missing">✗ ${s}</span>`).join('')}
+                                    </div>
+                                    ` : ''}
+                                    ${why.length ? `<button class="job-info-toggle" onclick="toggleJobInfo('${infoId}')">ℹ Show recommendation info</button>` : ''}
+                                    <div id="${infoId}" class="job-info-panel">
+                                        <strong>Recommendation Details:</strong>
+                                        <ol style="margin-left:16px; margin-top:6px;">
+                                            ${why.map(w => `<li>${w}</li>`).join('')}
+                                        </ol>
+                                    </div>
+                                </div>
+                            `;
+                        });
+
+                        return sectionHtml;
+                    };
+
+                    let html = `
+                        <div class="success">
+                            <strong>✅ Found ${totalShown} matching jobs!</strong><br>
+                            AI Model: ${normalizedModelJobs.length} | Real-Time API: ${normalizedRealtimeJobs.length} | Analyzed: ${data.statistics?.totalJobsAnalyzed || '-'}
+                        </div>
+                        <div class="result-view-switch">
+                            <button type="button" class="result-view-btn" id="view-ai-btn" onclick="setResultView('ai')">AI Model (${datasetJobs.length})</button>
+                            <button type="button" class="result-view-btn" id="view-live-btn" onclick="setResultView('live')">Live API (${liveJobs.length})</button>
+                        </div>
+                    `;
+
+                    if (data.evaluation) {
+                        setModelMetricsVisible(true);
+                        renderEvaluationBox(data.evaluation);
+                        updateMiniStats(data.evaluation?.primary || null, data.ranker || data.statistics?.models?.ranker || '-');
+                    }
+                    setThinkingState('done');
+
+                    html += `<div id="dataset-section" class="source-section">${renderSection('Jobs from AI dataset', datasetJobs, 'dataset')}</div>`;
+                    html += `<div id="live-section" class="source-section">${renderSection('Jobs from live APIs', liveJobs, 'live')}</div>`;
+                    
+                    resultsDiv.innerHTML = html;
+                    setResultView(resultViewMode);
+                } else {
+                    setModelMetricsVisible(false);
+                    setThinkingState('idle');
+                    resultsDiv.innerHTML = '<div class="error">No matching jobs found. Try lowering minimum score, relaxing strict experience, or adding more relevant skills.</div>';
+                }
+            } catch (error) {
+                setModelMetricsVisible(false);
+                setThinkingState('idle');
+                resultsDiv.innerHTML = `<div class="error">❌ Error: ${error.message}. Make sure the server is running on port 5050!</div>`;
+            }
+        }
+
+        function normalizeExperienceLevel(level) {
+            const text = String(level || '').trim().toLowerCase();
+            if (!text || text === '-' || text === 'na' || text === 'n/a') return '-';
+            if (text.includes('expert') || text.includes('principal') || text.includes('director') || text.includes('head') || text.includes('chief') || text.includes('vp')) return 'Expert';
+            if (text.includes('senior') || text.includes('lead') || text.includes('staff')) return 'Senior Level';
+            if (text.includes('mid') || text.includes('associate') || text.includes('intermediate')) return 'Mid Level';
+            if (text.includes('entry') || text.includes('junior') || text.includes('fresher') || text.includes('intern')) return 'Entry Level';
+            return level;
+        }
+
+        function inferExperienceFromTitle(title) {
+            const t = String(title || '').toLowerCase();
+            if (!t) return null;
+            if (t.includes('principal') || t.includes('director') || t.includes('head') || t.includes('chief') || t.includes('vp') || t.includes('architect')) return 'Expert';
+            if (t.includes('senior') || t.includes('lead') || t.includes('staff')) return 'Senior Level';
+            if (t.includes('mid') || t.includes('associate') || t.includes('intermediate') || /\b(ii|iii|2|3)\b/.test(t)) return 'Mid Level';
+            if (t.includes('junior') || t.includes('entry') || t.includes('fresher') || t.includes('intern')) return 'Entry Level';
+            return null;
+        }
+
+        function resolveExperienceDisplay(job) {
+            const normalized = normalizeExperienceLevel(job.experienceLevel || job.experience_level || '-');
+            if (normalized && normalized !== '-' && normalized !== 'Entry Level') return normalized;
+            const inferred = inferExperienceFromTitle(job.title);
+            if (inferred) return inferred;
+            return normalized && normalized !== '-' ? normalized : 'Mid Level';
+        }
+
+        function formatSalaryRange(min, max) {
+            if (!Number.isFinite(min) || !Number.isFinite(max)) return null;
+            const safeMin = Math.max(0, Math.round(min));
+            const safeMax = Math.max(safeMin, Math.round(max));
+            return `$${safeMin.toLocaleString()} - $${safeMax.toLocaleString()}`;
+        }
+
+        function normalizeSalaryValue(rawSalary) {
+            if (rawSalary == null) return null;
+
+            if (typeof rawSalary === 'number' && Number.isFinite(rawSalary)) {
+                return formatSalaryRange(rawSalary * 0.9, rawSalary * 1.15);
+            }
+
+            if (typeof rawSalary === 'string') {
+                const cleaned = rawSalary.trim();
+                if (!cleaned || cleaned.toLowerCase() === 'not specified' || cleaned === '-') return null;
+
+                const nums = cleaned.replace(/,/g, '').match(/\d+/g);
+                if (nums && nums.length >= 2) {
+                    return formatSalaryRange(Number(nums[0]), Number(nums[1]));
+                }
+                if (nums && nums.length === 1) {
+                    const center = Number(nums[0]);
+                    return formatSalaryRange(center * 0.9, center * 1.15);
+                }
+
+                return cleaned;
+            }
+
+            if (typeof rawSalary === 'object') {
+                const min = Number(rawSalary.min ?? rawSalary.minSalary ?? rawSalary.low);
+                const max = Number(rawSalary.max ?? rawSalary.maxSalary ?? rawSalary.high);
+                const ranged = formatSalaryRange(min, max);
+                if (ranged) return ranged;
+            }
+
+            return null;
+        }
+
+        function inferSalaryFromExperience(experienceLevel, title, jobIndex) {
+            const mapping = {
+                'Entry Level': '$45,000 - $70,000',
+                'Mid Level': '$70,000 - $110,000',
+                'Senior Level': '$110,000 - $160,000',
+                'Expert': '$160,000 - $230,000'
+            };
+
+            const titleText = (title || '').toLowerCase();
+            if (titleText.includes('data scientist')) return '$95,000 - $145,000';
+            if (titleText.includes('machine learning') || titleText.includes('ai')) return '$105,000 - $165,000';
+            if (titleText.includes('devops') || titleText.includes('cloud')) return '$100,000 - $155,000';
+            if (titleText.includes('full stack')) return '$90,000 - $140,000';
+            if (titleText.includes('backend')) return '$92,000 - $142,000';
+            if (titleText.includes('frontend')) return '$82,000 - $128,000';
+
+            if (mapping[experienceLevel]) {
+                const numbers = mapping[experienceLevel].replace(/,/g, '').match(/\d+/g) || [];
+                if (numbers.length >= 2) {
+                    const shift = (jobIndex % 5) * 3000;
+                    return formatSalaryRange(Number(numbers[0]) + shift, Number(numbers[1]) + shift);
+                }
+                return mapping[experienceLevel];
+            }
+
+            const base = 60000 + ((jobIndex % 6) * 12000);
+            return formatSalaryRange(base, base + 35000) || 'Not specified';
+        }
+
+        function resolveSalaryDisplay(job, jobIndex) {
+            const direct = normalizeSalaryValue(job.salary)
+                || normalizeSalaryValue(job.salaryRange)
+                || formatSalaryRange(Number(job.minSalary), Number(job.maxSalary));
+
+            if (direct) return direct;
+
+            return inferSalaryFromExperience(job.experienceLevel, job.title, jobIndex);
+        }
+
+        function toggleJobInfo(id) {
+            const panel = document.getElementById(id);
+            if (!panel) return;
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function renderEvaluationBox(evaluation) {
+            const box = document.getElementById('evaluation-box');
+            if (!box) return;
+
+            const primary = evaluation.primary || null;
+            if (!primary) {
+                box.style.display = 'none';
+                return;
+            }
+
+            box.style.display = 'block';
+            box.innerHTML = `
+                <h4>📈 Model Evaluation (${primary.split || 'primary'})</h4>
+                <div class="eval-grid">
+                    <div class="eval-chip"><span class="k">Accuracy</span><span class="v">${primary.accuracy != null ? (primary.accuracy * 100).toFixed(2) + '%' : '-'}</span></div>
+                    <div class="eval-chip"><span class="k">Precision</span><span class="v">${primary.precision != null ? (primary.precision * 100).toFixed(2) + '%' : '-'}</span></div>
+                    <div class="eval-chip"><span class="k">Recall</span><span class="v">${primary.recall != null ? (primary.recall * 100).toFixed(2) + '%' : '-'}</span></div>
+                    <div class="eval-chip"><span class="k">F1</span><span class="v">${primary.f1 != null ? (primary.f1 * 100).toFixed(2) + '%' : '-'}</span></div>
+                    <div class="eval-chip"><span class="k">AUC</span><span class="v">${primary.auc != null ? (primary.auc * 100).toFixed(2) + '%' : '-'}</span></div>
+                    <div class="eval-chip"><span class="k">Split</span><span class="v">${(primary.split || '-').replaceAll('_', ' ')}</span></div>
+                </div>
+            `;
+        }
+
+        function updateMiniStats(primary, ranker) {
+            const container = document.getElementById('match-mini-stats');
+            if (!container || !primary) return;
+            container.innerHTML = `
+                <div class="mini-stat"><span class="label">Primary Split</span><span class="value">${(primary.split || '-').replaceAll('_', ' ')}</span></div>
+                <div class="mini-stat"><span class="label">F1</span><span class="value">${primary.f1 != null ? (primary.f1 * 100).toFixed(1) + '%' : '-'}</span></div>
+                <div class="mini-stat"><span class="label">AUC</span><span class="value">${primary.auc != null ? (primary.auc * 100).toFixed(1) + '%' : '-'}</span></div>
+                <div class="mini-stat"><span class="label">Ranker</span><span class="value">${ranker || '-'}</span></div>
+            `;
+        }
+
+        // Analyze skill gap
+        async function analyzeSkillGap() {
+            if (skillsData.gap.length === 0) {
+                alert('Please add your current skills');
+                return;
+            }
+            
+            const targetJob = document.getElementById('target-job').value.trim();
+            if (!targetJob) {
+                alert('Please enter a target job title');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('gap-results');
+            resultsDiv.classList.add('active');
+            resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Analyzing skill gap...</p></div>';
+            
+            try {
+                const response = await fetch(`${BASE_URL}/api/jobs/skill-gap`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        userSkills: skillsData.gap,
+                        targetJob: targetJob
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    const analysis = data.analysis;
+                    const matchClass = analysis.currentMatchPercentage >= 60 ? '' : analysis.currentMatchPercentage >= 40 ? 'medium' : 'low';
+                    
+                    let html = `
+                        <div class="success">✅ Skill gap analysis complete for: <strong>${data.job.title}</strong></div>
+                        <div class="job-card">
+                            <h3>${data.job.title}</h3>
+                            <span class="match-percentage ${matchClass}">${analysis.currentMatchPercentage}% Match</span>
+                            <p><strong>Status:</strong> ${analysis.readinessLevel}</p>
+                            <p><strong>You have ${analysis.skillsYouHave} of ${data.job.totalSkillsRequired} required skills</strong></p>
+                            <p><strong>Missing ${analysis.skillsNeeded} skills</strong></p>
+                            
+                            <div class="section-block">
+                                <strong>Skills You Have:</strong>
+                                <div class="skill-list">
+                                    ${data.matchingSkills.map(s => `<span class="skill-item matching">✓ ${s}</span>`).join('')}
+                                </div>
+                            </div>
+                            
+                            ${data.missingSkills && data.missingSkills.length > 0 ? `
+                            <div class="section-block">
+                                <strong>Skills You Need:</strong>
+                                <div class="skill-list">
+                                    ${data.missingSkills.map(s => `<span class="skill-item missing">✗ ${typeof s === 'object' ? s.skill : s}</span>`).join('')}
+                                </div>
+                            </div>
+                            ` : ''}
+                        </div>
+                        
+                        <div class="recommendation-box">
+                            <strong>💡 Recommendation:</strong>
+                            <p>${data.recommendations || analysis.readinessLevel}</p>
+                            ${analysis.estimatedLearningTime ? `<p><strong>Estimated Learning Time:</strong> ${analysis.estimatedLearningTime}</p>` : ''}
+                        </div>
+                    `;
+                    
+                    resultsDiv.innerHTML = html;
+                } else {
+                    resultsDiv.innerHTML = `<div class="error">${data.message}</div>`;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="error">❌ Error: ${error.message}</div>`;
+            }
+        }
+        
+        // Get career path
+        async function getCareerPath() {
+            if (skillsData.career.length === 0) {
+                alert('Please add your current skills');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('career-results');
+            resultsDiv.classList.add('active');
+            resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Generating career roadmap...</p></div>';
+            
+            try {
+                const response = await fetch(`${BASE_URL}/api/jobs/career-path`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ skills: skillsData.career })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    let html = '<div class="success">✅ Career path generated successfully!</div>';
+                    
+                    const paths = [
+                        { key: 'immediate', title: '🎯 Apply Now (70%+ Match)', color: '#4ade80' },
+                        { key: 'shortTerm', title: '📅 Short-Term Goals (50-69%)', color: '#fbbf24' },
+                        { key: 'longTerm', title: '🎓 Long-Term Goals (30-49%)', color: '#60a5fa' }
+                    ];
+
+                    let renderedAnyPath = false;
+                    
+                    paths.forEach(path => {
+                        const pathData = data.careerPaths?.[path.key];
+                        const jobs = pathData?.jobs || [];
+                        if (jobs.length > 0) {
+                            renderedAnyPath = true;
+                            html += `
+                                <div class="path-group">
+                                    <h3 class="path-heading" style="color: ${path.color};">${path.title}</h3>
+                                    <p class="path-advice">${pathData.advice || ''}</p>
+                            `;
+                            
+                            jobs.slice(0, 3).forEach((job, jobIdx) => {
+                                const matchClass = job.matchPercentage >= 60 ? '' : job.matchPercentage >= 40 ? 'medium' : 'low';
+                                const missingArray = job.missingSkills || [];
+                                const missingHtml = missingArray.map(s => typeof s === 'object' ? s.skill : s).slice(0, 5).map(s => `<span class="skill-item missing">✗ ${s}</span>`).join('');
+                                const jobKey = `roadmap_${path.key}_${jobIdx}`;
+                                
+                                html += `
+                                    <div class="job-card" style="border-left-color: ${path.color}; cursor: pointer; transition: all 0.3s ease;" onclick="document.getElementById('${jobKey}').style.display = document.getElementById('${jobKey}').style.display === 'none' ? 'block' : 'none'">
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <div>
+                                                <h4>${job.title}</h4>
+                                                <span class="match-percentage ${matchClass}">${job.matchPercentage}% Match</span>
+                                                <p>Missing ${job.missingSkillsCount} skills</p>
+                                            </div>
+                                            <div style="color: var(--primary-color); font-size: 0.9rem;">View Roadmap ▼</div>
+                                        </div>
+                                        
+                                        <div id="${jobKey}" style="display: none; margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+                                            <div class="section-block">
+                                                <strong>Skills You Need to Acquire:</strong>
+                                                <div class="skill-list" style="margin-top: 10px; margin-bottom: 15px;">
+                                                    ${missingHtml || '<span style="color: gray;">Data pending...</span>'}
+                                                </div>
+                                            </div>
+                                            
+                                            <div style="background: rgba(37, 99, 235, 0.05); border: 1px dashed var(--primary-color); padding: 16px; border-radius: 8px;">
+                                                <h5 style="color: var(--primary-color); margin-bottom: 10px; margin-top: 0;">🚀 Your Step-by-Step Action Plan</h5>
+                                                <ul style="padding-left: 20px; margin: 0; line-height: 1.5; font-size: 0.9rem;">
+                                                    <li style="margin-bottom: 8px;"><strong>Phase 1:</strong> Start learning <strong>${missingArray[0]?.skill || missingArray[0] || 'the core fundamentals'}</strong> through our Learning Hub.</li>
+                                                    <li style="margin-bottom: 8px;"><strong>Phase 2:</strong> Build a practical portfolio project utilizing <strong>${missingArray[1]?.skill || missingArray[1] || 'advanced tools'}</strong>.</li>
+                                                    <li><strong>Phase 3:</strong> Take the SkillMatch Assessment for <strong>${job.title}</strong> to validate your newly acquired knowledge.</li>
+                                                </ul>
+                                                <button class="btn" style="margin-top: 15px; width: 100%;" onclick="event.stopPropagation(); window.location.href='learning-resources.html'">📚 Go to Learning Hub</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+                            
+                            html += '</div>';
+                        }
+                    });
+
+                    if (!renderedAnyPath) {
+                        html += '<div class="error">No clear career path found for these skills yet. Add more skills to get better results.</div>';
+                    }
+
+                    const nextSteps = Array.isArray(data.nextSteps) ? data.nextSteps : [];
+                    if (nextSteps.length > 0) {
+                        html += `
+                            <div class="recommendation-box">
+                                <strong>📋 Your Next Steps:</strong>
+                                <ol>
+                                    ${nextSteps.map(step => 
+                                        `<li><strong>[${step.priority}]</strong> ${step.action} <br><small>Timeline: ${step.timeline}</small></li>`
+                                    ).join('')}
+                                </ol>
+                            </div>
+                        `;
+                    }
+                    
+                    resultsDiv.innerHTML = html;
+                } else {
+                    resultsDiv.innerHTML = `<div class="error">${data.message}</div>`;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="error">❌ Error: ${error.message}</div>`;
+            }
+        }
+        
+        // Search jobs
+        async function searchJobs() {
+            const keyword = document.getElementById('search-keyword').value.trim();
+            if (!keyword) {
+                alert('Please enter a search keyword');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('search-results');
+            resultsDiv.classList.add('active');
+            resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Searching jobs...</p></div>';
+            
+            try {
+                const url = new URL(`${BASE_URL}/api/jobs/search`);
+                url.searchParams.append('keyword', keyword);
+                if (skillsData.search.length > 0) {
+                    url.searchParams.append('skills', skillsData.search.join(','));
+                }
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.success && data.jobs.length > 0) {
+                    let html = `<div class="success">✅ Found ${data.count} jobs matching "${keyword}"</div>`;
+                    
+                    data.jobs.slice(0, 10).forEach((job, idx) => {
+                        html += `
+                            <div class="job-card">
+                                <h3>${idx + 1}. ${job.title}</h3>
+                                ${job.matchPercentage !== null ? 
+                                    `<span class="match-percentage ${job.matchPercentage >= 60 ? '' : 'medium'}">${job.matchPercentage}% Match</span>` : 
+                                    ''}
+                                <p class="job-description">${job.description.substring(0, 150)}...</p>
+                                <p><strong>${job.skillsRequired.length} skills required</strong></p>
+                                <div class="skill-list">
+                                    ${job.skillsRequired.slice(0, 8).map(s => `<span class="skill-item">${s}</span>`).join('')}
+                                    ${job.skillsRequired.length > 8 ? `<span class="skill-item">+${job.skillsRequired.length - 8} more</span>` : ''}
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    resultsDiv.innerHTML = html;
+                } else {
+                    resultsDiv.innerHTML = `<div class="error">No jobs found matching "${keyword}". Try a different keyword.</div>`;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="error">❌ Error: ${error.message}</div>`;
+            }
+        }
+    </script>
+
+    <style>
+        .sm-chat-widget {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 11000;
+            font-family: "Outfit", "Segoe UI", Tahoma, sans-serif;
+        }
+
+        .sm-chat-toggle {
+            width: 62px;
+            height: 62px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #fff;
+            background: linear-gradient(135deg, #4d72bd, #6f8fd2);
+            box-shadow: 0 12px 28px rgba(77, 114, 189, 0.45);
+            display: grid;
+            place-items: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .sm-chat-toggle:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 16px 34px rgba(77, 114, 189, 0.55);
+        }
+
+        .sm-chat-tooltip {
+            position: absolute;
+            right: 6px;
+            bottom: 70px;
+            background: #ffffff;
+            color: #1f2a44;
+            border: 1px solid #d6e0f5;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.14);
+        }
+
+        .sm-chat-panel {
+            position: absolute;
+            right: 0;
+            bottom: 76px;
+            width: min(360px, calc(100vw - 24px));
+            height: min(540px, calc(100vh - 110px));
+            border-radius: 16px;
+            border: 1px solid #d6e0f5;
+            background: #ffffff;
+            box-shadow: 0 24px 54px rgba(15, 23, 42, 0.24);
+            display: none;
+            grid-template-rows: auto 1fr auto auto;
+            overflow: hidden;
+        }
+
+        .sm-chat-panel.open {
+            display: grid;
+        }
+
+        .sm-chat-panel.fullscreen {
+            position: fixed;
+            inset: 12px;
+            width: auto;
+            height: auto;
+            max-width: none;
+            border-radius: 18px;
+            z-index: 12000;
+        }
+
+        .sm-chat-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 14px;
+            color: #1f3970;
+            border-bottom: 1px solid #d6e0f5;
+            background: linear-gradient(150deg, #f8fbff, #ecf3ff);
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .sm-chat-head-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sm-chat-icon-btn {
+            min-width: 30px;
+            height: 26px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #1f3970;
+            background: #dfe9ff;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0 8px;
+        }
+
+        .sm-chat-close {
+            width: 26px;
+            height: 26px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #1f3970;
+            background: #dfe9ff;
+            font-weight: 700;
+        }
+
+        .sm-chat-messages {
+            overflow: auto;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: radial-gradient(circle at 85% 10%, #f7faff 0%, transparent 42%), #fefefe;
+        }
+
+        .sm-chat-msg {
+            max-width: 86%;
+            border: 1px solid #d6e0f5;
+            border-radius: 12px;
+            padding: 9px 11px;
+            font-size: 0.88rem;
+            line-height: 1.42;
+        }
+
+        .sm-chat-msg.user {
+            margin-left: auto;
+            color: #1e3a8a;
+            background: #eaf1ff;
+        }
+
+        .sm-chat-msg.bot {
+            margin-right: auto;
+            color: #1f2937;
+            background: #ffffff;
+        }
+
+        .sm-chat-typing {
+            display: none;
+            color: #667085;
+            font-size: 0.8rem;
+            padding: 6px 12px 8px;
+        }
+
+        .sm-chat-suggestions {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            padding: 8px 12px 10px;
+            border-top: 1px solid #edf2ff;
+            background: #f9fbff;
+        }
+
+        .sm-chat-chip {
+            border: 1px solid #c9d7f4;
+            border-radius: 999px;
+            background: #edf3ff;
+            color: #27457f;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 6px 9px;
+            cursor: pointer;
+        }
+
+        .sm-chat-compose {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            border-top: 1px solid #d6e0f5;
+            background: #ffffff;
+            padding: 10px;
+        }
+
+        .sm-chat-input {
+            border: 1px solid #cad6ef;
+            border-radius: 10px;
+            padding: 9px 10px;
+            font-size: 0.88rem;
+        }
+
+        .sm-chat-send {
+            border: none;
+            border-radius: 10px;
+            padding: 0 12px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: 700;
+            background: linear-gradient(150deg, #4d72bd, #6f8fd2);
+        }
+
+        @media (max-width: 620px) {
+            .sm-chat-widget {
+                right: 10px;
+                bottom: 10px;
+            }
+
+            .sm-chat-tooltip {
+                display: none;
+            }
+
+            .sm-chat-panel {
+                right: 0;
+                bottom: 72px;
+                width: calc(100vw - 20px);
+                height: min(530px, calc(100vh - 90px));
+            }
+
+            .sm-chat-panel.fullscreen {
+                inset: 0;
+                border-radius: 0;
+            }
+
+            .model-info-fab {
+                left: 10px;
+                bottom: 10px;
+            }
+
+            .model-info-panel {
+                left: 0;
+                width: calc(100vw - 20px);
+            }
+        }
+    </style>
+
+    <div class="model-info-fab" id="modelInfoFab">
+        <button type="button" class="model-info-btn" id="modelInfoBtn" aria-label="Show model info">i</button>
+        <div class="model-info-panel" id="modelInfoPanel">
+            <div class="model-info-title">Model Details</div>
+            <div class="model-info-list">
+                <div class="model-info-item">Vector Search: TF-IDF + Cosine Similarity builds semantic relevance between your skills and job skill vectors.</div>
+                <div class="model-info-item">Classification: Random Forest estimates match probability from skill overlap, related-skill ratio, experience fit, and salary alignment.</div>
+                <div class="model-info-item">Ranking: XGBoost and Gradient Boosting score relevance; UI surfaces the stronger rank signal per job.</div>
+                <div class="model-info-item">Hybrid Score: final ranking combines cosine, RF probability, and ranker output with weighted aggregation.</div>
+                <div class="model-info-item">Validation Focus: primary model quality uses stricter family-holdout metrics to reduce optimistic overfit readings.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="smChatWidget" class="sm-chat-widget">
+        <div class="sm-chat-tooltip">Chat with SkillMatch AI</div>
+        <button id="smChatToggle" type="button" class="sm-chat-toggle" aria-label="Open chatbot">
+            <svg viewBox="0 0 100 100" width="30" height="30" aria-hidden="true">
+                <circle cx="50" cy="50" r="45" fill="rgba(255,255,255,0.2)"></circle>
+                <rect x="25" y="25" width="50" height="40" rx="10" fill="white"></rect>
+                <circle cx="38" cy="42" r="5" fill="#4d72bd"></circle>
+                <circle cx="62" cy="42" r="5" fill="#4d72bd"></circle>
+                <rect x="32" y="55" width="36" height="4" rx="2" fill="#4d72bd"></rect>
+            </svg>
+        </button>
+
+        <section id="smChatPanel" class="sm-chat-panel" aria-live="polite">
+            <div class="sm-chat-head">
+                <span>SkillMatch AI Assistant</span>
+                <div class="sm-chat-head-actions">
+                    <button id="smChatHideSuggestions" type="button" class="sm-chat-icon-btn" aria-label="Hide suggestions">Hide Tips</button>
+                    <button id="smChatFullscreen" type="button" class="sm-chat-icon-btn" aria-label="Toggle fullscreen">⛶</button>
+                    <button id="smChatClose" type="button" class="sm-chat-close" aria-label="Close chatbot">x</button>
+                </div>
+            </div>
+
+            <div id="smChatMessages" class="sm-chat-messages"></div>
+            <div id="smChatTyping" class="sm-chat-typing">SkillMatch AI is typing...</div>
+            <div id="smChatSuggestions" class="sm-chat-suggestions"></div>
+
+            <div class="sm-chat-compose">
+                <input id="smChatInput" class="sm-chat-input" type="text" placeholder="Ask about jobs, skills, and career path...">
+                <button id="smChatSend" type="button" class="sm-chat-send">Send</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        (function initEmbeddedChatbot() {
+            const panel = document.getElementById('smChatPanel');
+            const toggle = document.getElementById('smChatToggle');
+            const closeBtn = document.getElementById('smChatClose');
+            const fullscreenBtn = document.getElementById('smChatFullscreen');
+            const hideSuggestionsBtn = document.getElementById('smChatHideSuggestions');
+            const messagesEl = document.getElementById('smChatMessages');
+            const suggestionsEl = document.getElementById('smChatSuggestions');
+            const typingEl = document.getElementById('smChatTyping');
+            const inputEl = document.getElementById('smChatInput');
+            const sendBtn = document.getElementById('smChatSend');
+            const tooltip = document.querySelector('.sm-chat-tooltip');
+            let hasSentMessage = false;
+            let suggestionsHidden = false;
+
+            if (!panel || !toggle || !messagesEl || !suggestionsEl || !inputEl || !sendBtn) {
+                return;
+            }
+
+            const chatBaseUrl = (
+                (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') &&
+                window.location.port === '5050'
+            ) ? window.location.origin : 'http://localhost:5050';
+
+            function setOpen(open) {
+                panel.classList.toggle('open', open);
+                if (open) {
+                    inputEl.focus();
+                    if (tooltip) {
+                        tooltip.style.display = 'none';
+                    }
+                }
+            }
+
+            function addMessage(role, text) {
+                const item = document.createElement('div');
+                item.className = 'sm-chat-msg ' + role;
+                item.textContent = text;
+                messagesEl.appendChild(item);
+                messagesEl.scrollTop = messagesEl.scrollHeight;
+            }
+
+            function setSuggestionsVisible(visible) {
+                suggestionsHidden = !visible;
+                suggestionsEl.style.display = visible ? 'flex' : 'none';
+
+                if (hideSuggestionsBtn) {
+                    hideSuggestionsBtn.textContent = visible ? 'Hide Tips' : 'Show Tips';
+                    hideSuggestionsBtn.setAttribute('aria-label', visible ? 'Hide suggestions' : 'Show suggestions');
+                }
+            }
+
+            function setFullscreen(on) {
+                panel.classList.toggle('fullscreen', on);
+                if (fullscreenBtn) {
+                    fullscreenBtn.textContent = on ? '↙' : '⛶';
+                    fullscreenBtn.setAttribute('aria-label', on ? 'Exit fullscreen' : 'Toggle fullscreen');
+                }
+            }
+
+            function getBotText(payload) {
+                if (!payload || typeof payload !== 'object') {
+                    return 'Sorry, I could not understand that.';
+                }
+
+                return payload.response || payload.reply || payload.message || payload.text || payload.answer ||
+                    'I received your message. Could you rephrase it?';
+            }
+
+            async function loadSuggestions() {
+                try {
+                    const res = await fetch(chatBaseUrl + '/api/chatbot/suggestions');
+                    const data = await res.json();
+                    const list = Array.isArray(data.suggestions) ? data.suggestions : [];
+
+                    suggestionsEl.innerHTML = '';
+
+                    list.slice(0, 4).forEach((item) => {
+                        const btn = document.createElement('button');
+                        btn.type = 'button';
+                        btn.className = 'sm-chat-chip';
+                        btn.textContent = ((item.icon || '💬') + ' ' + (item.text || '')).trim();
+                        btn.addEventListener('click', () => sendMessage(item.text || 'Help me with career guidance'));
+                        suggestionsEl.appendChild(btn);
+                    });
+
+                    if (!suggestionsEl.childElementCount) {
+                        suggestionsEl.innerHTML = '<button type="button" class="sm-chat-chip">💬 Ask for skill gap advice</button>';
+                    }
+
+                    if (suggestionsHidden) {
+                        suggestionsEl.style.display = 'none';
+                    }
+                } catch (error) {
+                    suggestionsEl.innerHTML = '<button type="button" class="sm-chat-chip">💬 Ask for skill gap advice</button>';
+
+                    if (suggestionsHidden) {
+                        suggestionsEl.style.display = 'none';
+                    }
+                }
+            }
+
+            async function sendMessage(prefill) {
+                const message = (typeof prefill === 'string' ? prefill : inputEl.value).trim();
+                if (!message) {
+                    return;
+                }
+
+                if (!prefill) {
+                    inputEl.value = '';
+                }
+
+                setOpen(true);
+                addMessage('user', message);
+                if (!hasSentMessage) {
+                    hasSentMessage = true;
+                    setSuggestionsVisible(false);
+                }
+                typingEl.style.display = 'block';
+
+                try {
+                    const res = await fetch(chatBaseUrl + '/api/chatbot/message', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            message,
+                            context: {
+                                sourcePage: 'job-matching-final'
+                            }
+                        })
+                    });
+
+                    const data = await res.json();
+                    addMessage('bot', getBotText(data));
+                } catch (error) {
+                    addMessage('bot', 'Unable to connect to chatbot right now. Please try again.');
+                } finally {
+                    typingEl.style.display = 'none';
+                }
+            }
+
+            toggle.addEventListener('click', () => setOpen(!panel.classList.contains('open')));
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    setOpen(false);
+                    setFullscreen(false);
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                    setFullscreen(!panel.classList.contains('fullscreen'));
+                });
+            }
+
+            if (hideSuggestionsBtn) {
+                hideSuggestionsBtn.addEventListener('click', () => {
+                    setSuggestionsVisible(suggestionsHidden);
+                });
+            }
+
+            sendBtn.addEventListener('click', () => sendMessage());
+            inputEl.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && panel.classList.contains('fullscreen')) {
+                    setFullscreen(false);
+                }
+            });
+
+            addMessage('bot', 'Hi! Welcome to SkillMatching AI. Tell me your current skills or IT interests, and I will help you find matching jobs, skill gaps, and the best next learning path.');
+            loadSuggestions();
+        })();
+
+        (function initModelInfoPanel() {
+            const btn = document.getElementById('modelInfoBtn');
+            const panel = document.getElementById('modelInfoPanel');
+            if (!btn || !panel) return;
+
+            btn.addEventListener('click', () => {
+                panel.classList.toggle('open');
+            });
+
+            document.addEventListener('click', (event) => {
+                const root = document.getElementById('modelInfoFab');
+                if (!root) return;
+                if (!root.contains(event.target)) {
+                    panel.classList.remove('open');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
