@@ -181,7 +181,7 @@ GEMINI_API_KEY=your_gemini_key_here
 OPENAI_API_KEY=your_openai_key_here
 CHATBOT_PROVIDER=auto  # Options: gemini, openai, auto
 
-# External APIs (Optional)
+# External APIs 
 YOUTUBE_API_KEY=your_youtube_api_key
 ADZUNA_APP_ID=your_adzuna_id
 ADZUNA_APP_KEY=your_adzuna_key
